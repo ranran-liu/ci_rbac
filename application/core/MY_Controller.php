@@ -9,6 +9,9 @@ class MY_Controller extends CI_Controller
     function __construct()
     {
         parent::__construct();
+//        var_dump($this->router->fetch_directory());
+//        var_dump($this->router->fetch_class());
+//        var_dump($this->router->fetch_method());
         //print_r($this->router->fetch_class());//控制器
         //print_r($this->router->fetch_method());//方法名
     }
@@ -155,38 +158,16 @@ class AdminBaseController extends MY_Controller
 
 class ApiController extends MY_Controller
 {
-    const key = "Umw9N0Wd";
     function __construct()
     {
         parent::__construct();
-        if(IS_POST){
-            $data = $this->input->post();
-        }elseif(IS_GET){
-            $data = $this->input->get();
-        }
-        $str = '';
-        foreach ($data as $k => $v){
-            if($k != "sign"){
-                $str .= $k."=".$v."&";
-            }
-
-        }
-        $str .="key=".self::key;
-        log_message('debug', "str---".$str."====".__CLASS__.__METHOD__."-----LINE--".__LINE__."===time:".date("Y-m-d H:i:s",time()));
-        $str = MD5(rtrim($str,"&"));
-        log_message('debug', "sign---".$str."====".__CLASS__.__METHOD__."-----LINE--".__LINE__."===time:".date("Y-m-d H:i:s",time()));
-        if($str != $data['sign']){
-            $this->jsonencode('Err',-1,'无效的请求');
-        }
-//        检查登录
-        if(empty($data['uid']) or empty($data['token'])){
-            $this->jsonencode('Err',-1,'请登录！');
-        }
-        $checkresult=checkToken($data['token'],$data['uid']);
-        if ($checkresult['status']!="OK"){
-            $this->jsonencode('Err',-2,'登录失效，请重新登录！');
-        }
-
     }
 
+}
+
+class HomeBaseController extends MY_Controller {
+    function __construct()
+    {
+        parent::__construct();
+    }
 }
