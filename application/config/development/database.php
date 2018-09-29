@@ -95,12 +95,12 @@ $db['default'] = array(
 	'save_queries' => TRUE
 );
 
-$db['admin'] = array(
+$db['myproject'] = array(
     'dsn'	=> '',
     'hostname' => '127.0.0.1',
     'username' => 'root',
     'password' => '123456',
-    'database' => 'admin',
+    'database' => 'myproject',
     'dbdriver' => 'mysqli',
     'dbprefix' => 'tp_',
     'pconnect' => FALSE,
