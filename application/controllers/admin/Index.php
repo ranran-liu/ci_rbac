@@ -7,7 +7,7 @@ class Index extends AdminBaseController{
     {
         parent::__construct();
         $this->load->library('session');
-        $this->project_db = $this->load->database("bar", true);
+        $this->project_db = $this->load->database("myproject", true);
     }
 
     public function index()

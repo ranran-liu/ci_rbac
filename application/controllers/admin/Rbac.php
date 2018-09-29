@@ -3,11 +3,11 @@
  * Created by PhpStorm.
  * User: 98465
  * Date: 2018/9/29
- * Time: 14:18
+ * Time: 18:24
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Menu extends AdminBaseController{
+class Rbac extends AdminBaseController{
 
     function __construct()
     {
