@@ -12,6 +12,7 @@ class Index extends HomeBaseController {
         echo '前端页面';
     }
     public function test(){
-        echo site_url();
+        echo $_SERVER['REQUEST_TIME'].'<br>';
+        echo time();
     }
 }

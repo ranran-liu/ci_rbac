@@ -427,4 +427,33 @@ function getDay(){
 }
 
 
+/**
+ * 全局获取验证码图片
+ * 生成的是个HTML的img标签
+ * @param string $imgparam <br>
+ * 生成图片样式，可以设置<br>
+ * length=4&font_size=20&width=238&height=50&use_curve=1&use_noise=1<br>
+ * length:字符长度<br>
+ * font_size:字体大小<br>
+ * width:生成图片宽度<br>
+ * heigh:生成图片高度<br>
+ * use_curve:是否画混淆曲线  1:画，0:不画<br>
+ * use_noise:是否添加杂点 1:添加，0:不添加<br>
+ * @param string $imgattrs<br>
+ * img标签原生属性，除src,onclick之外都可以设置<br>
+ * 默认值：style="cursor: pointer;" title="点击获取"<br>
+ * @return string<br>
+ * 原生html的img标签<br>
+ * 注，此函数仅生成img标签，应该配合在表单加入name=verify的input标签<br>
+ * 如：&lt;input type="text" name="verify"/&gt;<br>
+ */
+function sp_verifycode_img($imgparam='length=4&font_size=20&width=238&height=50&use_curve=1&use_noise=1',$imgattrs='style="cursor: pointer;" title="点击获取"'){
+    $src=__ROOT__."/index.php?g=api&m=checkcode&a=index&".$imgparam;
+    $img=<<<hello
+<img class="verify_img" src="$src" onclick="this.src='$src&time='+Math.random();" $imgattrs/>
+hello;
+    return $img;
+}
+
+
 
