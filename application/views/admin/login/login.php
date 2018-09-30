@@ -34,9 +34,11 @@
 						<input type="password" name="password" size="20" class="login_input" />
 					</p>
 					<p>
-						<label>验证码：</label>
-						<input class="code" type="text" size="5" />
-						<span><img src="<?php echo site_url('assets/dwz/themes/default/images/header_bg.png'); ?>" alt="" width="75" height="24" /></span>
+                        <label>验证码：</label>
+                        <input class="code" type="text" size="5" style="width:120px;" id="verify" name="verify" placeholder="" />
+                        <div class="verifycode-wrapper">
+                            <img src="<?php echo site_url('admin/login/captcha'); ?>" alt="" width="75" height="24" />
+                        </div>
 					</p>
 					<div class="login_bar">
 						<input class="sub" type="submit" value=" " />

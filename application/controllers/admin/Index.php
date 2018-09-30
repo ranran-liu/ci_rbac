@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Index extends AdminBaseController{
+class Index extends MY_Controller{
 
     function __construct()
     {
@@ -12,11 +12,12 @@ class Index extends AdminBaseController{
 
     public function index()
     {
-        $this->load->model('Admin/menu_model','menu');
-        $list=$this->menu->menu_json();
-        //print_r($list);exit;
-        $this->session->set_userdata(array('admin_menu'=>$list));
-        redirect('admin/info/index','refresh');
+//        $this->load->model('Admin/menu_model','menu');
+//        $list=$this->menu->menu_json();
+
+//        $this->session->set_userdata(array('admin_menu'=>$list));
+
+        $this->load->view('admin/boot/index');
     }
 
     public function index1(){
