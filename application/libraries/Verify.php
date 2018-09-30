@@ -84,18 +84,21 @@ class Verify {
     public function check($code, $id = '') {
         $key = $this->authcode($this->seKey).$id;
         // 验证码不能为空
-        $secode = session($key);
+        //$secode = session($key);
+        $secode = $this->session->userdata($key);
         if(empty($code) || empty($secode)) {
             return false;
         }
         // session 过期
         if(NOW_TIME - $secode['verify_time'] > $this->expire) {
-            session($key, null);
+            //session($key, null);
+            $this->session->unset_userdata($key);
             return false;
         }
 
         if($this->authcode(strtoupper($code)) == $secode['verify_code']) {
-            $this->reset && session($key, null);
+            //$this->reset && session($key, null);
+            $this->reset && $this->session->unset_userdata($key);
             return true;
         }
 
@@ -172,8 +175,10 @@ class Verify {
         $secode     =   array();
         $secode['verify_code'] = $code; // 把校验码保存到session
         $secode['verify_time'] = NOW_TIME;  // 验证码创建时间
-        session($key.$id, $secode);
-                        
+
+        //session($key.$id, $secode);
+        $this->session->set_userdata($key.$id,$secode);
+
         header('Cache-Control: private, max-age=0, no-store, no-cache, must-revalidate');
         header('Cache-Control: post-check=0, pre-check=0', false);		
         header('Pragma: no-cache');
