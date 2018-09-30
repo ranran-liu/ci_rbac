@@ -11,4 +11,7 @@ class Index extends HomeBaseController {
     public function index(){
         echo '前端页面';
     }
+    public function test(){
+        echo site_url();
+    }
 }

@@ -3,14 +3,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>管理平台</title>
-<link href="/static/dwz/themes/css/login.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo site_url('assets/dwz/themes/css/login.css'); ?>" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
 	<div id="login">
 		<div id="login_header">
 			<h1 class="login_logo">
-				<a href="http://demo.dwzjs.com"><img src="/static/dwz/themes/default/images/login_logo.gif" /></a>
+				<a href="http://demo.dwzjs.com"><img src="<?php echo site_url('assets/dwz/themes/default/images/login_logo.gif'); ?>" /></a>
 			</h1>
 			<div class="login_headerContent">
 				<div class="navList">
@@ -19,7 +19,7 @@
 						<li><a href="http://bbs.dwzjs.com">反馈</a></li>
 					</ul>
 				</div>
-				<h2 class="login_title"><img src="/static/dwz/themes/default/images/login_title.png" /></h2>
+				<h2 class="login_title"><img src="<?php echo site_url('assets/dwz/themes/default/images/login_title.png'); ?>" /></h2>
 			</div>
 		</div>
 		<div id="login_content">
@@ -36,14 +36,14 @@
 					<p>
 						<label>验证码：</label>
 						<input class="code" type="text" size="5" />
-						<span><img src="/static/dwz/themes/default/images/header_bg.png" alt="" width="75" height="24" /></span>
+						<span><img src="<?php echo site_url('assets/dwz/themes/default/images/header_bg.png'); ?>" alt="" width="75" height="24" /></span>
 					</p>
 					<div class="login_bar">
 						<input class="sub" type="submit" value=" " />
 					</div>
 				</form>
 			</div>
-			<div class="login_banner"><img src="/static/dwz/themes/default/images/login_banner.jpg" /></div>
+			<div class="login_banner"><img src="<?php echo site_url('assets/dwz/themes/default/images/login_banner.jpg'); ?>" /></div>
 			<div class="login_main">
 				<ul class="helpList">
 					<li><a href="#">下载驱动程序</a></li>
@@ -59,7 +59,7 @@
 			</div>
 		</div>
 		<div id="login_footer">
-			Copyright &copy; 2009 www.dwzjs.com Inc. All Rights Reserved.
+			Copyright &copy; 2018 www.ranranliu.com Inc. All Rights Reserved.
 		</div>
 	</div>
 </body>
