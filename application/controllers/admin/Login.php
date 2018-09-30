@@ -7,12 +7,11 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends MY_Controller {
+class Login extends MY_Controller {
 
     function __construct()
     {
         parent::__construct();
-        $this->load->library('session');
         $this->project_db = $this->load->database("myproject", true);
     }
 }
