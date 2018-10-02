@@ -32,6 +32,7 @@ class Login extends MY_Controller {
 
     //执行登录
     public function dologin(){
-        echo 123;
+        $verify = $this->input->post_get('verify');
+        var_dump(sp_check_verify_code($verify));
     }
 }

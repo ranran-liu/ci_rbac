@@ -456,5 +456,19 @@ hello;
     return $img;
 }
 
+/**
+ * 验证码检查，验证完后销毁验证码增加安全性 ,<br>返回true验证码正确，false验证码错误
+ * @return boolean <br>true：验证码正确，false：验证码错误
+ */
+function sp_check_verify_code($verifycode=''){
+    //$verifycode= empty($verifycode)?I('request.verify'):$verifycode;
+    //$verify = new \Think\Verify();
+    //return $verify->check($verifycode, "");
+    $CI = &get_instance();
+    $verifycode= empty($verifycode)?$CI->input->post_get('verify'):$verifycode;
+    $CI->load->library('verify');
+    return $CI->verify->check($verifycode,'');
+}
+
 
 
