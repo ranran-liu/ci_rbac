@@ -81,6 +81,7 @@ class Checkcode extends MY_Controller{
 //        $Verify = new \Think\Verify($config);
 //        $Verify->entry();
         $this->load->library('verify',$config);
+        //var_dump($this->verify);exit;
         $this->verify->entry();
 
     }

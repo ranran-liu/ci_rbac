@@ -32,6 +32,6 @@ class Login extends MY_Controller {
 
     //执行登录
     public function dologin(){
-
+        echo 123;
     }
 }

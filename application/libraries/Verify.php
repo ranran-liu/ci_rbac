@@ -11,6 +11,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Verify {
+    private $CI;
     protected $config =	array(
         'seKey'     =>  'liuran.03.11',   // 验证码加密密钥
         'codeSet'   =>  '2345678abcdefhijkmnpqrstuvwxyzABCDEFGHJKLMNPQRTUVWXY',             // 验证码字符集合
@@ -38,6 +39,8 @@ class Verify {
      * @param  array $config 配置参数
      */    
     public function __construct($config=array()){
+        $this->CI =& get_instance();
+        $this->CI->load->library('session');
         $this->config   =   array_merge($this->config, $config);
     }
 
@@ -48,6 +51,7 @@ class Verify {
      * @return multitype    配置值
      */
     public function __get($name) {
+        //var_dump($this->CI->session);
         return $this->config[$name];
     }
 
@@ -85,20 +89,20 @@ class Verify {
         $key = $this->authcode($this->seKey).$id;
         // 验证码不能为空
         //$secode = session($key);
-        $secode = $this->session->userdata($key);
+        $secode = $this->CI->session->userdata($key);
         if(empty($code) || empty($secode)) {
             return false;
         }
         // session 过期
         if(NOW_TIME - $secode['verify_time'] > $this->expire) {
             //session($key, null);
-            $this->session->unset_userdata($key);
+            $this->CI->session->unset_userdata($key);
             return false;
         }
 
         if($this->authcode(strtoupper($code)) == $secode['verify_code']) {
             //$this->reset && session($key, null);
-            $this->reset && $this->session->unset_userdata($key);
+            $this->reset && $this->CI->session->unset_userdata($key);
             return true;
         }
 
@@ -177,7 +181,7 @@ class Verify {
         $secode['verify_time'] = NOW_TIME;  // 验证码创建时间
 
         //session($key.$id, $secode);
-        $this->session->set_userdata($key.$id,$secode);
+        $this->CI->session->set_userdata($key.$id,$secode);
 
         header('Cache-Control: private, max-age=0, no-store, no-cache, must-revalidate');
         header('Cache-Control: post-check=0, pre-check=0', false);		

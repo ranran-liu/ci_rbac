@@ -448,7 +448,8 @@ function getDay(){
  * 如：&lt;input type="text" name="verify"/&gt;<br>
  */
 function sp_verifycode_img($imgparam='length=4&font_size=20&width=238&height=50&use_curve=1&use_noise=1',$imgattrs='style="cursor: pointer;" title="点击获取"'){
-    $src=__ROOT__."/index.php?g=api&m=checkcode&a=index&".$imgparam;
+//    $src=__ROOT__."/index.php?g=api&m=checkcode&a=index&".$imgparam;
+    $src=site_url()."/api/checkcode/index?".$imgparam;
     $img=<<<hello
 <img class="verify_img" src="$src" onclick="this.src='$src&time='+Math.random();" $imgattrs/>
 hello;

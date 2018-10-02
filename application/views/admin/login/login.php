@@ -24,20 +24,21 @@
 		</div>
 		<div id="login_content">
 			<div class="loginForm">
-				<form action="index.html">
+                <div style="color:#ff0000;font-size:15px;height:30px;margin-top:-30px;width:180px;margin-left:30px;text-align:center;line-height:30px;" id="err_title"></div>
+				<form action="/admin/login/dologin">
 					<p>
 						<label>用户名：</label>
-						<input type="text" name="username" size="20" class="login_input" />
+						<input type="text" name="username" style="width:120px;" size="20" class="login_input" />
 					</p>
 					<p>
 						<label>密码：</label>
-						<input type="password" name="password" size="20" class="login_input" />
+						<input type="password" name="password" style="width:120px;" size="20" class="login_input" />
 					</p>
 					<p>
                         <label>验证码：</label>
-                        <input class="code" type="text" size="5" style="width:120px;" id="verify" name="verify" placeholder="" />
+                        <input class="code" type="text" style="width:120px;" size="5" style="width:120px;" id="verify" name="verify" placeholder="" />
                         <div class="verifycode-wrapper">
-                            <img src="<?php echo site_url('admin/login/captcha'); ?>" alt="" width="75" height="24" />
+                        <?php echo sp_verifycode_img('length=4&font_size=20&width=248&height=42&use_noise=1&use_curve=0','style="cursor: pointer;" title="点击获取"') ?>
                         </div>
 					</p>
 					<div class="login_bar">
