@@ -448,8 +448,7 @@ function getDay(){
  * 如：&lt;input type="text" name="verify"/&gt;<br>
  */
 function sp_verifycode_img($imgparam='length=4&font_size=20&width=238&height=50&use_curve=1&use_noise=1',$imgattrs='style="cursor: pointer;" title="点击获取"'){
-//    $src=__ROOT__."/index.php?g=api&m=checkcode&a=index&".$imgparam;
-    $src=site_url()."/api/checkcode/index?".$imgparam;
+    $src=rtrim(site_url(),'/')."/api/checkcode/index?".$imgparam;
     $img=<<<hello
 <img class="verify_img" src="$src" onclick="this.src='$src&time='+Math.random();" $imgattrs/>
 hello;
@@ -461,9 +460,6 @@ hello;
  * @return boolean <br>true：验证码正确，false：验证码错误
  */
 function sp_check_verify_code($verifycode=''){
-    //$verifycode= empty($verifycode)?I('request.verify'):$verifycode;
-    //$verify = new \Think\Verify();
-    //return $verify->check($verifycode, "");
     $CI = &get_instance();
     $verifycode= empty($verifycode)?$CI->input->post_get('verify'):$verifycode;
     $CI->load->library('verify');
