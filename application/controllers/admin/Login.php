@@ -34,10 +34,26 @@ class Login extends MY_Controller {
     public function dologin(){
         $username = $this->input->post_get('username');
         if(!$username){
-            $this->error();
+            $this->error('请输入用户名');
         }
         $password = $this->input->post_get('password');
+        if(!$password){
+            $this->error('请输入密码');
+        }
         $verify = $this->input->post_get('verify');
-        var_dump(sp_check_verify_code($verify));
+        if(!$verify){
+            $this->error('请输入验证码');
+        }
+        //检验验证码
+        if(!sp_check_verify_code($verify)){
+            $this->error('验证码不正确');
+        }
+        if(strpos($username,"@")>0){//邮箱登陆
+            $where['user_email'] = $username;
+        }else{
+            $where['user_login'] = $username;
+        }
+        $sql = 'SELECT * FROM tp_users WHERE user_login = ? ';
+
     }
 }

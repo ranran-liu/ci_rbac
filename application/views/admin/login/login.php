@@ -27,14 +27,14 @@
 		<div id="login_content">
 			<div class="loginForm">
                 <div style="color:#ff0000;font-size:15px;height:30px;margin-top:-30px;width:180px;margin-left:30px;text-align:center;line-height:30px;" id="err_title"></div>
-				<form action="/admin/login/dologin">
+				<form action="">
 					<p>
 						<label>用户名：</label>
-						<input type="text" name="username" style="width:120px;" size="20" class="login_input" placeholder="请输入用户名" />
+						<input type="text" name="username" style="width:120px;" id="username" size="20" class="login_input" placeholder="请输入用户名" />
 					</p>
 					<p>
 						<label>密码：</label>
-						<input type="password" name="password" style="width:120px;" size="20" class="login_input" placeholder="请输入密码" />
+						<input type="password" name="password" style="width:120px;" id="password" size="20" class="login_input" placeholder="请输入密码" />
 					</p>
 					<p>
                         <label>验证码：</label>
