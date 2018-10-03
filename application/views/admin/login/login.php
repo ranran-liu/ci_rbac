@@ -4,8 +4,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>管理平台</title>
 <link href="<?php echo site_url('assets/dwz/themes/css/login.css'); ?>" rel="stylesheet" type="text/css" />
-</head>
 
+</head>
+<!--[if lt IE 9]><!--><script src="<?php echo site_url('assets/dwz/js/speedup.js'); ?>" type="text/javascript"></script><script src="<?php echo site_url('assets/dwz/js/jquery-1.11.3.min.js'); ?>" type="text/javascript"></script><!--<![endif]-->
+<!--[if gte IE 9]><!--><script src="<?php echo site_url('assets/dwz/js/jquery-2.1.4.min.js'); ?>" type="text/javascript"></script><!--<![endif]-->
 <body>
 	<div id="login">
 		<div id="login_header">
@@ -36,13 +38,38 @@
 					</p>
 					<p>
                         <label>验证码：</label>
-                        <input class="code" type="text" style="width:120px;" size="5" style="width:120px;" id="verify" name="verify" placeholder="请输入验证码" />
+                        <input class="code" type="text" style="width:120px;" size="5"  id="verify" name="verify" placeholder="请输入验证码" />
                         <div class="verifycode-wrapper">
                         <?php echo sp_verifycode_img('length=4&font_size=20&width=248&height=42&use_noise=1&use_curve=0','style="cursor: pointer;" title="点击获取"') ?>
                         </div>
 					</p>
 					<div class="login_bar">
-						<input class="sub" type="submit" value=" " />
+                        <input class="sub" type="button" onclick="javascript:ajax_submit();" />
+<!--						<input class="sub" type="submit" value=" " />-->
+                        <script>
+                            $("#verify").keyup(function(event){
+                                if(event.keyCode ==13){
+                                    ajax_submit();
+                                }
+                            });
+
+                            function ajax_submit(){
+                                var username=$("#username").val();
+                                var password=$("#password").val();
+                                var verify=$("#verify").val();
+                                var URL='/admin/login/dologin';
+                                $.post(URL,{username:username,password:password,verify:verify},function(data,status,xhr){
+                                    if (data.statusCode==200){
+                                        window.location.href="/admin/";
+                                    }
+                                    else
+                                    {
+                                        $("#err_title").text(data.message);
+                                    }
+                                },'json');
+
+                            }
+                        </script>
 					</div>
 				</form>
 			</div>

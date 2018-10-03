@@ -85,6 +85,21 @@ class MY_Controller extends CI_Controller
         echo $result;
         exit();
     }
+
+
+    public function error($message='操作失败') {
+        //$this->dispatchJump($message,0,$jumpUrl,$ajax);
+        header("Content-type:text/html;charset=utf-8");
+        echo '{"statusCode":"300","message":"'.$message.'"}';
+        exit;
+    }
+
+    public function success($navTabId='',$callbackType='',$forwardUrl='')
+    {
+        header("Content-type:text/html;charset=utf-8");
+        echo '{"statusCode":"200","message":"操作成功","navTabId":"'.$navTabId.'","rel":"","callbackType":"'.$callbackType.'","forwardUrl":"'.$forwardUrl.'"}';
+        exit;
+    }
 }
 
 
