@@ -29,12 +29,6 @@ class MY_Controller extends CI_Controller
             $this->load->view('templates/'.$template.'_view', $this->data);
         }
     }
-    //后台Ajax方式返回数据到客户端
-    protected function ajax_return($data) {
-        header('Content-Type: application/json');
-        header('Access-Control-Allow-Origin:*');
-        echo json_encode($data);exit;
-    }
 
     //api接口返回数据格式
     public function jsonencode($code,$status,$msg,$arr=''){
