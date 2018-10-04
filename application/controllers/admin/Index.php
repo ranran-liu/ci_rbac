@@ -16,7 +16,7 @@ class Index extends MY_Controller{
 //        $list=$this->menu->menu_json();
 //
 //        $this->session->set_userdata(array('admin_menu'=>$list));
-
+        //var_dump($this->session->userdata('userInfo'));
         $this->load->view('admin/boot/index');
     }
 

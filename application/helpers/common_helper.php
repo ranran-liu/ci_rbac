@@ -75,23 +75,7 @@ function encrypt($string,$operation,$key=''){
 
 }
 
-/*
-  * 加密验证法
-  * */
-function generateHash($plainText, &$salt = null)
-{
 
-    if (empty($salt))
-    {
-        $salt = substr(uniqid(rand()), -6);
-    }
-    else
-    {
-        $salt = substr($salt,strlen($salt)-6);
-    }
-    return md5(md5($plainText).$salt);
-
-}
 
 
 //接收数据
@@ -156,32 +140,6 @@ function create_guid(){
 
     return $uuid;
 }
-//验证码
-function ver_code($length=5,$type=1){
-    //type 类型 1登录验证码 2 注册验证码 3加入公司验证码
-
-    $str = 'abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ123456789';
-    $code = '';
-    for($i=0;$i<$length;$i++){
-        $code .= $str[mt_rand(0,58)];
-    }
-    $key='img_code_'.$type;
-    $CI = &get_instance();
-    $CI->load->library('session');
-    $CI->session->set_userdata(array($key=>$code));
-    $res = imagecreate(100,35);
-    $bgcolor = imagecolorallocate($res,255,255,255);
-    $bordercolor = imagecolorallocate($res,0,0,0);
-    $blockcolor = imagecolorallocate($res,102,102,102);
-    $font_size = '130';
-    imagefilledrectangle($res,0,0,100,35,$blockcolor);
-    imagefilledrectangle($res,1,1,98,33,$bgcolor);
-    imagestring($res,$font_size,28,8,$code,$blockcolor);
-    header("Content-Type: image/jpeg");
-    imagejpeg($res);
-    imagedestroy($res);
-}
-
 
 function http_curl($url,$request_type='get',$data='',$strtype=''){
     //1.初始化curl
@@ -464,6 +422,30 @@ function sp_check_verify_code($verifycode=''){
     $verifycode= empty($verifycode)?$CI->input->post_get('verify'):$verifycode;
     $CI->load->library('verify');
     return $CI->verify->check($verifycode,'');
+}
+/**
+ *
+ * @param string $pw 要加密的字符串
+ * @param string $salt 加密盐
+ * @return string
+ */
+function sp_password($pw,$authcode=''){
+    if(empty($authcode)){
+        $authcode = AUTHCODE;
+    }
+    $result="###".md5(md5($authcode.$pw));
+    return $result;
+}
+
+/**
+ *
+ * @param string $password 要比较的密码
+ * @param string $password_in_db 数据库保存的已经加密过的密码
+ * @return boolean 密码相同，返回true
+ */
+function sp_compare_password($password,$password_in_db){
+
+    return sp_password($password)==$password_in_db;
 }
 
 
