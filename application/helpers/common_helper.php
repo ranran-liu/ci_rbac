@@ -239,12 +239,12 @@ function sp_auth_check($uid,$name=null,$relation='or'){
     if(empty($uid)){
         return false;
     }
-
-    $iauth_obj=new \Common\Lib\iAuth();
-    if(empty($name)){
-        $name=strtolower(MODULE_NAME."/".CONTROLLER_NAME."/".ACTION_NAME);
-    }
-    return $iauth_obj->check($uid, $name, $relation);
+    $CI  = &get_instance();
+    $CI->load->library('iauth');
+//    if(empty($name)){
+//        $name=strtolower(MODULE_NAME."/".CONTROLLER_NAME."/".ACTION_NAME);
+//    }
+    return $CI->iauth->check($uid, $name, $relation);
 }
 function sp_auth_check1($phone,$id){
     $CI = &get_instance();
