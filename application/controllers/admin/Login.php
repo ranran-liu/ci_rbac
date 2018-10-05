@@ -89,7 +89,12 @@ class Login extends MY_Controller {
     }
 
     public function test(){
-        echo sp_password("admin");
+        $action = 'ajax_add_asasdf';
+        if(preg_match('/^ajax_([a-z]+)_/', $action, $_match)){
+            $action = $_match[1];
+            print_r($_match);
+        }
+        echo 123;
 
     }
 }

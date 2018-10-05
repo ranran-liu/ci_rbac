@@ -6,6 +6,7 @@ class MY_Model extends CI_Model
    {
        parent::__construct();
    }
+
     public function jsonencode($code,$status,$msg,$arr=''){
         header('Content-Type: application/json');
         header('Access-Control-Allow-Origin:*');
