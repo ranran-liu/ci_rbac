@@ -112,30 +112,87 @@ $(function(){
 					<div class="toggleCollapse"><div></div></div>
 				</div>
 			</div>
-			<div id="sidebar">
-				<div class="toggleCollapse"><h2>主菜单</h2><div>收缩</div></div>
+            <div id="sidebar">
+                <div class="toggleCollapse"><h2>主菜单</h2><div>收缩</div></div>
 
-				<div class="accordion" fillSpace="sidebar">
-					<div class="accordionHeader">
-						<h2><span>Folder</span>界面组件</h2>
-					</div>
-					<div class="accordionContent">
-						<ul class="tree treeFolder">
-							<li><a href="tabsPage.html" target="navTab">主框架面板</a>
-								<ul>
-									<li><a href="main.html" target="navTab" rel="main">我的主页</a></li>
-								</ul>
-							</li>
-							
-							<li><a>用户管理</a>
-								<ul>
-									<li><a href="/admin/user/lists" target="navTab" rel="w_panel">用户列表</a></li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
+                <div class="accordion" fillSpace="sidebar">
+
+                    <?php $submenus=$SUBMENU_CONFIG;?>
+                    <?php function getsubmenu($submenus){?>
+                    <?php foreach($submenus as $menu){ ?>
+                    <div class="accordionHeader">
+                        <h2><span>Folder</span>
+                            <?php 
+                                //$menu_name=L($menu['lang']);
+                                //$menu_name=$menu['lang']==$menu_name?$menu['name']:$menu_name;
+                                $menu_name=$menu['name'];
+                            ?>
+                            <?php echo $menu_name;?>
+                        </h2>
+                    </div>
+                    <?php if(!empty($menu['items'])){?>
+                    <div class="accordionContent">
+                        <ul class="tree treeFolder">
+                            <?php getsubmenu1($menu['items'])?>
+                        </ul>
+                    </div>
+                    <?php }?>
+
+                    <?php }?>
+                    <?php }?>
+
+
+
+
+                    <?php function getsubmenu1($submenus){?>
+                    <?php foreach($submenus as $menu){?>
+                    <?php 
+                        //$menu_name=L($menu['lang']);
+                        //$menu_name=$menu['lang']==$menu_name?$menu['name']:$menu_name;
+                        $menu_name=$menu['name'];
+                        if ($menu['target_type']=='dialog'){
+                        $dialog_wh='width=800 height=500';
+                        }
+                        $dialog_wh='';
+                        if ($menu['target_type']=='external'){
+                        $dialog_wh='external="true"';
+                        $menu['target_type']='navtab';
+                        }
+                    ?>
+                    <li>
+                        <a href="<?php echo $menu['url']; ?>" target="<?php echo $menu['target_type']; ?>" rel="<?php echo $menu['rel']; ?>" <?php $dialog_wh; ?> ><?php echo $menu_name;?></a>
+                        <?php if(!empty($menu['items'])){?>
+                        <?php getsubmenu2($menu['items'])?>
+                        <?php }?>
+                    </li>
+                    <?php }?>
+                    <?php }?>
+
+
+                    <?php function getsubmenu2($submenus){?>
+                    <?php foreach($submenus as $menu){?>
+                    <?php 
+                        //$menu_name=L($menu['lang']);
+                        //$menu_name=$menu['lang']==$menu_name?$menu['name']:$menu_name;
+                        $menu_name=$menu['name'];
+                        if ($menu['target_type']=='dialog'){
+                        $dialog_wh='width=800 height=500';
+                        }
+                        if ($menu['target_type']=='external'){
+                        $dialog_wh='external="true"';
+                        $menu['target_type']='navtab';
+                        }
+                    ?>
+                    <ul>
+                        <li><a href="<?php echo $menu['url']; ?>" target="<?php echo $menu['target_type']; ?>" rel="<?php echo $menu['rel']; ?>" <?php $dialog_wh; ?> ><?php echo $menu_name;?></a></li>
+                    </ul>
+
+                    <?php }?>
+                    <?php }?>
+
+                    <?php getsubmenu($submenus);?>
+                </div>
+            </div>
 		</div>
 		<div id="container">
 			<div id="navTab" class="tabsPage">
