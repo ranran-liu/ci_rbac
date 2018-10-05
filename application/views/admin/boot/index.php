@@ -186,7 +186,6 @@ $(function(){
                     <ul>
                         <li><a href="<?php echo $menu['url']; ?>" target="<?php echo $menu['target_type']; ?>" rel="<?php echo $menu['rel']; ?>" <?php $dialog_wh; ?> ><?php echo $menu_name;?></a></li>
                     </ul>
-
                     <?php }?>
                     <?php }?>
 

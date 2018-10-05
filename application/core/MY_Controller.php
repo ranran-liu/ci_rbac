@@ -103,19 +103,19 @@ class AdminBaseController extends MY_Controller
     function __construct()
     {
         parent::__construct();
-        $this->project_db = $this->load->database("bar", true);
+        $this->project_db = $this->load->database("myproject", true);
         $this->load->library('session');
         $userInfo=$this->session->userdata('userInfo');
         if($userInfo){
-            if(isset($userInfo['appid'])){
-                //检查权限
-                if(!$this->check_access($userInfo['phone'])){
-                    $this->ajax_return(['message'=>'您没有访问权限！']);
-                }
-            }else{
-                //redirect('admin/bind/app_list');
-                redirect('admin/bind/index');
-            }
+//            if(isset($userInfo['appid'])){
+//                //检查权限
+//                if(!$this->check_access($userInfo['phone'])){
+//                    $this->ajax_return(['message'=>'您没有访问权限！']);
+//                }
+//            }else{
+//                //redirect('admin/bind/app_list');
+//                redirect('admin/bind/index');
+//            }
         }else{
             if($this->input->is_ajax_request()){
                 $this->ajax_return(['status_code'=>300,'message'=>'您还没有登录！','url'=>'admin/login/login']);
