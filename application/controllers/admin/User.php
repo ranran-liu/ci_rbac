@@ -34,8 +34,10 @@ class User extends AdminBaseController{
         $users = $this->project_db->like($where)->from('tp_users')->limit($this->pagesize,$offset)->get()->result_array();
         $data['totalCount'] = $count;
         $data['users'] = $users;
-        $data['page'] = $this->page;
-        $data['users'] = $this->pagesize;
+        $data['pageNum'] = $this->page;
+        $data['numPerPage'] = $this->pagesize;
+        $data['user_login'] =  $user_login;
+        $data['user_email'] =  $user_email;
         $this->load->view('admin/user/index',$data);
     }
 }
