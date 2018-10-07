@@ -12,10 +12,10 @@
             <table class="searchContent">
                 <tr>
                     <td>
-                        用户名：<input type="text" name="user_login" style="width: 100px;" value="" placeholder="请输入用户名">
+                        用户名：<input type="text" name="user_login" style="width: 100px;" value="<?php echo $user_login;?>" placeholder="请输入用户名">
                     </td>
                     <td>
-                        邮箱：<input type="text" name="user_email" style="width: 100px;" value="" placeholder="请输入邮箱">
+                        邮箱：<input type="text" name="user_email" style="width: 100px;" value="<?php echo $user_email;?>" placeholder="请输入邮箱">
                     </td>
                     <td>
                         <div class="subBar">
