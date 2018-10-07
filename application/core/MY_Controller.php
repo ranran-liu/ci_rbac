@@ -107,54 +107,38 @@ class AdminBaseController extends MY_Controller
         $this->load->library('session');
         $userInfo=$this->session->userdata('userInfo');
         if($userInfo){
-//            if(isset($userInfo['appid'])){
-//                //检查权限
-//                if(!$this->check_access($userInfo['phone'])){
-//                    $this->ajax_return(['message'=>'您没有访问权限！']);
-//                }
-//            }else{
-//                //redirect('admin/bind/app_list');
-//                redirect('admin/bind/index');
-//            }
+            //检查权限
+            if(!$this->check_access($userInfo['ADMIN_ID'])){
+                $this->error("您没有访问权限！");
+            }
         }else{
             if($this->input->is_ajax_request()){
-                $this->ajax_return(['status_code'=>300,'message'=>'您还没有登录！','url'=>'admin/login/login']);
+                $this->error("您还没有登录！");
             }else{
                 redirect('admin/login/login','refresh');
             }
 
         }
     }
-    //检查权限
-    public function check_access($phone){
-        //检查权限
-        $sql='select * from tp_wxadmin where phone=?';
-        $query=$this->project_db->query($sql,$phone);
-        $wxadmin = $query->row_array();
-        //print_r($wxadmin);
-        if($wxadmin['is_admin']==1){//主管理员  全部权限
+    private function check_access($uid){
+        //如果用户角色是1，则无需判断
+        if($uid == 1){
             return true;
         }
-        //return true;
-        $m=$this->uri->segment(1);
-        $c = $this->router->fetch_class();
-        $a = $this->router->fetch_method();
-        $name=strtolower($m."/".$c."/".$a);
-//        echo $name;
-//        echo '<br>';
-//        echo $m;
-//        echo '<br>';
-//        echo $c;
-//        echo '<br>';
-//        echo $a;exit;
-        if($wxadmin['is_admin']==0){//副管理员  部分权限
-            $sql='select * from tp_func where status=1 and menu_type=2 and info= ? ';
-            $result=$this->project_db->query($sql,array($name))->row_array();
-            if(!$result){
-                return false;
-            }
-            return sp_auth_check($phone,$result['id']);
-            //print_r($result);
+        //$m=$this->uri->segment(1);
+        $m = trim($this->router->fetch_directory(),'/');
+        $c = trim($this->router->fetch_class(),'/');
+        $a = trim($this->router->fetch_method(),'/');
+
+        $rule=strtolower($m.$c.$a);
+
+        $no_need_check_rules=array("adminindexindex");
+
+        if( !in_array($rule,$no_need_check_rules) ){
+            $name = strtolower($m.'/'.$c.'/'.$a);
+            return sp_auth_check($uid,$name);
+        }else{
+            return true;
         }
     }
 

@@ -55,9 +55,9 @@ class Iauth {
         $groups = array_column($groups,'role_id');
         //var_dump($groups);exit;
         //有超级管理员角色
-//        if(in_array(1, $groups)){
-//            return true;
-//        }
+        if(in_array(1, $groups)){
+            return true;
+        }
 
         if(empty($groups)){
             return false;

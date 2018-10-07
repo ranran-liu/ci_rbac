@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Index extends MY_Controller{
+class Index extends AdminBaseController {
 
     function __construct()
     {

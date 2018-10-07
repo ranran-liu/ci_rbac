@@ -22,7 +22,7 @@ class Menu_model extends MY_Model
      */
     public function menu_json() {
         $data = $this->get_tree(0);
-        //print_r($data);
+        //print_r($data);exit;
         return $data;
     }
     //取得树形结构的菜单

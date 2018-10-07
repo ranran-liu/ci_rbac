@@ -153,7 +153,7 @@ $(function(){
                         if ($menu['target_type']=='dialog'){
                         $dialog_wh='width=800 height=500';
                         }
-                        $dialog_wh='';
+                        //$dialog_wh='';
                         if ($menu['target_type']=='external'){
                         $dialog_wh='external="true"';
                         $menu['target_type']='navtab';
