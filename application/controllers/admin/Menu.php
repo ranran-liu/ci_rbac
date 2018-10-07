@@ -15,4 +15,8 @@ class Menu extends AdminBaseController{
         $this->load->library('session');
         $this->project_db = $this->load->database("myproject", true);
     }
+
+    public function index(){
+        $this->load->view('/admin/menu/index');
+    }
 }
