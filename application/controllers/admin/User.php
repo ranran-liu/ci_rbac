@@ -40,4 +40,10 @@ class User extends AdminBaseController{
         $data['user_email'] =  $user_email;
         $this->load->view('admin/user/index',$data);
     }
+    public function add(){
+        $this->load->model('Admin/role_model');
+        $list = $this->role_model->get_active_roles_list();
+        $data['roles'] = $list;
+        $this->load->view('admin/user/add',$data);
+    }
 }

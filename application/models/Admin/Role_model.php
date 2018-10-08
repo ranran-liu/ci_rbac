@@ -74,4 +74,11 @@ class Role_model extends MY_Model
             return false;
         }
     }
+
+    //获取已启用的角色列表
+    public function get_active_roles_list(){
+
+        $list = $this->project_db->where(array('status'=>1))->order_by('id','DESC')->get(self::Role_TABLE)->result_array();
+        return $list;
+    }
 }
