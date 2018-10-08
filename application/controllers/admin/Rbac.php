@@ -16,6 +16,7 @@ class Rbac extends AdminBaseController{
         $this->project_db = $this->load->database("myproject", true);
         $this->page = $this->input->post_get('pageNum')?$this->input->post_get('pageNum'):1;
         $this->pagesize = $this->input->post_get('numPerPage')?$this->input->post_get('numPerPage'):20;
+        $this->load->model('Admin/role_model');
     }
 
     // 角色管理列表
@@ -36,6 +37,14 @@ class Rbac extends AdminBaseController{
     }
     // 添加角色提交
     public function roleadd_post() {
-        echo date("Y-m-d H:i:s",time());
+
+        $res = $this->role_model->form_validate();
+
+        if($res === TRUE){
+
+        }else{
+            $this->error($res);
+        }
+
     }
 }

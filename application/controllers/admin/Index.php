@@ -17,6 +17,6 @@ class Index extends AdminBaseController {
         $data['SUBMENU_CONFIG'] = $list;
         $this->load->view('admin/boot/index',$data);
     }
-    
+
 
 }
