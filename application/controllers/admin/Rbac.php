@@ -40,10 +40,14 @@ class Rbac extends AdminBaseController{
 
         $res = $this->role_model->form_validate();
 
-        if($res === TRUE){
+        if($res == FALSE){
+
+            $this->error(validation_one_errors());
 
         }else{
-            $this->error($res);
+
+
+
         }
 
     }

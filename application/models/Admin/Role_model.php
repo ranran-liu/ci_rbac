@@ -31,14 +31,7 @@ class Role_model extends MY_Model
         );
         $this->form_validation->set_rules($config);
 
-        if ($this->form_validation->run() == FALSE)
-        {
+        return $this->form_validation->run();
 
-            return validation_one_errors();
-        }
-        else
-        {
-            return TRUE;
-        }
     }
 }
