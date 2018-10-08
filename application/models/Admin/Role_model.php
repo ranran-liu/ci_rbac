@@ -10,6 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Role_model extends MY_Model
 {
+    const Role_TABLE = 'tp_role';
     public function __construct()
     {
         parent::__construct();
@@ -33,5 +34,44 @@ class Role_model extends MY_Model
 
         return $this->form_validation->run();
 
+    }
+    //角色添加
+    public function role_insert($arr){
+        $arr['create_time']=time();
+        $arr['update_time']=time();
+        $this->project_db->insert(self::Role_TABLE,$arr);
+        if($this->project_db->affected_rows()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //角色修改
+    public function role_update($arr,$id){
+        $arr['update_time']=time();
+        $this->project_db->update(self::Role_TABLE,$arr,array('id'=>$id));
+        if($this->project_db->affected_rows()!== FALSE){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    //查询单条数据
+    public function get_one($id){
+        $res = $this->project_db->where(array('id'=>$id))->get(self::Role_TABLE)->row_array();
+        return $res;
+    }
+
+    //角色删除
+
+    public function role_delete($id){
+
+        $this->project_db->delete(self::Role_TABLE,array('id'=>$id));
+        if($this->project_db->affected_rows()){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

@@ -47,13 +47,78 @@ class Rbac extends AdminBaseController{
                 $this->error(validation_one_errors());
 
             }else{
+                $posts=$this->input->post();
                 //执行添加
-                $this->project_db->insert();
+                $return = $this->role_model->role_insert($posts);
 
-
+                if($return){
+                    $this->success("Rbac_index",'closeCurrent',"/admin/rbac/index");
+                }else{
+                    $this->error('添加失败！');
+                }
             }
         }
 
+
+    }
+    // 编辑角色
+    public function roleedit() {
+        $id = $this->input->get('id');
+        if ($id == 1) {
+            $this->error("超级管理员角色不能被修改！");
+        }
+        $data = $this->role_model->get_one($id);
+        if (!$data) {
+            $this->error("该角色不存在！");
+        }
+        $arr['data'] = $data;
+        $this->load->view('admin/rbac/roleedit',$arr);
+    }
+    // 编辑角色提交
+    public function roleedit_post() {
+        $id = $this->input->post_get('id');
+        if ($id == 1) {
+            $this->error("超级管理员角色不能被修改！");
+        }
+        if (IS_POST) {
+            $res = $this->role_model->form_validate();
+
+            if($res == FALSE){
+
+                $this->error(validation_one_errors());
+
+            }else{
+                $posts=$this->input->post();
+                //执行修改
+                $return = $this->role_model->role_update($posts,$id);
+                if($return){
+                    $this->success("Rbac_index",'closeCurrent',"/admin/rbac/index");
+                }else{
+                    $this->error('修改失败！');
+                }
+            }
+        }
+    }
+
+    // 删除角色
+    public function roledelete() {
+        $id = $this->input->get('id');
+        if ($id == 1) {
+            $this->error("超级管理员角色不能被删除！");
+        }
+
+        $count=$this->project_db->where(array('role_id'=>$id))->from('tp_role_user')->count_all_results();
+
+        if($count>0){
+            $this->error("该角色已经有用户！");
+        }else{
+            $return = $this->role_model->role_delete($id);
+            if ($return) {
+                $this->success("Rbac_index","", '/admin/rbac/index');
+            } else {
+                $this->error("删除失败！");
+            }
+        }
 
     }
 }
