@@ -42,7 +42,7 @@
         <tr>
             <th width="50">ID</th>
             <th>用户</th>
-            <th>最后登录ip</th>
+            <th>最后登录IP</th>
             <th>最后登录时间</th>
             <th>邮箱</th>
             <th>手机号</th>
