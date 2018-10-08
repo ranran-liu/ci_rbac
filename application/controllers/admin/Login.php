@@ -81,7 +81,7 @@ class Login extends MY_Controller {
             $result['last_login_ip']=get_client_ip(0,true);
             $result['last_login_time']=date("Y-m-d H:i:s");
             $this->project_db->update('tp_users',$result,array('id'=>$result['id']));
-            $this->success('1234',"/admin/index/index");
+            $this->success('success',"/admin/index/index");
         }else{
             $this->error('用户不存在');
         }
