@@ -38,17 +38,22 @@ class Rbac extends AdminBaseController{
     // 添加角色提交
     public function roleadd_post() {
 
-        $res = $this->role_model->form_validate();
+        if (IS_POST) {
 
-        if($res == FALSE){
+            $res = $this->role_model->form_validate();
 
-            $this->error(validation_one_errors());
+            if($res == FALSE){
 
-        }else{
+                $this->error(validation_one_errors());
+
+            }else{
+                //执行添加
+                $this->project_db->insert();
 
 
-
+            }
         }
+
 
     }
 }
