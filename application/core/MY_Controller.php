@@ -146,19 +146,18 @@ class AdminBaseController extends MY_Controller
     {
         parent::render($the_view, $template);
     }
-
     /**
-     * 消息提示
-     * @param type $message
-     * @param type $jumpUrl
-     * @param type $ajax
+     * 初始化后台菜单
      */
-    public function success($navTabId='',$callbackType='',$forwardUrl='')
-    {
-        header("Content-type:text/html;charset=utf-8");
-        echo '{"statusCode":"200","message":"操作成功","navTabId":"'.$navTabId.'","rel":"","callbackType":"'.$callbackType.'","forwardUrl":"'.$forwardUrl.'"}';
-        exit;
+    public function initMenu() {
+//        $Menu = F("Menu");
+//        if (!$Menu) {
+//            $Menu=D("Common/Menu")->menu_cache($where);
+//        }
+//        return $Menu;
     }
+
+
 }
 
 

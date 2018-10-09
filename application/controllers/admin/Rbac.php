@@ -121,4 +121,115 @@ class Rbac extends AdminBaseController{
         }
 
     }
+
+    /**
+     * 角色授权
+     */
+    public function authorize() {
+        header('Content-type:text/html;charset=utf-8');
+        //角色ID
+        $roleid = $this->input->get('id');
+        if (empty($roleid)) {
+            $this->error("参数错误！");
+        }
+        //import("Tree");
+        $this->load->library('tree');
+        $this->tree->icon = array('│ ', '├─ ', '└─ ');
+        $this->tree->nbsp = '&nbsp;&nbsp;&nbsp;';
+        $result = $this->initMenu();
+        $newmenus=array();
+        $this->load->model('admin/authAccess_model','AuthAccess');
+        //获取权限表数据
+        $priv_data=$this->AuthAccess->get_rulename_list($roleid);
+
+        foreach ($result as $m){
+            $newmenus[$m['id']]=$m;
+        }
+
+        $menu1_array=$this->get_tree($result,0,$priv_data);
+
+        for($i=0;$i<count($menu1_array);$i++)
+        {
+            $menu2_array=$this->get_tree($result,$menu1_array[$i]['id'],$priv_data);
+            for($j=0;$j<count($menu2_array);$j++)
+            {
+                $menu3_array=$this->get_tree($result,$menu2_array[$j]['id'],$priv_data);
+                for($x=0;$x<count($menu3_array);$x++)
+                {
+                    $menu4_array=$this->get_tree($result,$menu3_array[$x]['id'],$priv_data);
+                    for($y=0;$y<count($menu4_array);$y++){
+                        $menu4_array[$y]['menu5']=$this->get_tree($result,$menu4_array[$y]['id'],$priv_data);
+                    }
+                    $menu3_array[$x]['menu4']=$menu4_array;
+                }
+                $menu2_array[$j]['menu3']=$menu3_array;
+            }
+            $menu1_array[$i]['menu2']=$menu2_array;
+        }
+
+        $str = '';
+        for($i=0;$i<count($menu1_array);$i++){
+            $str.='<li><a tname="menuid[]" tvalue="'.$menu1_array[$i]['id'].'" '.$menu1_array[$i]['checked'].'>'.$menu1_array[$i]['name'].'</a>';
+            for($j=0;$j<count($menu1_array[$i]['menu2']);$j++){
+                $arr_menu2=$menu1_array[$i]['menu2'];
+                $str.='<ul><li><a tname="menuid[]" tvalue="'.$arr_menu2[$j]['id'].'" '.$arr_menu2[$j]['checked'].'>'.$arr_menu2[$j]['name'].'</a>';
+                for($x=0;$x<count($arr_menu2[$j]['menu3']);$x++){
+                    $arr_menu3=$arr_menu2[$j]['menu3'];
+                    $str.='<ul><li><a tname="menuid[]" tvalue="'.$arr_menu3[$x]['id'].'" '.$arr_menu3[$x]['checked'].'>'.$arr_menu3[$x]['name'].'</a>';
+                    for($y=0;$y<count($arr_menu3[$x]['menu4']);$y++){
+                        $arr_menu4=$arr_menu3[$x]['menu4'];
+                        $str.='<ul><li><a tname="menuid[]" tvalue="'.$arr_menu4[$y]['id'].'" '.$arr_menu4[$y]['checked'].'>'.$arr_menu4[$y]['name'].'</a>';
+                        for($m=0;$m<count($arr_menu4[$y]['menu5']);$m++){
+                            $arr_menu5=$arr_menu4[$y]['menu5'];
+                            $str.='<ul><li><a tname="menuid[]" tvalue="'.$arr_menu5[$m]['id'].'" '.$arr_menu5[$m]['checked'].'>'.$arr_menu5[$m]['name'].'</a>';
+                            $str.='</li></ul>';
+                        }
+                        $str.='</li></ul>';
+
+                    }
+                    $str.='</li></ul>';
+                }
+                $str.='</li></ul>';
+            }
+            $str.='</li>';
+        }
+
+
+
+        //$this->assign("categorys", $str);
+
+        $this->load->view('admin/rbac/authorize');
+    }
+
+    public function get_tree($arr,$parentid,$priv_data){
+        for($i=0;$i<count($arr);$i++){
+            if ($arr[$i]['parentid']==$parentid){
+                $arr[$i]['checked']=($this->_is_checked($arr[$i],$priv_data)) ? 'checked="checked"' : '';
+                $tmp_arr[]=$arr[$i];
+            }
+        }
+        return $tmp_arr;
+    }
+    /**
+     *  检查指定菜单是否有权限
+     * @param array $menu menu表中数组
+     * @param int $roleid 需要检查的角色ID
+     */
+    private function _is_checked($menu,$priv_data) {
+
+        $app=$menu['app'];
+        $model=$menu['model'];
+        $action=$menu['action'];
+        $name=strtolower("$app/$model/$action");
+        if($priv_data){
+            if (in_array($name, $priv_data)) {
+                return true;
+            } else {
+                return false;
+            }
+        }else{
+            return false;
+        }
+
+    }
 }
