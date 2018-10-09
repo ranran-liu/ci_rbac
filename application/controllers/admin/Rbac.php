@@ -136,7 +136,7 @@ class Rbac extends AdminBaseController{
         $this->load->library('tree');
         $this->tree->icon = array('│ ', '├─ ', '└─ ');
         $this->tree->nbsp = '&nbsp;&nbsp;&nbsp;';
-        $result = $this->initMenu();
+        //$result = $this->initMenu();
         $newmenus=array();
         $this->load->model('admin/authAccess_model','AuthAccess');
         //获取权限表数据

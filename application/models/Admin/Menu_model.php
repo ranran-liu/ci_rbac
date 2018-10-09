@@ -10,6 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Menu_model extends MY_Model
 {
+    const MENU_TABLE = 'tp_menu';
     public function __construct()
     {
         parent::__construct();
@@ -75,10 +76,10 @@ class Menu_model extends MY_Model
         //父节点ID
         $parentid = (int) $parentid;
 
-        $result = $this->project_db->where(array('parentid' => $parentid, 'status' => 1))->order_by('listorder','ASC')->get('tp_menu')->result_array();
+        $result = $this->project_db->where(array('parentid' => $parentid, 'status' => 1))->order_by('listorder','ASC')->get(self::MENU_TABLE)->result_array();
 
         if ($with_self) {
-            $result2[] = $this->project_db->where(array('id' => $parentid))->get('tp_menu')->row_array();
+            $result2[] = $this->project_db->where(array('id' => $parentid))->get(self::MENU_TABLE)->row_array();
             $result = array_merge($result2, $result);
         }
         //权限检查
