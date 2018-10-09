@@ -52,7 +52,7 @@ class Rbac extends AdminBaseController{
                 $return = $this->role_model->role_insert($posts);
 
                 if($return){
-                    $this->success("Rbac_index",'closeCurrent',"/admin/rbac/index");
+                    $this->success("rbac_index",'closeCurrent',"/admin/rbac/index");
                 }else{
                     $this->error('添加失败！');
                 }
@@ -92,7 +92,7 @@ class Rbac extends AdminBaseController{
                 //执行修改
                 $return = $this->role_model->role_update($posts,$id);
                 if($return){
-                    $this->success("Rbac_index",'closeCurrent',"/admin/rbac/index");
+                    $this->success("rbac_index",'closeCurrent',"/admin/rbac/index");
                 }else{
                     $this->error('修改失败！');
                 }
@@ -114,7 +114,7 @@ class Rbac extends AdminBaseController{
         }else{
             $return = $this->role_model->role_delete($id);
             if ($return) {
-                $this->success("Rbac_index","", '/admin/rbac/index');
+                $this->success("rbac_index","", '/admin/rbac/index');
             } else {
                 $this->error("删除失败！");
             }
