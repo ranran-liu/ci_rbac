@@ -137,8 +137,10 @@ class Rbac extends AdminBaseController{
         $this->tree->icon = array('│ ', '├─ ', '└─ ');
         $this->tree->nbsp = '&nbsp;&nbsp;&nbsp;';
         //$result = $this->initMenu();
+        $this->load->model('admin/menu_model','menu');
+        $result = $this->menu->menu_list();
         $newmenus=array();
-        $this->load->model('admin/authAccess_model','AuthAccess');
+        $this->load->model('admin/authaccess_model','AuthAccess');
         //获取权限表数据
         $priv_data=$this->AuthAccess->get_rulename_list($roleid);
 
@@ -197,11 +199,12 @@ class Rbac extends AdminBaseController{
 
 
         //$this->assign("categorys", $str);
-
-        $this->load->view('admin/rbac/authorize');
+        $data['categorys'] = $str;
+        $this->load->view('admin/rbac/authorize',$data);
     }
 
     public function get_tree($arr,$parentid,$priv_data){
+        $tmp_arr=array();
         for($i=0;$i<count($arr);$i++){
             if ($arr[$i]['parentid']==$parentid){
                 $arr[$i]['checked']=($this->_is_checked($arr[$i],$priv_data)) ? 'checked="checked"' : '';

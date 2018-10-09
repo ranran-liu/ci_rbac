@@ -2,7 +2,7 @@
     <form method="post" id="authorize_form" action="/admin/rbac/authorize_post" class="pageForm required-validate" onsubmit="return validateCallback(this,dialogAjaxDone)">
         <ul class="tree treeFolder treeCheck expand">
 
-
+            <?php echo $categorys; ?>
 
         </ul>
         <input type="hidden" name="roleid" value="{$roleid}" />

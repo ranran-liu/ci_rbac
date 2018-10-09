@@ -111,4 +111,11 @@ class Menu_model extends MY_Model
         }
         return $array;
     }
+
+    public  function menu_list(){
+
+        $list = $this->project_db->get(self::MENU_TABLE)->result_array();
+
+        return $list;
+    }
 }
