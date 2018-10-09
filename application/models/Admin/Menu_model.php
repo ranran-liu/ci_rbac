@@ -33,8 +33,8 @@ class Menu_model extends MY_Model
             $ret = NULL;
             foreach ($data as $a) {
                 $id = $a['id'];
-                $name = ucwords($a['app']);
-                $model = ucwords($a['model']);
+                $name = strtolower($a['app']);
+                $model = strtolower($a['model']);
                 $action = $a['action'];
                 //附带参数
                 $params = "";
