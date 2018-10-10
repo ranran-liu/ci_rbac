@@ -126,7 +126,7 @@ class Rbac extends AdminBaseController{
      * 角色授权
      */
     public function authorize() {
-        echo 123;exit;
+
         header('Content-type:text/html;charset=utf-8');
         //角色ID
         $roleid = $this->input->get('id');
@@ -140,6 +140,7 @@ class Rbac extends AdminBaseController{
         //$result = $this->initMenu();
         $this->load->model('admin/menu_model','menu');
         $result = $this->menu->menu_list();
+        echo 123;exit;
         $newmenus=array();
         $this->load->model('admin/authaccess_model','AuthAccess');
         //获取权限表数据
