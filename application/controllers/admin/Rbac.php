@@ -197,10 +197,8 @@ class Rbac extends AdminBaseController{
             $str.='</li>';
         }
 
-
-
-        //$this->assign("categorys", $str);
         $data['categorys'] = $str;
+        $data['roleid'] = $roleid;
         $this->load->view('admin/rbac/authorize',$data);
     }
 
@@ -235,5 +233,52 @@ class Rbac extends AdminBaseController{
             return false;
         }
 
+    }
+
+    /**
+     * 角色授权
+     */
+    public function authorize_post() {
+
+        if (IS_POST) {
+
+            $roleid = $this->input->post('roleid');
+            if(!$roleid){
+                $this->error("需要授权的角色不存在！");
+            }
+            $this->load->model('Admin/authaccess_model','AuthAccess');
+
+            $menuid_arr = $this->input->post('menuid');
+            //var_dump($menuid_arr);
+            if (is_array($menuid_arr) && count($menuid_arr)>0) {
+
+                $this->AuthAccess->del_authaccess(array('role_id'=>$roleid));
+
+                $this->load->model('Admin/menu_model','menu');
+                foreach ($menuid_arr as $menuid) {
+                    //根据菜单id获取单条信息
+                    $menu=$this->menu->get_menu_one(array('id'=>$menuid));
+                    if($menu){
+                        $app=$menu['app'];
+                        $model=$menu['model'];
+                        $action=$menu['action'];
+                        $name=strtolower("$app/$model/$action");
+
+                        $arr = array("role_id"=>$roleid,"rule_name"=>$name);
+
+                        //添加权限
+                        $this->AuthAccess->add_authaccess($arr);
+                    }
+                }
+
+                $this->success("rbac_index",'closeCurrent',"/admin/rbac/index");
+            }else{
+                //当没有数据时，清除当前角色授权
+
+                $delete = $this->AuthAccess->del_authaccess(array('role_id'=>$roleid));
+
+                $this->error("没有接收到数据，执行清除授权成功！");
+            }
+        }
     }
 }

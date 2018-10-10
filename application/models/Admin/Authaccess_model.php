@@ -29,4 +29,29 @@ class Authaccess_model extends MY_Model
         return $list;
 
     }
+
+    //清除授权
+
+    public function del_authaccess($where){
+
+        $this->project_db->delete(self::AUTHACCESS_TABLE,$where);
+        if($this->project_db->affected_rows()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //添加权限
+
+    public function add_authaccess($arr){
+
+        $this->project_db->insert(self::AUTHACCESS_TABLE,$arr);
+
+        if($this->project_db->affected_rows()){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

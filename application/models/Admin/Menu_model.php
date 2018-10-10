@@ -118,4 +118,11 @@ class Menu_model extends MY_Model
 
         return $list;
     }
+
+    public function get_menu_one($where){
+
+        $res = $this->project_db->where($where)->get(self::MENU_TABLE)->row_array();
+
+        return $res;
+    }
 }
