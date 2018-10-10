@@ -214,10 +214,14 @@
 			var aClass = (ckboxed==ckbox?"checked":(ckboxed!=0?"indeterminate":"unchecked"));
 			var rClass = (ckboxed==ckbox?"indeterminate":(ckboxed!=0?"checked":"indeterminate"));
 			$(">div>.ckbox", parent).removeClass("unchecked").removeClass("checked").removeClass(rClass).addClass(aClass);
-			
-			var $checkbox = $(":checkbox", parent);
-			if (aClass == "checked") $checkbox.attr("checked","checked");
-			else if (aClass == "unchecked") $checkbox.removeAttr("checked");
+
+            var $checkbox = $(":checkbox", parent).eq(0);//只选择这一级节点的第一个checkbox
+            if (aClass == "checked"||aClass == "indeterminate") //当样式为indeterminate时，也选择这一个父节点的值
+                $checkbox.attr("checked","checked");
+            else if (aClass == "unchecked") $checkbox.removeAttr("checked");
+			// var $checkbox = $(":checkbox", parent);
+			// if (aClass == "checked") $checkbox.attr("checked","checked");
+			// else if (aClass == "unchecked") $checkbox.removeAttr("checked");
 			
 			parent._checkParent();
 		}
