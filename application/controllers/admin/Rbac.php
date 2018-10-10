@@ -126,7 +126,7 @@ class Rbac extends AdminBaseController{
      * 角色授权
      */
     public function authorize() {
-        $this -> output -> enable_profiler(TRUE);
+        echo 123;exit;
         header('Content-type:text/html;charset=utf-8');
         //角色ID
         $roleid = $this->input->get('id');
