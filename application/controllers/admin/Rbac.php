@@ -138,11 +138,10 @@ class Rbac extends AdminBaseController{
         $this->tree->icon = array('│ ', '├─ ', '└─ ');
         $this->tree->nbsp = '&nbsp;&nbsp;&nbsp;';
         //$result = $this->initMenu();
-        $this->load->model('admin/menu_model','menu');
+        $this->load->model('Admin/menu_model','menu');
         $result = $this->menu->menu_list();
-        echo 123;exit;
         $newmenus=array();
-        $this->load->model('admin/authaccess_model','AuthAccess');
+        $this->load->model('Admin/authaccess_model','AuthAccess');
         //获取权限表数据
         $priv_data=$this->AuthAccess->get_rulename_list($roleid);
 
