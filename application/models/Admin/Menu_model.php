@@ -24,10 +24,10 @@ class Menu_model extends MY_Model
     public function menu_json() {
         $data = $this->get_tree(0);
         //print_r($data);exit;
-        if($data){
-            return $data;
-        }else{
+        if($data == false){
             return array();
+        }else{
+            return $data;
         }
 
     }
@@ -36,7 +36,7 @@ class Menu_model extends MY_Model
         $data = $this->admin_menu($myid);
         $Level++;
         if (is_array($data)) {
-            $ret = NULL;
+            $ret = [];
             foreach ($data as $a) {
                 $id = $a['id'];
                 $name = strtolower($a['app']);
