@@ -38,6 +38,46 @@
 									var boxes = $("input", tnode);
 									var items = [];
 
+
+                                    //增加allItems存储当前选中的所有值
+
+                                    var allSelectedItems = [];
+
+                                    //获取所有选中的boxes
+
+                                    var allCheckedBoxes = $("div.checked,div.indeterminate", $this);
+
+                                    //清除所有旧数据
+
+                                    allSelectedItems.splice(0);
+
+                                    if (allCheckedBoxes.size() > 0) {
+
+                                        $(allCheckedBoxes).each(function () {
+
+                                            //增加数据到数组中
+
+                                            allSelectedItems.push({ name: $(this).find("input").eq(0).attr("name"), value: $(this).find("input").eq(0).val(), text: $(this).find("input").eq(0).attr("text") });
+
+                                        });
+
+                                    }
+
+                                    // if (checked) {
+                                    //
+                                    //     var tnode = $(ckbox).parent().parent();
+                                    //     var boxes = $("input", tnode);
+                                    //     if (boxes.size() > 1) {
+                                    //         $(boxes).each(function () {
+                                    //             items[items.length] = { name: $(this).attr("name"), value: $(this).val(), text: $(this).attr("text") };
+                                    //         });
+                                    //     } else {
+                                    //         items = { name: boxes.attr("name"), value: boxes.val(), text: boxes.attr("text") };
+                                    //     }
+                                    // }
+
+
+
 									if(boxes.size() > 1) {
 										$(boxes).each(function(){
 											items[items.length] = {name:$(this).attr("name"), value:$(this).val(), text:$(this).attr("text")};
@@ -62,7 +102,9 @@
 										});
 									});
 
-									checkFn({checked:checked, items:items, parents:parents});
+									//checkFn({checked:checked, items:items, parents:parents});
+                                    //增加一个allItems:allSelectedItems
+                                    checkFn({ checked: checked, items: items,allItems:allSelectedItems,parents:parents });
 								});
 							});
 						}
@@ -215,13 +257,15 @@
 			var rClass = (ckboxed==ckbox?"indeterminate":(ckboxed!=0?"checked":"indeterminate"));
 			$(">div>.ckbox", parent).removeClass("unchecked").removeClass("checked").removeClass(rClass).addClass(aClass);
 
-            var $checkbox = $(":checkbox", parent).eq(0);//只选择这一级节点的第一个checkbox
-            if (aClass == "checked"||aClass == "indeterminate") //当样式为indeterminate时，也选择这一个父节点的值
-                $checkbox.attr("checked","checked");
+            // var $checkbox = $(":checkbox", parent).eq(0);//只选择这一级节点的第一个checkbox
+            // //console.log($checkbox)
+            // if (aClass == "checked"||aClass == "indeterminate") //当样式为indeterminate时，也选择这一个父节点的值
+            //     $checkbox.attr("checked","checked");
+            // else if (aClass == "unchecked") $checkbox.removeAttr("checked");
+            var $checkbox = $(":checkbox", parent);
+            //console.log($checkbox);
+            if (aClass == "checked") $checkbox.attr("checked","checked");
             else if (aClass == "unchecked") $checkbox.removeAttr("checked");
-			// var $checkbox = $(":checkbox", parent);
-			// if (aClass == "checked") $checkbox.attr("checked","checked");
-			// else if (aClass == "unchecked") $checkbox.removeAttr("checked");
 			
 			parent._checkParent();
 		}

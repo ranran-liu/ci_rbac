@@ -140,14 +140,15 @@ class Rbac extends AdminBaseController{
         //$result = $this->initMenu();
         $this->load->model('Admin/menu_model','menu');
         $result = $this->menu->menu_list();
-        $newmenus=array();
+        //$newmenus=array();
         $this->load->model('Admin/authaccess_model','AuthAccess');
         //获取权限表数据
         $priv_data=$this->AuthAccess->get_rulename_list($roleid);
 
-        foreach ($result as $m){
-            $newmenus[$m['id']]=$m;
-        }
+        $menuids = $this->get_menuids($result,$priv_data);
+//        foreach ($result as $m){
+//            $newmenus[$m['id']]=$m;
+//        }
 
         $menu1_array=$this->get_tree($result,0,$priv_data);
 
@@ -199,6 +200,7 @@ class Rbac extends AdminBaseController{
 
         $data['categorys'] = $str;
         $data['roleid'] = $roleid;
+        $data['menuids'] = $menuids;
         $this->load->view('admin/rbac/authorize',$data);
     }
 
@@ -206,7 +208,7 @@ class Rbac extends AdminBaseController{
         $tmp_arr=array();
         for($i=0;$i<count($arr);$i++){
             if ($arr[$i]['parentid']==$parentid){
-                $arr[$i]['checked']=($this->_is_checked($arr[$i],$priv_data)) ? 'checked="checked"' : '';
+                $arr[$i]['checked']=($this->_is_checked($arr[$i],$priv_data)) ? 'checked' : '';
                 $tmp_arr[]=$arr[$i];
             }
         }
@@ -235,6 +237,19 @@ class Rbac extends AdminBaseController{
 
     }
 
+    public function get_menuids($menu_arr,$priv_data){
+        $ids = '';
+        for($i=0;$i<count($menu_arr);$i++){
+            $menuid=$menu_arr[$i]['id'];
+            $name = strtolower($menu_arr[$i]['app'].'/'.$menu_arr[$i]['model'].'/'.$menu_arr[$i]['action']);
+            if(in_array($name, $priv_data)){
+                $ids.=$menuid.',';
+            }
+        }
+        $ids = substr($ids,0,-1);
+        return $ids;
+
+    }
     /**
      * 角色授权
      */
@@ -248,7 +263,18 @@ class Rbac extends AdminBaseController{
             }
             $this->load->model('Admin/authaccess_model','AuthAccess');
 
-            $menuid_arr = $this->input->post('menuid');
+            //$menuid_arr = $this->input->post('menuid');
+            //var_dump($menuid_arr);
+            $menuids = $this->input->post('menuids');
+            if(!$menuids){
+                //当没有数据时，清除当前角色授权
+
+                $delete = $this->AuthAccess->del_authaccess(array('role_id'=>$roleid));
+
+                $this->error("没有接收到数据，执行清除授权成功！");
+            }
+            //var_dump($menuids);
+            $menuid_arr = explode(',',$menuids);
             //var_dump($menuid_arr);
             if (is_array($menuid_arr) && count($menuid_arr)>0) {
 
