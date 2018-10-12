@@ -7,6 +7,7 @@
  * Time: 17:33
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 class User_model extends MY_Model
 {
     const USER_TABLE = 'tp_users';
@@ -24,10 +25,16 @@ class User_model extends MY_Model
             array(
                 'field' => 'user_login',
                 'label' => 'Username',
-                'rules' => 'trim|required|is_unique[tp_users.user_login]',
+                'rules' => array(
+                    'trim',
+                    'required',
+                    array(
+                        'user_login_callable',
+                        array($this, 'is_unique')
+                    )
+                ),
                 'errors' => array(
                     'required' => '请输入用户名',
-                    'is_unique' => '该用户名已存在'
                 ),
             ),
             array(
@@ -49,15 +56,23 @@ class User_model extends MY_Model
                 ),
             )
         );
+        //$this->form_validation->set_rules('user_login', 'Username', array('required',array('user_login_callable', array($this, 'valid_username'))));
         $this->form_validation->set_rules($config);
+
 
         return $this->form_validation->run();
 
     }
-
+    //验证是否是唯一的
+    public function is_unique($str)
+    {
+        echo $str;
+//        $where = array();
+//        $this->project_db->where();
+    }
     public function add($arr){
 
-        $res = $this->project_db->insert(self::USER_TABLE,$arr);
+        $res = $this->insert($arr,self::USER_TABLE);
 
         return $res;
     }

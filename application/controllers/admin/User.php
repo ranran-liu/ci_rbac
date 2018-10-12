@@ -55,6 +55,7 @@ class User extends AdminBaseController{
             $role_ids = $this->input->post('role_id');
             if(!empty($role_ids) && is_array($role_ids)){
                 $res = $this->user_model->form_validate();
+                //$res = $this->user_model->insert($this->input->post(),'tp_users');
                 if($res == FALSE){
 
                     $this->error(validation_one_errors());
