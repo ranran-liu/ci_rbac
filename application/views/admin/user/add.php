@@ -27,7 +27,7 @@
             </dl>
             <dl>
                 <dt>角色</dt>
-                <dd id="role_type" style="width:520px;">
+                <dd style="width:520px;">
                     <?php foreach($roles as $vo){ ?>
                         <label class="checkbox inline"><input value="<?php echo $vo['id'];?>" type="checkbox" name="role_id[]" <?php if(sp_get_current_admin_id()!=1 && $vo['id']==1){ ?> disabled="true" <?php } ?> ><?php echo $vo['name'];?></label>
                     <?php } ?>
