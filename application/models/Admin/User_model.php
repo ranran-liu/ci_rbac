@@ -20,42 +20,66 @@ class User_model extends MY_Model
         $this->load->library('form_validation');
     }
 
-    public function form_validate(){
+    public function form_validate($action='insert'){
         $config = array(
-            array(
-                'field' => 'user_login',
-                'label' => 'Username',
-                'rules' => 'trim|required|is_unique['.self::USER_TABLE.'.user_login]',
-                'errors' => array(
-                    'required' => '请输入用户名',
-                    'is_unique' => '该用户名已存在'
+            'insert'=>array(
+                array(
+                    'field' => 'user_login',
+                    'label' => 'Username',
+                    'rules' => 'trim|required|is_unique['.self::USER_TABLE.'.user_login]',
+                    'errors' => array(
+                        'required' => '请输入用户名',
+                        'is_unique' => '该用户名已存在'
+                    ),
                 ),
+                array(
+                    'field' => 'user_pass',
+                    'label' => 'Password',
+                    'rules' => 'trim|required|sp_password',
+                    'errors' => array(
+                        'required' => '请输入密码',
+                    ),
+                ),
+                array(
+                    'field' => 'user_email',
+                    'label' => 'Email',
+                    'rules' => 'trim|required|valid_email|is_unique['.self::USER_TABLE.'.user_email]',
+                    'errors' => array(
+                        'required' => '请输入邮箱',
+                        'valid_email' =>'请输入合法的邮箱',
+                        'is_unique' => '该邮箱已存在'
+                    ),
+                )
             ),
-            array(
-                'field' => 'user_pass',
-                'label' => 'Password',
-                'rules' => 'trim|required|sp_password',
-                'errors' => array(
-                    'required' => '请输入密码',
+            'update'=>array(
+                array(
+                    'field' => 'user_login',
+                    'label' => 'Username',
+                    'rules' => 'trim|required|is_unique['.self::USER_TABLE.'.user_login]',
+                    'errors' => array(
+                        'required' => '请输入用户名',
+                        'is_unique' => '该用户名已存在'
+                    ),
                 ),
+                array(
+                    'field' => 'user_email',
+                    'label' => 'Email',
+                    'rules' => 'trim|required|valid_email|is_unique['.self::USER_TABLE.'.user_email]',
+                    'errors' => array(
+                        'required' => '请输入邮箱',
+                        'valid_email' =>'请输入合法的邮箱',
+                        'is_unique' => '该邮箱已存在'
+                    ),
+                )
+            ),
 
-            ),
-            array(
-                'field' => 'user_email',
-                'label' => 'Email',
-                'rules' => 'trim|required|valid_email|is_unique['.self::USER_TABLE.'.user_email]',
-                'errors' => array(
-                    'required' => '请输入邮箱',
-                    'valid_email' =>'请输入合法的邮箱',
-                    'is_unique' => '该邮箱已存在'
-                ),
-            )
         );
         //$this->form_validation->set_rules('user_login', 'Username', array('required',array('user_login_callable', array($this, 'valid_username'))));
-        $rr=$this->form_validation->set_rules($config);
+        $rr=$this->form_validation->set_rules($config[$action]);
         //var_dump($rr);
+        //var_dump($this->form_validation->run($action));
 
-        return $this->form_validation->run();
+        return $this->form_validation->run($action);
 
     }
 

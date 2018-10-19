@@ -110,7 +110,7 @@ class User extends AdminBaseController{
         if (IS_POST) {
             $role_ids = $this->input->post('role_id');
             if(!empty($role_ids) && is_array($role_ids)){
-                $res = $this->user_model->form_validate();
+                $res = $this->user_model->form_validate('update');
                 if($res == FALSE){
 
                     $this->error(validation_one_errors());
