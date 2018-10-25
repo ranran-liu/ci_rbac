@@ -109,6 +109,7 @@ class User extends AdminBaseController{
     public function edit_post(){
         if (IS_POST) {
             $role_ids = $this->input->post('role_id');
+            //$posts=$this->input->post(array('id','user_login','user_email','mobile'));
             if(!empty($role_ids) && is_array($role_ids)){
                 $res = $this->user_model->form_validate('update');
                 if($res == FALSE){
@@ -116,7 +117,7 @@ class User extends AdminBaseController{
                     $this->error(validation_one_errors());
 
                 }else{
-                    $posts=$this->input->post(array('user_login','user_email','mobile'));
+                    $posts=$this->input->post(array('id','user_login','user_email','mobile'));
                     //执行添加
                     $userid = $this->user_model->save($posts);
 

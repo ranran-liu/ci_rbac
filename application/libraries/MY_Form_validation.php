@@ -60,7 +60,7 @@ class MY_Form_validation extends CI_Form_validation{
 //        return isset($this->CI->db)
 //            ? ($this->CI->db->limit(1)->get_where($table, array($field => $str))->num_rows() === 0)
 //            : FALSE;
-        print_r();
+        //print_r($this->_field_data);
         if(isset($this->CI->db)){
             $query = $this->CI->db->select($field)->from($table)
                 ->where(array($field => $str))->limit(1)->get();
