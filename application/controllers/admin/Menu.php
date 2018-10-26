@@ -34,7 +34,7 @@ class Menu extends AdminBaseController{
             $id = $r['id'];
             $result[$n]['level'] = $this->_get_level($id, $newmenus);
             $result[$n]['parentid_node'] = ($r['parentid']) ? ' class="child-of-node-' . $r['parentid'] . '"' : '';
-            $result[$n]['str_manage'] = "<a href='/admin/menu/add?parentid=$id' target='dialog' height='680' width='800'>".'添加子菜单'."</a> | <a href='/admin/menu/edit?id=$id' target='dialog' height='680' width='800'>".'编辑'."</a> | <a href='admin/menu/delete?id=$id' target='ajaxTodo' title='确认要删除吗？'>".'删除'."</a> ";
+            $result[$n]['str_manage'] = "<a href='/admin/menu/add?parentid=$id' target='dialog' height='680' width='800'>".'添加子菜单'."</a> | <a href='/admin/menu/edit?id=$id' target='dialog' height='680' width='800'>".'编辑'."</a> | <a href='/admin/menu/delete?id=$id' target='ajaxTodo' title='确认要删除吗？'>".'删除'."</a> ";
             $result[$n]['status'] = $r['status'] ? '显示' : '隐藏';
             $result[$n]['app']=strtolower($r['app']."/".$r['model']."/".$r['action']);
 
@@ -160,7 +160,29 @@ class Menu extends AdminBaseController{
         $data["select_categorys"] = $select_categorys;
         $this->load->view('admin/menu/edit',$data);
     }
-
+    /**
+     *  删除
+     */
+    public function delete() {
+        $id = $this->input->get('id');
+        $count = $this->db->where(array("parentid" => $id))->from(self::MENU_TABLE)->count_all_results();
+        if ($count > 0) {
+            $this->error("该菜单下还有子菜单，无法删除！");
+        }
+        $menu=$this->db->where('id',$id)->from(self::MENU_TABLE)->get()->row_array();
+        $app=$menu['app'];
+        $model=$menu['model'];
+        $action=$menu['action'];
+        $name=strtolower("$app/$model/$action");
+        $where=array("name"=>$name);
+        if ($this->db->delete(self::MENU_TABLE,array('id'=>$id))!==false) {
+            $this->load->model('Admin/authrule_model');
+            $this->authrule_model->delete($where);
+            $this->success("menu_index");
+        } else {
+            $this->error("删除失败！");
+        }
+    }
     public function test(){
         $list = $this->db->select('id,app,model,action')->from(self::MENU_TABLE)->get()->result_array();
         foreach($list as $k=>$v){

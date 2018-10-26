@@ -34,4 +34,14 @@ class Authrule_model extends MY_Model
         return $count;
     }
 
+    //删除
+    public function delete($where){
+        $this->db->delete(self::AUTHRUlE_TABLE,$where);
+        if($this->db->affected_rows()){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+
 }
