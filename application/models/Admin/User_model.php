@@ -17,71 +17,71 @@ class User_model extends MY_Model
         parent::__construct();
         $this->load->library('session');
         $this->db = $this->load->database('myproject',true);
-        $this->load->library('form_validation');
+        //$this->load->library('form_validation');
     }
 
-    public function form_validate($action='insert'){
-        $config = array(
-            'insert'=>array(
-                array(
-                    'field' => 'user_login',
-                    'label' => 'Username',
-                    'rules' => 'trim|required|is_unique['.self::USER_TABLE.'.user_login]',
-                    'errors' => array(
-                        'required' => '请输入用户名',
-                        'is_unique' => '该用户名已存在'
-                    ),
-                ),
-                array(
-                    'field' => 'user_pass',
-                    'label' => 'Password',
-                    'rules' => 'trim|required|sp_password',
-                    'errors' => array(
-                        'required' => '请输入密码',
-                    ),
-                ),
-                array(
-                    'field' => 'user_email',
-                    'label' => 'Email',
-                    'rules' => 'trim|required|valid_email|is_unique['.self::USER_TABLE.'.user_email]',
-                    'errors' => array(
-                        'required' => '请输入邮箱',
-                        'valid_email' =>'请输入合法的邮箱',
-                        'is_unique' => '该邮箱已存在'
-                    ),
-                )
-            ),
-            'update'=>array(
-                array(
-                    'field' => 'user_login',
-                    'label' => 'Username',
-                    'rules' => 'trim|required|is_unique['.self::USER_TABLE.'.user_login]',
-                    'errors' => array(
-                        'required' => '请输入用户名',
-                        'is_unique' => '该用户名已存在'
-                    ),
-                ),
-                array(
-                    'field' => 'user_email',
-                    'label' => 'Email',
-                    'rules' => 'trim|required|valid_email|is_unique['.self::USER_TABLE.'.user_email]',
-                    'errors' => array(
-                        'required' => '请输入邮箱',
-                        'valid_email' =>'请输入合法的邮箱',
-                        'is_unique' => '该邮箱已存在'
-                    ),
-                )
-            ),
-
-        );
-        //$this->form_validation->set_rules('user_login', 'Username', array('required',array('user_login_callable', array($this, 'valid_username'))));
-        $rr=$this->form_validation->set_rules($config[$action]);
-        //var_dump($rr);
-        //var_dump($this->form_validation->run($action));
-
-        return $this->form_validation->run($action);
-
-    }
+//    public function form_validate($action='insert'){
+//        $config = array(
+//            'insert'=>array(
+//                array(
+//                    'field' => 'user_login',
+//                    'label' => 'Username',
+//                    'rules' => 'trim|required|is_unique['.self::USER_TABLE.'.user_login]',
+//                    'errors' => array(
+//                        'required' => '请输入用户名',
+//                        'is_unique' => '该用户名已存在'
+//                    ),
+//                ),
+//                array(
+//                    'field' => 'user_pass',
+//                    'label' => 'Password',
+//                    'rules' => 'trim|required|sp_password',
+//                    'errors' => array(
+//                        'required' => '请输入密码',
+//                    ),
+//                ),
+//                array(
+//                    'field' => 'user_email',
+//                    'label' => 'Email',
+//                    'rules' => 'trim|required|valid_email|is_unique['.self::USER_TABLE.'.user_email]',
+//                    'errors' => array(
+//                        'required' => '请输入邮箱',
+//                        'valid_email' =>'请输入合法的邮箱',
+//                        'is_unique' => '该邮箱已存在'
+//                    ),
+//                )
+//            ),
+//            'update'=>array(
+//                array(
+//                    'field' => 'user_login',
+//                    'label' => 'Username',
+//                    'rules' => 'trim|required|is_unique['.self::USER_TABLE.'.user_login]',
+//                    'errors' => array(
+//                        'required' => '请输入用户名',
+//                        'is_unique' => '该用户名已存在'
+//                    ),
+//                ),
+//                array(
+//                    'field' => 'user_email',
+//                    'label' => 'Email',
+//                    'rules' => 'trim|required|valid_email|is_unique['.self::USER_TABLE.'.user_email]',
+//                    'errors' => array(
+//                        'required' => '请输入邮箱',
+//                        'valid_email' =>'请输入合法的邮箱',
+//                        'is_unique' => '该邮箱已存在'
+//                    ),
+//                )
+//            ),
+//
+//        );
+//        //$this->form_validation->set_rules('user_login', 'Username', array('required',array('user_login_callable', array($this, 'valid_username'))));
+//        $rr=$this->form_validation->set_rules($config[$action]);
+//        //var_dump($rr);
+//        //var_dump($this->form_validation->run($action));
+//
+//        return $this->form_validation->run($action);
+//
+//    }
 
 
     public function add($arr){
@@ -91,16 +91,16 @@ class User_model extends MY_Model
         if($res){
             return $this->db->insert_id();
         }else{
-            return false;
+            return FALSE;
         }
     }
-    public function save($arr){
-        $this->db->update(self::USER_TABLE,$arr);
+    public function save($arr,$id){
+        $this->db->update(self::USER_TABLE,$arr,array('id'=>$id));
 
-        if($this->db->affected_rows()!==false){
-            return true;
+        if($this->db->affected_rows()!==FALSE){
+            return TRUE;
         }else{
-            return false;
+            return FALSE;
         }
     }
     public function delete($where){
@@ -115,6 +115,16 @@ class User_model extends MY_Model
     public function get_one($where){
         $one = $this->db->where($where)->get(self::USER_TABLE)->row_array();
         return $one;
+    }
+
+    public function update_status($status,$id){
+
+        $this->db->update(self::USER_TABLE,array('user_status'=>$status),array('id'=>$id));
+        if($this->db->affected_rows()!==FALSE){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
     }
 
 

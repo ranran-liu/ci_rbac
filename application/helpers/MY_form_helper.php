@@ -1076,3 +1076,40 @@ if ( ! function_exists('_get_validation_object'))
 		return $return;
 	}
 }
+if ( ! function_exists('validation_one_errors'))
+{
+    /**
+     * Validation Error first error
+     * 获取验证函数的 第一个验证错误
+     *
+     * @param        string
+     * @param        string
+     * @return        string
+     */
+    function validation_one_errors()
+    {
+        if (FALSE === ($OBJ =& _get_validation_object()))
+        {
+            return '';
+        }
+        $error_array = $OBJ->error_array();
+        if(!empty($error_array)){
+            return current($error_array); //返回第一个错误
+        }
+        return '';
+    }
+}
+/**
+ * 验证手机号是否正确
+ * @author honfei
+ * @param number $mobile
+ */
+if ( ! function_exists('is_mobile')){
+    function is_mobile($mobile) {
+        if (!is_numeric($mobile)) {
+            return false;
+        }
+        return preg_match('#^13[\d]{9}$|^14[5,7]{1}\d{8}$|^15[^4]{1}\d{8}$|^17[0,6,7,8]{1}\d{8}$|^18[\d]{9}$#', $mobile) ? true : false;
+    }
+}
+
