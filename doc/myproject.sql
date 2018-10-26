@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 本地go
+Source Server         : 192.168.13.130-go-本地虚拟机
 Source Server Version : 50641
-Source Host           : 192.168.146.200:3306
+Source Host           : 192.168.13.130:3306
 Source Database       : myproject
 
 Target Server Type    : MYSQL
 Target Server Version : 50641
 File Encoding         : 65001
 
-Date: 2018-10-09 00:02:24
+Date: 2018-10-26 12:53:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,7 +22,6 @@ DROP TABLE IF EXISTS `tp_auth_access`;
 CREATE TABLE `tp_auth_access` (
   `role_id` mediumint(8) unsigned NOT NULL COMMENT '角色',
   `rule_name` varchar(255) NOT NULL COMMENT '规则唯一英文标识,全小写',
-  `type` varchar(30) DEFAULT NULL COMMENT '权限规则分类，请加应用前缀,如admin_',
   KEY `role_id` (`role_id`),
   KEY `rule_name` (`rule_name`) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='权限授权表';
@@ -30,6 +29,25 @@ CREATE TABLE `tp_auth_access` (
 -- ----------------------------
 -- Records of tp_auth_access
 -- ----------------------------
+INSERT INTO `tp_auth_access` VALUES ('2', 'admin/user/edit_post');
+INSERT INTO `tp_auth_access` VALUES ('2', 'admin/user/edit');
+INSERT INTO `tp_auth_access` VALUES ('2', 'admin/user/delete');
+INSERT INTO `tp_auth_access` VALUES ('2', 'admin/user/index');
+INSERT INTO `tp_auth_access` VALUES ('2', 'admin/rbac/roleadd_post');
+INSERT INTO `tp_auth_access` VALUES ('2', 'admin/rbac/roleadd');
+INSERT INTO `tp_auth_access` VALUES ('2', 'admin/rbac/roledelete');
+INSERT INTO `tp_auth_access` VALUES ('2', 'admin/rbac/roleedit_post');
+INSERT INTO `tp_auth_access` VALUES ('2', 'admin/rbac/roleedit');
+INSERT INTO `tp_auth_access` VALUES ('2', 'admin/rbac/authorize_post');
+INSERT INTO `tp_auth_access` VALUES ('2', 'admin/rbac/authorize');
+INSERT INTO `tp_auth_access` VALUES ('2', 'admin/rbac/member');
+INSERT INTO `tp_auth_access` VALUES ('2', 'admin/rbac/index');
+INSERT INTO `tp_auth_access` VALUES ('2', 'user/indexadmin/default3');
+INSERT INTO `tp_auth_access` VALUES ('2', 'user/indexadmin/default');
+INSERT INTO `tp_auth_access` VALUES ('2', 'admin/user/add');
+INSERT INTO `tp_auth_access` VALUES ('2', 'admin/user/add_post');
+INSERT INTO `tp_auth_access` VALUES ('2', 'admin/user/ban');
+INSERT INTO `tp_auth_access` VALUES ('2', 'admin/user/cancelban');
 
 -- ----------------------------
 -- Table structure for tp_auth_rule
@@ -38,190 +56,189 @@ DROP TABLE IF EXISTS `tp_auth_rule`;
 CREATE TABLE `tp_auth_rule` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT COMMENT '规则id,自增主键',
   `module` varchar(20) NOT NULL COMMENT '规则所属module',
-  `type` varchar(30) NOT NULL DEFAULT '1' COMMENT '权限规则分类，请加应用前缀,如admin_',
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT '规则唯一英文标识,全小写',
   `param` varchar(255) DEFAULT NULL COMMENT '额外url参数',
   `title` varchar(20) NOT NULL DEFAULT '' COMMENT '规则中文描述',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否有效(0:无效,1:有效)',
   `condition` varchar(300) NOT NULL DEFAULT '' COMMENT '规则附加条件',
   PRIMARY KEY (`id`),
-  KEY `module` (`module`,`status`,`type`)
+  KEY `module` (`module`,`status`)
 ) ENGINE=MyISAM AUTO_INCREMENT=174 DEFAULT CHARSET=utf8 COMMENT='权限规则表';
 
 -- ----------------------------
 -- Records of tp_auth_rule
 -- ----------------------------
-INSERT INTO `tp_auth_rule` VALUES ('1', 'Admin', 'admin_url', 'admin/content/default', null, '内容管理', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('2', 'Api', 'admin_url', 'api/guestbookadmin/index', null, '所有留言', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('3', 'Api', 'admin_url', 'api/guestbookadmin/delete', null, '删除网站留言', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('4', 'Comment', 'admin_url', 'comment/commentadmin/index', null, '评论管理', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('5', 'Comment', 'admin_url', 'comment/commentadmin/delete', null, '删除评论', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('6', 'Comment', 'admin_url', 'comment/commentadmin/check', null, '评论审核', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('7', 'Portal', 'admin_url', 'portal/adminpost/index', null, '文章管理', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('8', 'Portal', 'admin_url', 'portal/adminpost/listorders', null, '文章排序', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('9', 'Portal', 'admin_url', 'portal/adminpost/top', null, '文章置顶', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('10', 'Portal', 'admin_url', 'portal/adminpost/recommend', null, '文章推荐', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('11', 'Portal', 'admin_url', 'portal/adminpost/move', null, '批量移动', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('12', 'Portal', 'admin_url', 'portal/adminpost/check', null, '文章审核', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('13', 'Portal', 'admin_url', 'portal/adminpost/delete', null, '删除文章', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('14', 'Portal', 'admin_url', 'portal/adminpost/edit', null, '编辑文章', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('15', 'Portal', 'admin_url', 'portal/adminpost/edit_post', null, '提交编辑', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('16', 'Portal', 'admin_url', 'portal/adminpost/add', null, '添加文章', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('17', 'Portal', 'admin_url', 'portal/adminpost/add_post', null, '提交添加', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('18', 'Portal', 'admin_url', 'portal/adminterm/index', null, '分类管理', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('19', 'Portal', 'admin_url', 'portal/adminterm/listorders', null, '文章分类排序', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('20', 'Portal', 'admin_url', 'portal/adminterm/delete', null, '删除分类', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('21', 'Portal', 'admin_url', 'portal/adminterm/edit', null, '编辑分类', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('22', 'Portal', 'admin_url', 'portal/adminterm/edit_post', null, '提交编辑', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('23', 'Portal', 'admin_url', 'portal/adminterm/add', null, '添加分类', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('24', 'Portal', 'admin_url', 'portal/adminterm/add_post', null, '提交添加', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('25', 'Portal', 'admin_url', 'portal/adminpage/index', null, '页面管理', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('26', 'Portal', 'admin_url', 'portal/adminpage/listorders', null, '页面排序', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('27', 'Portal', 'admin_url', 'portal/adminpage/delete', null, '删除页面', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('28', 'Portal', 'admin_url', 'portal/adminpage/edit', null, '编辑页面', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('29', 'Portal', 'admin_url', 'portal/adminpage/edit_post', null, '提交编辑', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('30', 'Portal', 'admin_url', 'portal/adminpage/add', null, '添加页面', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('31', 'Portal', 'admin_url', 'portal/adminpage/add_post', null, '提交添加', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('32', 'Admin', 'admin_url', 'admin/recycle/default', null, '回收站', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('33', 'Portal', 'admin_url', 'portal/adminpost/recyclebin', null, '文章回收', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('34', 'Portal', 'admin_url', 'portal/adminpost/restore', null, '文章还原', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('35', 'Portal', 'admin_url', 'portal/adminpost/clean', null, '彻底删除', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('36', 'Portal', 'admin_url', 'portal/adminpage/recyclebin', null, '页面回收', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('37', 'Portal', 'admin_url', 'portal/adminpage/clean', null, '彻底删除', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('38', 'Portal', 'admin_url', 'portal/adminpage/restore', null, '页面还原', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('39', 'Admin', 'admin_url', 'admin/extension/default', null, '扩展工具', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('40', 'Admin', 'admin_url', 'admin/backup/default', null, '备份管理', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('41', 'Admin', 'admin_url', 'admin/backup/restore', null, '数据还原', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('42', 'Admin', 'admin_url', 'admin/backup/index', null, '数据备份', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('43', 'Admin', 'admin_url', 'admin/backup/index_post', null, '提交数据备份', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('44', 'Admin', 'admin_url', 'admin/backup/download', null, '下载备份', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('45', 'Admin', 'admin_url', 'admin/backup/del_backup', null, '删除备份', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('46', 'Admin', 'admin_url', 'admin/backup/import', null, '数据备份导入', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('47', 'Admin', 'admin_url', 'admin/plugin/index', null, '插件管理', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('48', 'Admin', 'admin_url', 'admin/plugin/toggle', null, '插件启用切换', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('49', 'Admin', 'admin_url', 'admin/plugin/setting', null, '插件设置', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('50', 'Admin', 'admin_url', 'admin/plugin/setting_post', null, '插件设置提交', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('51', 'Admin', 'admin_url', 'admin/plugin/install', null, '插件安装', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('52', 'Admin', 'admin_url', 'admin/plugin/uninstall', null, '插件卸载', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('53', 'Admin', 'admin_url', 'admin/slide/default', null, '幻灯片', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('54', 'Admin', 'admin_url', 'admin/slide/index', null, '幻灯片管理', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('55', 'Admin', 'admin_url', 'admin/slide/listorders', null, '幻灯片排序', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('56', 'Admin', 'admin_url', 'admin/slide/toggle', null, '幻灯片显示切换', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('57', 'Admin', 'admin_url', 'admin/slide/delete', null, '删除幻灯片', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('58', 'Admin', 'admin_url', 'admin/slide/edit', null, '编辑幻灯片', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('59', 'Admin', 'admin_url', 'admin/slide/edit_post', null, '提交编辑', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('60', 'Admin', 'admin_url', 'admin/slide/add', null, '添加幻灯片', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('61', 'Admin', 'admin_url', 'admin/slide/add_post', null, '提交添加', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('62', 'Admin', 'admin_url', 'admin/slidecat/index', null, '幻灯片分类', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('63', 'Admin', 'admin_url', 'admin/slidecat/delete', null, '删除分类', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('64', 'Admin', 'admin_url', 'admin/slidecat/edit', null, '编辑分类', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('65', 'Admin', 'admin_url', 'admin/slidecat/edit_post', null, '提交编辑', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('66', 'Admin', 'admin_url', 'admin/slidecat/add', null, '添加分类', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('67', 'Admin', 'admin_url', 'admin/slidecat/add_post', null, '提交添加', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('68', 'Admin', 'admin_url', 'admin/ad/index', null, '网站广告', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('69', 'Admin', 'admin_url', 'admin/ad/toggle', null, '广告显示切换', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('70', 'Admin', 'admin_url', 'admin/ad/delete', null, '删除广告', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('71', 'Admin', 'admin_url', 'admin/ad/edit', null, '编辑广告', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('72', 'Admin', 'admin_url', 'admin/ad/edit_post', null, '提交编辑', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('73', 'Admin', 'admin_url', 'admin/ad/add', null, '添加广告', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('74', 'Admin', 'admin_url', 'admin/ad/add_post', null, '提交添加', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('75', 'Admin', 'admin_url', 'admin/link/index', null, '友情链接', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('76', 'Admin', 'admin_url', 'admin/link/listorders', null, '友情链接排序', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('77', 'Admin', 'admin_url', 'admin/link/toggle', null, '友链显示切换', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('78', 'Admin', 'admin_url', 'admin/link/delete', null, '删除友情链接', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('79', 'Admin', 'admin_url', 'admin/link/edit', null, '编辑友情链接', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('80', 'Admin', 'admin_url', 'admin/link/edit_post', null, '提交编辑', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('81', 'Admin', 'admin_url', 'admin/link/add', null, '添加友情链接', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('82', 'Admin', 'admin_url', 'admin/link/add_post', null, '提交添加', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('83', 'Api', 'admin_url', 'api/oauthadmin/setting', null, '第三方登陆', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('84', 'Api', 'admin_url', 'api/oauthadmin/setting_post', null, '提交设置', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('85', 'Admin', 'admin_url', 'admin/menu/default', null, '菜单管理', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('86', 'Admin', 'admin_url', 'admin/navcat/default1', null, '前台菜单', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('87', 'Admin', 'admin_url', 'admin/nav/index', null, '菜单管理', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('88', 'Admin', 'admin_url', 'admin/nav/listorders', null, '前台导航排序', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('89', 'Admin', 'admin_url', 'admin/nav/delete', null, '删除菜单', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('90', 'Admin', 'admin_url', 'admin/nav/edit', null, '编辑菜单', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('91', 'Admin', 'admin_url', 'admin/nav/edit_post', null, '提交编辑', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('92', 'Admin', 'admin_url', 'admin/nav/add', null, '添加菜单', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('93', 'Admin', 'admin_url', 'admin/nav/add_post', null, '提交添加', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('94', 'Admin', 'admin_url', 'admin/navcat/index', null, '菜单分类', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('95', 'Admin', 'admin_url', 'admin/navcat/delete', null, '删除分类', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('96', 'Admin', 'admin_url', 'admin/navcat/edit', null, '编辑分类', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('97', 'Admin', 'admin_url', 'admin/navcat/edit_post', null, '提交编辑', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('98', 'Admin', 'admin_url', 'admin/navcat/add', null, '添加分类', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('99', 'Admin', 'admin_url', 'admin/navcat/add_post', null, '提交添加', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('100', 'Admin', 'admin_url', 'admin/menu/index', null, '后台菜单', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('101', 'Admin', 'admin_url', 'admin/menu/add', null, '添加菜单', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('102', 'Admin', 'admin_url', 'admin/menu/add_post', null, '提交添加', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('103', 'Admin', 'admin_url', 'admin/menu/listorders', null, '后台菜单排序', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('104', 'Admin', 'admin_url', 'admin/menu/export_menu', null, '菜单备份', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('105', 'Admin', 'admin_url', 'admin/menu/edit', null, '编辑菜单', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('106', 'Admin', 'admin_url', 'admin/menu/edit_post', null, '提交编辑', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('107', 'Admin', 'admin_url', 'admin/menu/delete', null, '删除菜单', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('108', 'Admin', 'admin_url', 'admin/menu/lists', null, '所有菜单', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('109', 'Admin', 'admin_url', 'admin/setting/default', null, '设置', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('110', 'Admin', 'admin_url', 'admin/setting/userdefault', null, '个人信息', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('111', 'Admin', 'admin_url', 'admin/user/userinfo', null, '修改信息', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('112', 'Admin', 'admin_url', 'admin/user/userinfo_post', null, '修改信息提交', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('113', 'Admin', 'admin_url', 'admin/setting/password', null, '修改密码', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('114', 'Admin', 'admin_url', 'admin/setting/password_post', null, '提交修改', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('115', 'Admin', 'admin_url', 'admin/setting/site', null, '网站信息', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('116', 'Admin', 'admin_url', 'admin/setting/site_post', null, '提交修改', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('117', 'Admin', 'admin_url', 'admin/route/index', null, '路由列表', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('118', 'Admin', 'admin_url', 'admin/route/add', null, '路由添加', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('119', 'Admin', 'admin_url', 'admin/route/add_post', null, '路由添加提交', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('120', 'Admin', 'admin_url', 'admin/route/edit', null, '路由编辑', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('121', 'Admin', 'admin_url', 'admin/route/edit_post', null, '路由编辑提交', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('122', 'Admin', 'admin_url', 'admin/route/delete', null, '路由删除', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('123', 'Admin', 'admin_url', 'admin/route/ban', null, '路由禁止', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('124', 'Admin', 'admin_url', 'admin/route/open', null, '路由启用', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('125', 'Admin', 'admin_url', 'admin/route/listorders', null, '路由排序', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('126', 'Admin', 'admin_url', 'admin/mailer/default', null, '邮箱配置', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('127', 'Admin', 'admin_url', 'admin/mailer/index', null, 'SMTP配置', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('128', 'Admin', 'admin_url', 'admin/mailer/index_post', null, '提交配置', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('129', 'Admin', 'admin_url', 'admin/mailer/active', null, '注册邮件模板', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('130', 'Admin', 'admin_url', 'admin/mailer/active_post', null, '提交模板', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('131', 'Admin', 'admin_url', 'admin/setting/clearcache', null, '清除缓存', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('132', 'User', 'admin_url', 'user/indexadmin/default', null, '用户管理', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('133', 'User', 'admin_url', 'user/indexadmin/default1', null, '用户组', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('134', 'User', 'admin_url', 'user/indexadmin/index', null, '本站用户', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('135', 'User', 'admin_url', 'user/indexadmin/ban', null, '拉黑会员', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('136', 'User', 'admin_url', 'user/indexadmin/cancelban', null, '启用会员', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('137', 'User', 'admin_url', 'user/oauthadmin/index', null, '第三方用户', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('138', 'User', 'admin_url', 'user/oauthadmin/delete', null, '第三方用户解绑', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('139', 'User', 'admin_url', 'user/indexadmin/default3', null, '管理组', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('140', 'Admin', 'admin_url', 'admin/rbac/index', null, '角色管理', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('141', 'Admin', 'admin_url', 'admin/rbac/member', null, '成员管理', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('142', 'Admin', 'admin_url', 'admin/rbac/authorize', null, '权限设置', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('143', 'Admin', 'admin_url', 'admin/rbac/authorize_post', null, '提交设置', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('144', 'Admin', 'admin_url', 'admin/rbac/roleedit', null, '编辑角色', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('145', 'Admin', 'admin_url', 'admin/rbac/roleedit_post', null, '提交编辑', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('146', 'Admin', 'admin_url', 'admin/rbac/roledelete', null, '删除角色', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('147', 'Admin', 'admin_url', 'admin/rbac/roleadd', null, '添加角色', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('148', 'Admin', 'admin_url', 'admin/rbac/roleadd_post', null, '提交添加', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('149', 'Admin', 'admin_url', 'admin/user/index', null, '管理员', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('150', 'Admin', 'admin_url', 'admin/user/delete', null, '删除管理员', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('151', 'Admin', 'admin_url', 'admin/user/edit', null, '管理员编辑', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('152', 'Admin', 'admin_url', 'admin/user/edit_post', null, '编辑提交', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('153', 'Admin', 'admin_url', 'admin/user/add', null, '管理员添加', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('154', 'Admin', 'admin_url', 'admin/user/add_post', null, '添加提交', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('155', 'Admin', 'admin_url', 'admin/plugin/update', null, '插件更新', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('156', 'Admin', 'admin_url', 'admin/storage/index', null, '文件存储', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('157', 'Admin', 'admin_url', 'admin/storage/setting_post', null, '文件存储设置提交', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('158', 'Admin', 'admin_url', 'admin/slide/ban', null, '禁用幻灯片', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('159', 'Admin', 'admin_url', 'admin/slide/cancelban', null, '启用幻灯片', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('160', 'Admin', 'admin_url', 'admin/user/ban', null, '禁用管理员', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('161', 'Admin', 'admin_url', 'admin/user/cancelban', null, '启用管理员', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('162', 'Demo', 'admin_url', 'demo/adminindex/index', null, '', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('163', 'Demo', 'admin_url', 'demo/adminindex/last', null, '', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('166', 'Admin', 'admin_url', 'admin/mailer/test', null, '测试邮件', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('167', 'Admin', 'admin_url', 'admin/setting/upload', null, '上传设置', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('168', 'Admin', 'admin_url', 'admin/setting/upload_post', null, '上传设置提交', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('169', 'Portal', 'admin_url', 'portal/adminpost/copy', null, '文章批量复制', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('170', 'Admin', 'admin_url', 'admin/menu/backup_menu', null, '备份菜单', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('171', 'Admin', 'admin_url', 'admin/menu/export_menu_lang', null, '导出后台菜单多语言包', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('172', 'Admin', 'admin_url', 'admin/menu/restore_menu', null, '还原菜单', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('173', 'Admin', 'admin_url', 'admin/menu/getactions', null, '导入新菜单', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('1', 'Admin', 'admin/content/default', null, '内容管理', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('2', 'Api', 'api/guestbookadmin/index', null, '所有留言', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('3', 'Api', 'api/guestbookadmin/delete', null, '删除网站留言', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('4', 'Comment', 'comment/commentadmin/index', null, '评论管理', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('5', 'Comment', 'comment/commentadmin/delete', null, '删除评论', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('6', 'Comment', 'comment/commentadmin/check', null, '评论审核', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('7', 'Portal', 'portal/adminpost/index', null, '文章管理', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('8', 'Portal', 'portal/adminpost/listorders', null, '文章排序', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('9', 'Portal', 'portal/adminpost/top', null, '文章置顶', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('10', 'Portal', 'portal/adminpost/recommend', null, '文章推荐', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('11', 'Portal', 'portal/adminpost/move', null, '批量移动', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('12', 'Portal', 'portal/adminpost/check', null, '文章审核', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('13', 'Portal', 'portal/adminpost/delete', null, '删除文章', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('14', 'Portal', 'portal/adminpost/edit', null, '编辑文章', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('15', 'Portal', 'portal/adminpost/edit_post', null, '提交编辑', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('16', 'Portal', 'portal/adminpost/add', null, '添加文章', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('17', 'Portal', 'portal/adminpost/add_post', null, '提交添加', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('18', 'Portal', 'portal/adminterm/index', null, '分类管理', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('19', 'Portal', 'portal/adminterm/listorders', null, '文章分类排序', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('20', 'Portal', 'portal/adminterm/delete', null, '删除分类', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('21', 'Portal', 'portal/adminterm/edit', null, '编辑分类', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('22', 'Portal', 'portal/adminterm/edit_post', null, '提交编辑', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('23', 'Portal', 'portal/adminterm/add', null, '添加分类', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('24', 'Portal', 'portal/adminterm/add_post', null, '提交添加', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('25', 'Portal', 'portal/adminpage/index', null, '页面管理', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('26', 'Portal', 'portal/adminpage/listorders', null, '页面排序', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('27', 'Portal', 'portal/adminpage/delete', null, '删除页面', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('28', 'Portal', 'portal/adminpage/edit', null, '编辑页面', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('29', 'Portal', 'portal/adminpage/edit_post', null, '提交编辑', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('30', 'Portal', 'portal/adminpage/add', null, '添加页面', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('31', 'Portal', 'portal/adminpage/add_post', null, '提交添加', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('32', 'Admin', 'admin/recycle/default', null, '回收站', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('33', 'Portal', 'portal/adminpost/recyclebin', null, '文章回收', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('34', 'Portal', 'portal/adminpost/restore', null, '文章还原', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('35', 'Portal', 'portal/adminpost/clean', null, '彻底删除', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('36', 'Portal', 'portal/adminpage/recyclebin', null, '页面回收', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('37', 'Portal', 'portal/adminpage/clean', null, '彻底删除', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('38', 'Portal', 'portal/adminpage/restore', null, '页面还原', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('39', 'Admin', 'admin/extension/default', null, '扩展工具', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('40', 'Admin', 'admin/backup/default', null, '备份管理', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('41', 'Admin', 'admin/backup/restore', null, '数据还原', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('42', 'Admin', 'admin/backup/index', null, '数据备份', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('43', 'Admin', 'admin/backup/index_post', null, '提交数据备份', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('44', 'Admin', 'admin/backup/download', null, '下载备份', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('45', 'Admin', 'admin/backup/del_backup', null, '删除备份', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('46', 'Admin', 'admin/backup/import', null, '数据备份导入', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('47', 'Admin', 'admin/plugin/index', null, '插件管理', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('48', 'Admin', 'admin/plugin/toggle', null, '插件启用切换', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('49', 'Admin', 'admin/plugin/setting', null, '插件设置', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('50', 'Admin', 'admin/plugin/setting_post', null, '插件设置提交', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('51', 'Admin', 'admin/plugin/install', null, '插件安装', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('52', 'Admin', 'admin/plugin/uninstall', null, '插件卸载', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('53', 'Admin', 'admin/slide/default', null, '幻灯片', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('54', 'Admin', 'admin/slide/index', null, '幻灯片管理', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('55', 'Admin', 'admin/slide/listorders', null, '幻灯片排序', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('56', 'Admin', 'admin/slide/toggle', null, '幻灯片显示切换', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('57', 'Admin', 'admin/slide/delete', null, '删除幻灯片', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('58', 'Admin', 'admin/slide/edit', null, '编辑幻灯片', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('59', 'Admin', 'admin/slide/edit_post', null, '提交编辑', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('60', 'Admin', 'admin/slide/add', null, '添加幻灯片', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('61', 'Admin', 'admin/slide/add_post', null, '提交添加', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('62', 'Admin', 'admin/slidecat/index', null, '幻灯片分类', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('63', 'Admin', 'admin/slidecat/delete', null, '删除分类', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('64', 'Admin', 'admin/slidecat/edit', null, '编辑分类', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('65', 'Admin', 'admin/slidecat/edit_post', null, '提交编辑', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('66', 'Admin', 'admin/slidecat/add', null, '添加分类', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('67', 'Admin', 'admin/slidecat/add_post', null, '提交添加', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('68', 'Admin', 'admin/ad/index', null, '网站广告', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('69', 'Admin', 'admin/ad/toggle', null, '广告显示切换', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('70', 'Admin', 'admin/ad/delete', null, '删除广告', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('71', 'Admin', 'admin/ad/edit', null, '编辑广告', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('72', 'Admin', 'admin/ad/edit_post', null, '提交编辑', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('73', 'Admin', 'admin/ad/add', null, '添加广告', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('74', 'Admin', 'admin/ad/add_post', null, '提交添加', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('75', 'Admin', 'admin/link/index', null, '友情链接', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('76', 'Admin', 'admin/link/listorders', null, '友情链接排序', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('77', 'Admin', 'admin/link/toggle', null, '友链显示切换', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('78', 'Admin', 'admin/link/delete', null, '删除友情链接', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('79', 'Admin', 'admin/link/edit', null, '编辑友情链接', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('80', 'Admin', 'admin/link/edit_post', null, '提交编辑', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('81', 'Admin', 'admin/link/add', null, '添加友情链接', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('82', 'Admin', 'admin/link/add_post', null, '提交添加', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('83', 'Api', 'api/oauthadmin/setting', null, '第三方登陆', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('84', 'Api', 'api/oauthadmin/setting_post', null, '提交设置', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('85', 'Admin', 'admin/menu/default', null, '菜单管理', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('86', 'Admin', 'admin/navcat/default1', null, '前台菜单', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('87', 'Admin', 'admin/nav/index', null, '菜单管理', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('88', 'Admin', 'admin/nav/listorders', null, '前台导航排序', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('89', 'Admin', 'admin/nav/delete', null, '删除菜单', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('90', 'Admin', 'admin/nav/edit', null, '编辑菜单', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('91', 'Admin', 'admin/nav/edit_post', null, '提交编辑', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('92', 'Admin', 'admin/nav/add', null, '添加菜单', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('93', 'Admin', 'admin/nav/add_post', null, '提交添加', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('94', 'Admin', 'admin/navcat/index', null, '菜单分类', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('95', 'Admin', 'admin/navcat/delete', null, '删除分类', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('96', 'Admin', 'admin/navcat/edit', null, '编辑分类', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('97', 'Admin', 'admin/navcat/edit_post', null, '提交编辑', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('98', 'Admin', 'admin/navcat/add', null, '添加分类', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('99', 'Admin', 'admin/navcat/add_post', null, '提交添加', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('100', 'Admin', 'admin/menu/index', null, '后台菜单', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('101', 'Admin', 'admin/menu/add', null, '添加菜单', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('102', 'Admin', 'admin/menu/add_post', null, '提交添加', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('103', 'Admin', 'admin/menu/listorders', null, '后台菜单排序', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('104', 'Admin', 'admin/menu/export_menu', null, '菜单备份', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('105', 'Admin', 'admin/menu/edit', null, '编辑菜单', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('106', 'Admin', 'admin/menu/edit_post', null, '提交编辑', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('107', 'Admin', 'admin/menu/delete', null, '删除菜单', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('108', 'Admin', 'admin/menu/lists', null, '所有菜单', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('109', 'Admin', 'admin/setting/default', null, '设置', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('110', 'Admin', 'admin/setting/userdefault', null, '个人信息', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('111', 'Admin', 'admin/user/userinfo', null, '修改信息', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('112', 'Admin', 'admin/user/userinfo_post', null, '修改信息提交', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('113', 'Admin', 'admin/setting/password', null, '修改密码', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('114', 'Admin', 'admin/setting/password_post', null, '提交修改', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('115', 'Admin', 'admin/setting/site', null, '网站信息', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('116', 'Admin', 'admin/setting/site_post', null, '提交修改', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('117', 'Admin', 'admin/route/index', null, '路由列表', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('118', 'Admin', 'admin/route/add', null, '路由添加', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('119', 'Admin', 'admin/route/add_post', null, '路由添加提交', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('120', 'Admin', 'admin/route/edit', null, '路由编辑', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('121', 'Admin', 'admin/route/edit_post', null, '路由编辑提交', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('122', 'Admin', 'admin/route/delete', null, '路由删除', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('123', 'Admin', 'admin/route/ban', null, '路由禁止', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('124', 'Admin', 'admin/route/open', null, '路由启用', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('125', 'Admin', 'admin/route/listorders', null, '路由排序', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('126', 'Admin', 'admin/mailer/default', null, '邮箱配置', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('127', 'Admin', 'admin/mailer/index', null, 'SMTP配置', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('128', 'Admin', 'admin/mailer/index_post', null, '提交配置', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('129', 'Admin', 'admin/mailer/active', null, '注册邮件模板', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('130', 'Admin', 'admin/mailer/active_post', null, '提交模板', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('131', 'Admin', 'admin/setting/clearcache', null, '清除缓存', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('132', 'User', 'user/indexadmin/default', null, '用户管理', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('133', 'User', 'user/indexadmin/default1', null, '用户组', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('134', 'User', 'user/indexadmin/index', null, '本站用户', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('135', 'User', 'user/indexadmin/ban', null, '拉黑会员', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('136', 'User', 'user/indexadmin/cancelban', null, '启用会员', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('137', 'User', 'user/oauthadmin/index', null, '第三方用户', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('138', 'User', 'user/oauthadmin/delete', null, '第三方用户解绑', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('139', 'User', 'user/indexadmin/default3', null, '管理组', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('140', 'Admin', 'admin/rbac/index', null, '角色管理', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('141', 'Admin', 'admin/rbac/member', null, '成员管理', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('142', 'Admin', 'admin/rbac/authorize', null, '权限设置', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('143', 'Admin', 'admin/rbac/authorize_post', null, '提交设置', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('144', 'Admin', 'admin/rbac/roleedit', null, '编辑角色', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('145', 'Admin', 'admin/rbac/roleedit_post', null, '提交编辑', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('146', 'Admin', 'admin/rbac/roledelete', null, '删除角色', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('147', 'Admin', 'admin/rbac/roleadd', null, '添加角色', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('148', 'Admin', 'admin/rbac/roleadd_post', null, '提交添加', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('149', 'Admin', 'admin/user/index', null, '管理员', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('150', 'Admin', 'admin/user/delete', null, '删除管理员', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('151', 'Admin', 'admin/user/edit', null, '管理员编辑', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('152', 'Admin', 'admin/user/edit_post', null, '编辑提交', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('153', 'Admin', 'admin/user/add', null, '管理员添加', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('154', 'Admin', 'admin/user/add_post', null, '添加提交', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('155', 'Admin', 'admin/plugin/update', null, '插件更新', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('156', 'Admin', 'admin/storage/index', null, '文件存储', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('157', 'Admin', 'admin/storage/setting_post', null, '文件存储设置提交', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('158', 'Admin', 'admin/slide/ban', null, '禁用幻灯片', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('159', 'Admin', 'admin/slide/cancelban', null, '启用幻灯片', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('160', 'Admin', 'admin/user/ban', null, '禁用管理员', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('161', 'Admin', 'admin/user/cancelban', null, '启用管理员', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('162', 'Demo', 'demo/adminindex/index', null, '', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('163', 'Demo', 'demo/adminindex/last', null, '', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('166', 'Admin', 'admin/mailer/test', null, '测试邮件', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('167', 'Admin', 'admin/setting/upload', null, '上传设置', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('168', 'Admin', 'admin/setting/upload_post', null, '上传设置提交', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('169', 'Portal', 'portal/adminpost/copy', null, '文章批量复制', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('170', 'Admin', 'admin/menu/backup_menu', null, '备份菜单', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('171', 'Admin', 'admin/menu/export_menu_lang', null, '导出后台菜单多语言包', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('172', 'Admin', 'admin/menu/restore_menu', null, '还原菜单', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('173', 'Admin', 'admin/menu/getactions', null, '导入新菜单', '1', '');
 
 -- ----------------------------
 -- Table structure for tp_menu
@@ -389,7 +406,7 @@ INSERT INTO `tp_menu` VALUES ('136', '134', 'User', 'Indexadmin', 'cancelban', '
 INSERT INTO `tp_menu` VALUES ('137', '133', 'User', 'Oauthadmin', 'index', '', '1', '1', '第三方用户', 'leaf', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('138', '137', 'User', 'Oauthadmin', 'delete', '', '1', '0', '第三方用户解绑', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('139', '132', 'User', 'Indexadmin', 'default3', '', '1', '1', '管理组', '', '', '0', 'tar');
-INSERT INTO `tp_menu` VALUES ('140', '139', 'admin', 'rbac', 'index', '', '1', '1', '角色管理', '', '', '0', 'navTab');
+INSERT INTO `tp_menu` VALUES ('140', '139', 'Admin', 'Rbac', 'index', '', '1', '1', '角色管理', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('141', '140', 'Admin', 'Rbac', 'member', '', '1', '0', '成员管理', '', '', '1000', 'navTab');
 INSERT INTO `tp_menu` VALUES ('142', '140', 'Admin', 'Rbac', 'authorize', '', '1', '0', '权限设置', '', '', '1000', 'navTab');
 INSERT INTO `tp_menu` VALUES ('143', '142', 'Admin', 'Rbac', 'authorize_post', '', '1', '0', '提交设置', '', '', '0', 'navTab');
@@ -436,13 +453,14 @@ CREATE TABLE `tp_role` (
   PRIMARY KEY (`id`),
   KEY `parentId` (`pid`),
   KEY `status` (`status`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='角色表';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='角色表';
 
 -- ----------------------------
 -- Records of tp_role
 -- ----------------------------
 INSERT INTO `tp_role` VALUES ('1', '超级管理员', '0', '1', '拥有网站最高管理员权限！', '1329633709', '1329633709', '0');
-INSERT INTO `tp_role` VALUES ('2', '普通管理员', '0', '1', '拥有网站部分权限！', '1329633709', '1539014151', '0');
+INSERT INTO `tp_role` VALUES ('2', '普通管理员', '0', '1', '拥有网站部分权限！', '1329633709', '1539050013', '0');
+INSERT INTO `tp_role` VALUES ('3', '总监', '0', '1', '管理其他', '1539249768', '1539249768', '0');
 
 -- ----------------------------
 -- Table structure for tp_role_user
@@ -458,8 +476,9 @@ CREATE TABLE `tp_role_user` (
 -- ----------------------------
 -- Records of tp_role_user
 -- ----------------------------
-INSERT INTO `tp_role_user` VALUES ('1', '2');
+INSERT INTO `tp_role_user` VALUES ('2', '1');
 INSERT INTO `tp_role_user` VALUES ('2', '2');
+INSERT INTO `tp_role_user` VALUES ('2', '1');
 
 -- ----------------------------
 -- Table structure for tp_users
@@ -489,5 +508,5 @@ CREATE TABLE `tp_users` (
 -- ----------------------------
 -- Records of tp_users
 -- ----------------------------
-INSERT INTO `tp_users` VALUES ('1', 'admin', '###4825f2a9af6773a0bad9430514b0e4ae', 'admin', 'admin@admin.com', null, '0', '2000-01-01', null, '192.168.146.129', '2018-10-08 23:05:21', '2018-01-22 01:53:15', '1', '1', '15231069699');
-INSERT INTO `tp_users` VALUES ('2', 'xiaohei', '###4825f2a9af6773a0bad9430514b0e4ae', 'admin', 'xiaohei@xiaohei.com', '', '0', '2000-01-01', '', '192.168.146.129', '2018-10-07 23:33:51', '2018-01-22 01:53:15', '1', '1', '17600264769');
+INSERT INTO `tp_users` VALUES ('1', 'admin', '###4825f2a9af6773a0bad9430514b0e4ae', 'admin', 'admin@admin.com', null, '0', '2000-01-01', null, '192.168.13.1', '2018-10-24 16:57:51', '2018-01-22 01:53:15', '1', '1', '15231069699');
+INSERT INTO `tp_users` VALUES ('2', 'zhangsan', '###57ffd37a884e58ff0636cf079ddb47c2', '', 'zhangsan@zhangsan.com', null, '0', '2000-01-01', null, null, '2000-01-01 00:00:00', '2000-01-01 00:00:00', '0', '1', '17600264769');
