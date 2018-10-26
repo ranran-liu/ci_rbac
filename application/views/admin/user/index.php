@@ -51,6 +51,7 @@
         </tr>
         </thead>
         <tbody>
+        <?php $user_status = array('禁用','正常 ','未验证');?>
         <?php foreach ($users as $vo) { ?>
             <tr>
                 <td><?php echo $vo['id']; ?></td>
@@ -61,7 +62,7 @@
                 </td>
                 <td><?php echo $vo['user_email'];?></td>
                 <td><?php echo $vo['mobile'];?></td>
-                <td><?php echo $vo['user_status'];?></td>
+                <td><?php echo $user_status[$vo['user_status']];?></td>
                 <td>
                     <?php if($vo['id']==1 || $vo['id'] == sp_get_current_admin_id()){ ?>
                         <font color="#cccccc">编辑</font> | <font color="#cccccc">删除</font> |
