@@ -14,26 +14,26 @@
             <dl>
                 <dt>名称:</dt>
                 <dd>
-                    <input type="text" name="name" value="" class="required">
+                    <input type="text" name="name" value="" >
                 </dd>
             </dl>
 
             <dl>
                 <dt>应用:</dt>
                 <dd>
-                    <input type="text" name="app" value="" class="required">
+                    <input type="text" name="app" value="" >
                 </dd>
             </dl>
             <dl>
                 <dt>控制器:</dt>
                 <dd>
-                    <input type="text" name="model" value="" class="required">
+                    <input type="text" name="model" value="" >
                 </dd>
             </dl>
             <dl>
                 <dt>方法:</dt>
                 <dd>
-                    <input type="text" name="action" value="" class="required">
+                    <input type="text" name="action" value="" >
                 </dd>
             </dl>
             <dl>

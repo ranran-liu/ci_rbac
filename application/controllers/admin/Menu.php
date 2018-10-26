@@ -90,6 +90,58 @@ class Menu extends AdminBaseController{
         $this->load->view('admin/menu/add',$data);
     }
     /**
+     *  执行添加
+     */
+    public function add_post() {
+        if (IS_POST) {
+            $posts=$this->input->post(NULL, TRUE);
+            foreach($posts as $k=>$v){
+                $posts[$k]=trim($v);
+            }
+            if(!$posts['name']){
+                $this->error('请输入菜单名称！');
+            }
+            $posts['app'] = strtolower($posts['app']);
+            $app = $posts['app'];
+            if(!$app){
+                $this->error('请输入应用！');
+            }
+            $posts['model'] = strtolower($posts['model']);
+            $model = $posts['model'];
+            if(!$model){
+                $this->error('请输入控制器！');
+            }
+            $posts['action'] = strtolower($posts['action']);
+            $action = $posts['action'];
+            if(!$action){
+                $this->error('请输入方法！');
+            }
+            //判断菜单中是否存在  同样的应用/控制器/方法
+            $checkAction = $this->menu->checkAction(array('app'=>$app,'model'=>$model,'action'=>$action));
+            if(!$checkAction){
+                $this->error('同样的应用/控制器/方法已存在！');
+            }
+
+            //执行添加
+            $returnid = $this->menu->add($posts);
+
+            if($returnid){
+                $this->load->model('Admin/authrule_model');
+                $rule_name=strtolower("$app/$model/$action");
+                $menu_name=$posts['name'];
+                $mwhere=array("name"=>$rule_name);
+                $find_rule_count=$this->authrule_model->getNum($mwhere);
+                if($find_rule_count==0){
+                    $this->authrule_model->add(array("name"=>$rule_name,"module"=>$app,"title"=>$menu_name));
+                }
+                $this->success("menu_index",'closeCurrent','/admin/menu/index');
+            }else{
+                $this->error("添加失败！");
+            }
+        }
+    }
+
+    /**
      *  编辑页
      */
     public function edit() {
@@ -107,5 +159,18 @@ class Menu extends AdminBaseController{
         $data["data"] = $rs;
         $data["select_categorys"] = $select_categorys;
         $this->load->view('admin/menu/edit',$data);
+    }
+
+    public function test(){
+        $list = $this->db->select('id,app,model,action')->from(self::MENU_TABLE)->get()->result_array();
+        foreach($list as $k=>$v){
+            $arr = array(
+                'app'=>strtolower($v['app']),
+                'model'=>strtolower($v['model']),
+                'action'=>strtolower($v['action']),
+            );
+            $this->db->update(self::MENU_TABLE,$arr,array('id'=>$v['id']));
+        }
+        print_r($list);
     }
 }

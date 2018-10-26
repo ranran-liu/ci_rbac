@@ -98,7 +98,7 @@
             <dl>
                 <dt>排序:</dt>
                 <dd>
-                    <input type="text" name='listorder' value='<?php echo $data['listorder']; ?> class="digits textInput">
+                    <input type="text" name='listorder' value='<?php echo $data['listorder']; ?>' class="digits textInput">
                 </dd>
             </dl>
         </div>

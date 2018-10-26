@@ -116,7 +116,25 @@ class Menu_model extends MY_Model
         }
         return $array;
     }
+    //检测同样的应用/控制器/方法是否存在
+    public function checkAction($data){
+        //检查是否重复添加
+        $find = $this->db->select('*')->where($data)->from(self::MENU_TABLE)->get()->row_array();
+        if ($find) {
+            return false;
+        }
+        return true;
+    }
+    //添加数据
+    public function add($arr){
 
+        $res = $this->db->insert(self::MENU_TABLE,$arr);
+        if($res){
+            return $this->db->insert_id();
+        }else{
+            return FALSE;
+        }
+    }
     public  function menu_list(){
 
         $list = $this->project_db->get(self::MENU_TABLE)->result_array();

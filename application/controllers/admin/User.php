@@ -260,7 +260,7 @@ class User extends AdminBaseController{
     public function cancelban(){
         $id = $this->input->get('id');
         if (!empty($id)) {
-            $result = $this->user_model->update_status(1,$id);
+            $result = $this->users_model->update_status(1,$id);
             if ($result!==false) {
                 $this->success("user_index");
             } else {
