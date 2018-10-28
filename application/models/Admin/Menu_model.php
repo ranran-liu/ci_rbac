@@ -81,7 +81,7 @@ class Menu_model extends MY_Model
         //父节点ID
         $parentid = (int) $parentid;
 
-        $result = $this->project_db->where(array('parentid' => $parentid, 'status' => 1))->order_by('listorder','ASC')->get(self::MENU_TABLE)->result_array();
+        $result = $this->project_db->where(array('parentid' => $parentid, 'status' => 1))->order_by('listorder','ASC')->order_by('id','ASC')->get(self::MENU_TABLE)->result_array();
 
         if ($with_self) {
             $result2[] = $this->project_db->where(array('id' => $parentid))->get(self::MENU_TABLE)->row_array();
