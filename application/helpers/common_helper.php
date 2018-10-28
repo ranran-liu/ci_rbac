@@ -492,6 +492,7 @@ function isMobile($mobile) {
 //$config array 配置数组
 //$file  文件名
 function sp_set_config($config,$file){
+    echo $config,$file;
     if(!$file){
         return False;
     }
