@@ -300,45 +300,45 @@ function msectime() {
     return $msectime;
 }
 
-//获取用户真实IP 
-function getIp() { 
-    if (getenv("HTTP_CLIENT_IP") && strcasecmp(getenv("HTTP_CLIENT_IP"), "unknown")) 
-        $ip = getenv("HTTP_CLIENT_IP"); 
-    else 
-        if (getenv("HTTP_X_FORWARDED_FOR") && strcasecmp(getenv("HTTP_X_FORWARDED_FOR"), "unknown")) 
-            $ip = getenv("HTTP_X_FORWARDED_FOR"); 
-        else 
-            if (getenv("REMOTE_ADDR") && strcasecmp(getenv("REMOTE_ADDR"), "unknown")) 
-                $ip = getenv("REMOTE_ADDR"); 
-            else 
-                if (isset ($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], "unknown")) 
-                    $ip = $_SERVER['REMOTE_ADDR']; 
-                else 
-                    $ip = "unknown"; 
-    return ($ip); 
+//获取用户真实IP
+function getIp() {
+    if (getenv("HTTP_CLIENT_IP") && strcasecmp(getenv("HTTP_CLIENT_IP"), "unknown"))
+        $ip = getenv("HTTP_CLIENT_IP");
+    else
+        if (getenv("HTTP_X_FORWARDED_FOR") && strcasecmp(getenv("HTTP_X_FORWARDED_FOR"), "unknown"))
+            $ip = getenv("HTTP_X_FORWARDED_FOR");
+        else
+            if (getenv("REMOTE_ADDR") && strcasecmp(getenv("REMOTE_ADDR"), "unknown"))
+                $ip = getenv("REMOTE_ADDR");
+            else
+                if (isset ($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], "unknown"))
+                    $ip = $_SERVER['REMOTE_ADDR'];
+                else
+                    $ip = "unknown";
+    return ($ip);
 }
 
-/** 
-* 获得用于数据库当主键的hashid 
+/**
+* 获得用于数据库当主键的hashid
 * 思路：进程id+当前微秒数+IP+随机数
-* @TODO 当有多台服务器时，还要再加一个服务器的IP或id 
-* @return string 
-*/  
-function uuid($prefix = "")  
-{  
-    $pid = getmypid();//进程id。在同一台机器下高并发时，极易得到相同的毫秒  
-    //time_nanosleep(0, 1000);//延时1000纳秒=1毫秒。同一进行连续使用本函数时，可能得到相同的毫秒，于是需要这个延时来保证每次得到的毫秒未被使用。  
-    $timetick = microtime(TRUE)*1000;//微秒  
+* @TODO 当有多台服务器时，还要再加一个服务器的IP或id
+* @return string
+*/
+function uuid($prefix = "")
+{
+    $pid = getmypid();//进程id。在同一台机器下高并发时，极易得到相同的毫秒
+    //time_nanosleep(0, 1000);//延时1000纳秒=1毫秒。同一进行连续使用本函数时，可能得到相同的毫秒，于是需要这个延时来保证每次得到的毫秒未被使用。
+    $timetick = microtime(TRUE)*1000;//微秒
     $ip = getIp();
-    $rand = uniqid(mt_rand(), true); 
-    $str = md5($pid.'+'.$timetick."+".$ip."+".$rand);  
-    $uuid  = substr($str,0,8) . '-';   
-    $uuid .= substr($str,8,4) . '-';   
-    $uuid .= substr($str,12,4) . '-';   
-    $uuid .= substr($str,16,4) . '-';   
-    $uuid .= substr($str,20,12); 
-    return $prefix . $uuid;  
-} 
+    $rand = uniqid(mt_rand(), true);
+    $str = md5($pid.'+'.$timetick."+".$ip."+".$rand);
+    $uuid  = substr($str,0,8) . '-';
+    $uuid .= substr($str,8,4) . '-';
+    $uuid .= substr($str,12,4) . '-';
+    $uuid .= substr($str,16,4) . '-';
+    $uuid .= substr($str,20,12);
+    return $prefix . $uuid;
+}
 
 
 /**
@@ -351,7 +351,7 @@ function fullImg($img)
     $ci->load->config("custom");
     if(substr($img,0,4)== "http")
     {
-        return $img ;   
+        return $img ;
     }else{
         $img = $ci->config->item('static_url').$img;
     }
@@ -486,6 +486,21 @@ function isMobile($mobile) {
         return false;
     }
     return preg_match('#^13[\d]{9}$|^14[5,7]{1}\d{8}$|^15[^4]{1}\d{8}$|^17[0,6,7,8]{1}\d{8}$|^18[\d]{9}$#', $mobile) ? true : false;
+}
+
+//写入更新配置文件
+//$config array 配置数组
+//$file  文件名
+function sp_set_config($config,$file){
+    if(!$file){
+        return False;
+    }
+    if(!file_exists("./application/config/".ENVIRONMENT)){
+        mkdir("./application/config/".ENVIRONMENT,0777, true);
+    }
+    $config_file="./application/config/".ENVIRONMENT."/".$file.".php";
+    $result = file_put_contents($config_file, "<?php\n \$config= " . var_export($config, true) . ";");
+    return $result;
 }
 
 

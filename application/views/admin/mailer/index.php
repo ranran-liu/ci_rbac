@@ -4,27 +4,27 @@
             <dl>
                 <dt>发件人:</dt>
                 <dd>
-                    <input type="text" name="sender" value="<?php echo $this->config->item('mail_sender');?>" class="required"/>
+                    <input type="text" name="sender" value="<?php echo $this->config->item('mailer')['mail_sender'];?>" class="required"/>
                 </dd>
             </dl>
 
             <dl>
                 <dt>邮箱地址:</dt>
                 <dd>
-                    <input type="text" name="address" value="<?php echo $this->config->item('mail_address');?>" class="required"/>
+                    <input type="text" name="address" value="<?php echo $this->config->item('mailer')['mail_address'];?>" class="required"/>
                 </dd>
             </dl>
 
             <dl>
                 <dt>SMTP服务器:</dt>
                 <dd>
-                    <input type="text" name="smtp" value="<?php echo $this->config->item('mail_smtp_server');?>" class="required"/>
+                    <input type="text" name="smtp_server" value="<?php echo $this->config->item('mailer')['mail_smtp_server'];?>" class="required"/>
                 </dd>
             </dl>
             <dl>
                 <dt>连接方式:</dt>
                 <dd>
-                    <select name="smtpsecure" id="js-smtpsecure">
+                    <select name="smtp_secure" id="js-smtpsecure">
                         <option value="">默认</option>
                         <option value="ssl">ssl</option>
                         <option value="tls">tls</option>
@@ -34,19 +34,19 @@
             <dl>
                 <dt>SMTP服务器端口:</dt>
                 <dd>
-                    <input type="text" name="smtp_port" value="<?php echo $this->config->item('mail_smtp_port');?>" placeholder="默认为25" class="required"/>
+                    <input type="text" name="smtp_port" value="<?php echo $this->config->item('mailer')['mail_smtp_port'];?>" placeholder="默认为25" class="required"/>
                 </dd>
             </dl>
             <dl>
                 <dt>发件箱账号:</dt>
                 <dd>
-                    <input type="text" name="loginname" value="<?php echo $this->config->item('mail_loginname');?>"  class="required"/>
+                    <input type="text" name="loginname" value="<?php echo $this->config->item('mailer')['mail_loginname'];?>"  class="required"/>
                 </dd>
             </dl>
             <dl>
                 <dt>发件箱密码:</dt>
                 <dd>
-                    <input type="password" name="password" value="<?php echo $this->config->item('mail_password');?>" class="required" />
+                    <input type="password" name="password" value="<?php echo $this->config->item('mailer')['mail_password'];?>" class="required" />
                 </dd>
             </dl>
         </div>
@@ -61,6 +61,6 @@
 </div>
 <script>
     $(function(){
-        $('#js-smtpsecure').val("<?php echo $this->config->item('mail_secure');?>");
+        $('#js-smtpsecure').val("<?php echo $this->config->item('mailer')['mail_secure'];?>");
     });
 </script>
