@@ -28,7 +28,15 @@ class Authrule_model extends MY_Model
             return FALSE;
         }
     }
-
+    //更新
+    public function save($where,$arr){
+        $this->db->update(self::AUTHRUlE_TABLE,$arr,$where);
+        if ($this->db->affected_rows()!==false){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
     public function getNum($where){
         $count = $this->db->where($where)->from(self::AUTHRUlE_TABLE)->count_all_results();
         return $count;

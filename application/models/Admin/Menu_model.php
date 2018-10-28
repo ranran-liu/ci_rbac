@@ -119,8 +119,18 @@ class Menu_model extends MY_Model
     //检测同样的应用/控制器/方法是否存在
     public function checkAction($data){
         //检查是否重复添加
-        $find = $this->db->select('*')->where($data)->from(self::MENU_TABLE)->get()->row_array();
+        $find = $this->db->select('id')->where($data)->from(self::MENU_TABLE)->get()->row_array();
         if ($find) {
+            return false;
+        }
+        return true;
+    }
+    public function checkActionUpdate($data) {
+        //检查是否重复添加
+        $id=$data['id'];
+        unset($data['id']);
+        $find = $this->db->select('id')->where($data)->from(self::MENU_TABLE)->get()->row_array();
+        if (isset($find['id']) && $find['id']!=$id) {
             return false;
         }
         return true;
@@ -135,6 +145,16 @@ class Menu_model extends MY_Model
             return FALSE;
         }
     }
+    //编辑数据
+    public function save($arr){
+        $this->db->update(self::MENU_TABLE,$arr,array('id'=>$arr['id']));
+        if ($this->db->affected_rows()!==false){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+
     public  function menu_list(){
 
         $list = $this->project_db->get(self::MENU_TABLE)->result_array();

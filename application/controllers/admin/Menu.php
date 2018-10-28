@@ -19,7 +19,7 @@ class Menu extends AdminBaseController{
     }
 
     public function index(){
-        $result = $this->db->select('*')->from(self::MENU_TABLE)->order_by('listorder ASC','id ASC')->get()->result_array();
+        $result = $this->db->select('*')->from(self::MENU_TABLE)->order_by('listorder ASC')->order_by('id ASC')->get()->result_array();
         //print_r($result);exit;
         $this->load->library('tree');
         $this->tree->icon = array('&nbsp;&nbsp;&nbsp;│ ', '&nbsp;&nbsp;&nbsp;├─ ', '&nbsp;&nbsp;&nbsp;└─ ');
@@ -34,7 +34,7 @@ class Menu extends AdminBaseController{
             $id = $r['id'];
             $result[$n]['level'] = $this->_get_level($id, $newmenus);
             $result[$n]['parentid_node'] = ($r['parentid']) ? ' class="child-of-node-' . $r['parentid'] . '"' : '';
-            $result[$n]['str_manage'] = "<a href='/admin/menu/add?parentid=$id' target='dialog' height='680' width='800'>".'添加子菜单'."</a> | <a href='/admin/menu/edit?id=$id' target='dialog' height='680' width='800'>".'编辑'."</a> | <a href='/admin/menu/delete?id=$id' target='ajaxTodo' title='确认要删除吗？'>".'删除'."</a> ";
+            $result[$n]['str_manage'] = "<a href='/admin/menu/add?parentid=$id' target='dialog' height='600' width='800'>".'添加子菜单'."</a> | <a href='/admin/menu/edit?id=$id' target='dialog' height='600' width='800'>".'编辑'."</a> | <a href='/admin/menu/delete?id=$id' target='ajaxTodo' title='确认要删除吗？'>".'删除'."</a> ";
             $result[$n]['status'] = $r['status'] ? '显示' : '隐藏';
             $result[$n]['app']=strtolower($r['app']."/".$r['model']."/".$r['action']);
 
@@ -159,6 +159,57 @@ class Menu extends AdminBaseController{
         $data["data"] = $rs;
         $data["select_categorys"] = $select_categorys;
         $this->load->view('admin/menu/edit',$data);
+    }
+    /**
+     *  编辑提交
+     */
+    public function edit_post() {
+        if (IS_POST) {
+            $posts=$this->input->post(NULL, TRUE);
+            foreach($posts as $k=>$v){
+                $posts[$k]=trim($v);
+            }
+            if(!$posts['name']){
+                $this->error('请输入菜单名称！');
+            }
+            $posts['app'] = strtolower($posts['app']);
+            $app = $posts['app'];
+            if(!$app){
+                $this->error('请输入应用！');
+            }
+            $posts['model'] = strtolower($posts['model']);
+            $model = $posts['model'];
+            if(!$model){
+                $this->error('请输入控制器！');
+            }
+            $posts['action'] = strtolower($posts['action']);
+            $action = $posts['action'];
+            if(!$action){
+                $this->error('请输入方法！');
+            }
+            //判断菜单中是否存在  同样的应用/控制器/方法
+            $checkAction = $this->menu->checkActionUpdate(array('id'=>$posts['id'],'app'=>$app,'model'=>$model,'action'=>$action));
+            if(!$checkAction){
+                $this->error('同样的应用/控制器/方法已存在！');
+            }
+            //执行编辑
+            $return = $this->menu->save($posts);
+            if($return){
+                $this->load->model('Admin/authrule_model');
+                $rule_name=strtolower("$app/$model/$action");
+                $menu_name=$posts['name'];
+                $mwhere=array("name"=>$rule_name);
+                $find_rule_count=$this->authrule_model->getNum($mwhere);
+                if($find_rule_count==0){
+                    $this->authrule_model->add(array("name"=>$rule_name,"module"=>$app,"title"=>$menu_name));
+                }else{
+                    $this->authrule_model->save($mwhere,array("name"=>$rule_name,"module"=>$app,"title"=>$menu_name));
+                }
+                $this->success("menu_index",'closeCurrent','/admin/menu/index');
+            }else{
+                $this->error("更新失败！");
+            }
+        }
     }
     /**
      *  删除

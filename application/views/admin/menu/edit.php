@@ -75,11 +75,11 @@
                     <select name="target_type">
                         <option value="navTab">Tab标签</option>
                         <?php $target_selected=$data['target_type']=="dialog"?"selected":""; ?>
-                        <option value="dialog" {$target_selected}>对话框</option>
+                        <option value="dialog" <?php echo $target_selected; ?> >对话框</option>
                         <?php $target_selected=$data['target_type']=="ajaxTodo"?"selected":""; ?>
-                        <option value="ajaxTodo" {$target_selected}>ajaxTodo</option>
+                        <option value="ajaxTodo" <?php echo $target_selected; ?> >ajaxTodo</option>
                         <?php $target_selected=$data['target_type']=="target_typ"?"selected":""; ?>
-                        <option value="target_typ" {$target_selected}>二级为空，有三级</option>
+                        <option value="target_typ" <?php echo $target_selected; ?> >二级为空，有三级</option>
                     </select>
                 </dd>
             </dl>

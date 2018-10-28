@@ -1,7 +1,7 @@
 <div class="pageContent">
     <div class="panelBar">
         <ul class="toolBar">
-            <li><a class="add" href="/admin/menu/add" target="dialog" height="650" width="800"><span>添加</span></a></li>
+            <li><a class="add" href="/admin/menu/add" target="dialog" height="600" width="800"><span>添加</span></a></li>
 <!--            <li class="line">line</li>-->
 <!--            <li class=""><a class="icon" href="#" target="_blank"><span>导入新菜单</span></a></li>-->
         </ul>
