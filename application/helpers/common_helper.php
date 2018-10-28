@@ -492,7 +492,7 @@ function isMobile($mobile) {
 //$config array 配置数组
 //$file  文件名
 function sp_set_config($config,$file){
-   
+
     if(!$file){
         return False;
     }
@@ -500,9 +500,9 @@ function sp_set_config($config,$file){
         mkdir("./application/config/".ENVIRONMENT,0777, true);
     }
     $config_file="./application/config/".ENVIRONMENT."/".$file.".php";
-    echo $config_file;
+
     $result = file_put_contents($config_file, "<?php\n \$config= " . var_export($config, true) . ";");
-    var_dump($result);
+   
     return $result;
 }
 
