@@ -53,7 +53,6 @@ class Menu_model extends MY_Model
                     "name" => $a['name'],
                     "parent" => $parent,
                     "url" => rtrim(site_url(),'/')."/{$name}/{$model}/{$action}{$params}",
-                    'lang'=> strtoupper($name.'_'.$model.'_'.$action),
                     'target_type'=>empty($a['target_type'])?'navTab':$a['target_type'],
                     'rel'=>"{$model}_{$action}"
                 );

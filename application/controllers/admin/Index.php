@@ -14,6 +14,7 @@ class Index extends AdminBaseController {
     {
         $this->load->model('Admin/menu_model','menu');
         $list=$this->menu->menu_json();
+        //print_r($list);exit;
         $data['SUBMENU_CONFIG'] = $list;
         $this->load->view('admin/boot/index',$data);
     }

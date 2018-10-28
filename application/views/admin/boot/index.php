@@ -133,7 +133,7 @@ $(function(){
                     <?php if(!empty($menu['items'])){?>
                     <div class="accordionContent">
                         <ul class="tree treeFolder">
-                            <?php getsubmenu1($menu['items'])?>
+                            <?php getsubmenu1($menu['items']);?>
                         </ul>
                     </div>
                     <?php }?>
@@ -150,19 +150,22 @@ $(function(){
                         //$menu_name=L($menu['lang']);
                         //$menu_name=$menu['lang']==$menu_name?$menu['name']:$menu_name;
                         $menu_name=$menu['name'];
+                        $dialog_wh='';
+
                         if ($menu['target_type']=='dialog'){
-                        $dialog_wh='width=800 height=500';
+                        $dialog_wh='width="800" height="500"';
                         }
-                        //$dialog_wh='';
+
                         if ($menu['target_type']=='external'){
                         $dialog_wh='external="true"';
                         $menu['target_type']='navtab';
                         }
+
                     ?>
                     <li>
-                        <a href="<?php echo $menu['url']; ?>" target="<?php echo $menu['target_type']; ?>" rel="<?php echo $menu['rel']; ?>" <?php $dialog_wh; ?> ><?php echo $menu_name;?></a>
+                        <a href="<?php echo $menu['url']; ?>" target="<?php echo $menu['target_type']; ?>" rel="<?php echo $menu['rel']; ?>" <?php echo $dialog_wh; ?> ><?php echo $menu_name;?></a>
                         <?php if(!empty($menu['items'])){?>
-                        <?php getsubmenu2($menu['items'])?>
+                        <?php getsubmenu2($menu['items']);?>
                         <?php }?>
                     </li>
                     <?php }?>
@@ -175,8 +178,10 @@ $(function(){
                         //$menu_name=L($menu['lang']);
                         //$menu_name=$menu['lang']==$menu_name?$menu['name']:$menu_name;
                         $menu_name=$menu['name'];
+                        $dialog_wh='';
+                            //echo $menu['target_type'];
                         if ($menu['target_type']=='dialog'){
-                        $dialog_wh='width=800 height=500';
+                        $dialog_wh='width="800" height="500"';
                         }
                         if ($menu['target_type']=='external'){
                         $dialog_wh='external="true"';
@@ -184,7 +189,7 @@ $(function(){
                         }
                     ?>
                     <ul>
-                        <li><a href="<?php echo $menu['url']; ?>" target="<?php echo $menu['target_type']; ?>" rel="<?php echo $menu['rel']; ?>" <?php $dialog_wh; ?> ><?php echo $menu_name;?></a></li>
+                        <li><a href="<?php echo $menu['url']; ?>" target="<?php echo $menu['target_type']; ?>" rel="<?php echo $menu['rel']; ?>" <?php echo $dialog_wh; ?> ><?php echo $menu_name;?></a></li>
                     </ul>
                     <?php }?>
                     <?php }?>
