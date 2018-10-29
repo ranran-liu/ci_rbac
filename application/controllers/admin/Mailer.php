@@ -32,6 +32,7 @@ class Mailer extends AdminBaseController{
         if(in_array('', $post) && !empty($post['smtpsecure'])) {
             $this->error("不能留空！");
         }
+
         $config['mail_sender']        = $post['sender']; //发件人
         $config['mail_address']       = $post['address']; //邮箱地址
         $config['mail_smtp_server']   = $post['smtp_server']; //SMTP服务器

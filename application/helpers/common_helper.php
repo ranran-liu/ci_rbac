@@ -496,10 +496,10 @@ function sp_set_config($config,$file){
     if(!$file){
         return False;
     }
-    if(!file_exists("./application/config/".ENVIRONMENT)){
-        mkdir("./application/config/".ENVIRONMENT,0777, true);
+    if(!file_exists(APPPATH."config/".ENVIRONMENT)){
+        mkdir(APPPATH."config/".ENVIRONMENT,0777, true);
     }
-    $config_file="./application/config/".ENVIRONMENT."/".$file.".php";
+    $config_file=APPPATH."config/".ENVIRONMENT."/".$file.".php";
 
     $result = file_put_contents($config_file, "<?php\n \$config= " . var_export($config, true) . ";");
    
