@@ -92,6 +92,7 @@ class Mailer extends AdminBaseController{
             if($res){
                 $this->success("mailer_index","closeCurrent","/admin/mailer/index");
             }else{
+                $this->email->print_debugger(array('headers'));
                 $this->error('发送失败');
             }
         }else{
