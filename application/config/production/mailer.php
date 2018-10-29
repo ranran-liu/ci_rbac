@@ -5,5 +5,5 @@
   'mail_secure' => '',
   'mail_smtp_port' => '25',
   'mail_user' => '15231069699@163.com',
-  'mail_password' => 'liuran@19920311',
+  'mail_password' => 'liuran19920311',
 );
