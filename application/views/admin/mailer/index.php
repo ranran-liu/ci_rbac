@@ -7,14 +7,6 @@
                     <input type="text" name="sender" value="<?php echo $this->config->item('mailer')['mail_sender'];?>" class="required"/>
                 </dd>
             </dl>
-
-            <dl>
-                <dt>邮箱地址:</dt>
-                <dd>
-                    <input type="text" name="address" value="<?php echo $this->config->item('mailer')['mail_address'];?>" class="required"/>
-                </dd>
-            </dl>
-
             <dl>
                 <dt>SMTP服务器:</dt>
                 <dd>
@@ -40,7 +32,7 @@
             <dl>
                 <dt>发件箱账号:</dt>
                 <dd>
-                    <input type="text" name="loginname" value="<?php echo $this->config->item('mailer')['mail_loginname'];?>"  class="required"/>
+                    <input type="text" name="smtp_user" value="<?php echo $this->config->item('mailer')['mail_user'];?>"  class="required"/>
                 </dd>
             </dl>
             <dl>
