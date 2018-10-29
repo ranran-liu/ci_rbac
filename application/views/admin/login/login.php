@@ -65,6 +65,7 @@
                                     else
                                     {
                                         $("#err_title").text(data.message);
+                                        $(".verify_img").attr("src","/api/checkcode/index?length=4&font_size=20&width=248&height=42&use_noise=1&use_curve=0");
                                     }
                                 },'json');
 
