@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 本地go
+Source Server         : 192.168.13.130-go-本地虚拟机
 Source Server Version : 50641
-Source Host           : 192.168.146.200:3306
+Source Host           : 192.168.13.130:3306
 Source Database       : myproject
 
 Target Server Type    : MYSQL
 Target Server Version : 50641
 File Encoding         : 65001
 
-Date: 2018-10-28 19:05:42
+Date: 2018-10-29 09:34:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -187,7 +187,7 @@ INSERT INTO `tp_menu` VALUES ('3', '2', 'admin', 'user', 'userinfo', '', '1', '1
 INSERT INTO `tp_menu` VALUES ('4', '3', 'admin', 'user', 'userinfo_post', '', '1', '0', '修改信息提交', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('5', '2', 'admin', 'setting', 'password', '', '1', '1', '修改密码', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('6', '5', 'admin', 'setting', 'password_post', '', '1', '0', '提交修改', '', '', '0', 'navTab');
-INSERT INTO `tp_menu` VALUES ('7', '1', 'admin', 'mailer', 'default', '', '1', '1', '邮箱配置', '', '', '0', 'navTab');
+INSERT INTO `tp_menu` VALUES ('7', '1', 'admin', 'mailer', 'default', '', '1', '1', '邮箱配置', '', '', '0', 'target_typ');
 INSERT INTO `tp_menu` VALUES ('8', '7', 'admin', 'mailer', 'index', '', '1', '1', 'SMTP配置', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('9', '8', 'admin', 'mailer', 'index_post', '', '1', '0', '提交配置', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('11', '7', 'admin', 'mailer', 'active', '', '1', '1', '注册邮件模板', '', '', '0', 'navTab');
@@ -289,4 +289,4 @@ CREATE TABLE `tp_users` (
 -- ----------------------------
 -- Records of tp_users
 -- ----------------------------
-INSERT INTO `tp_users` VALUES ('1', 'admin', '###4825f2a9af6773a0bad9430514b0e4ae', 'admin', 'admin@admin.com', null, '0', '2000-01-01', null, '192.168.146.129', '2018-10-27 19:11:55', '2018-01-22 01:53:15', '1', '1', '15231069699');
+INSERT INTO `tp_users` VALUES ('1', 'admin', '###4825f2a9af6773a0bad9430514b0e4ae', 'admin', 'admin@admin.com', null, '0', '2000-01-01', null, '192.168.13.1', '2018-10-29 09:30:32', '2018-01-22 01:53:15', '1', '1', '15231069699');
