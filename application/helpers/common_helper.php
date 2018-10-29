@@ -556,7 +556,7 @@ function sp_send_email($email_user,$subject,$msg,$mail_type='html'){
     $ci->email->message($msg);
     //发送EMAIL. 根据发送结果，成功返回TRUE,失败返回FALSE。
     $res = $ci->email->send();
-    log_message('debug', "回调数据--参数接收====".var_dump($ci->email->print_debugger())."=====".__CLASS__.__METHOD__."-----LINE--".__LINE__."===time:".date("Y-m-d H:i:s",time()));
+    log_message('debug', "回调数据--参数接收====".$ci->email->print_debugger()."=====".__CLASS__.__METHOD__."-----LINE--".__LINE__."===time:".date("Y-m-d H:i:s",time()));
     return $res;
 }
 
