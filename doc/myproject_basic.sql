@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50641
 File Encoding         : 65001
 
-Date: 2018-10-29 09:34:27
+Date: 2018-10-29 12:20:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -101,8 +101,8 @@ INSERT INTO `tp_auth_rule` VALUES ('8', 'admin', 'admin/mailer/index', null, 'SM
 INSERT INTO `tp_auth_rule` VALUES ('9', 'admin', 'admin/mailer/index_post', null, '提交配置', '1', '');
 INSERT INTO `tp_auth_rule` VALUES ('11', 'admin', 'admin/mailer/active', null, '注册邮件模板', '1', '');
 INSERT INTO `tp_auth_rule` VALUES ('12', 'admin', 'admin/mailer/active_post', null, '提交模板', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('35', 'admin', 'user/indexadmin/default', null, '用户管理', '1', '');
-INSERT INTO `tp_auth_rule` VALUES ('36', 'admin', 'user/indexadmin/default1', null, '用户组', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('35', 'user', 'user/indexadmin/default', null, '用户管理', '1', '');
+INSERT INTO `tp_auth_rule` VALUES ('36', 'user', 'user/indexadmin/default1', null, '用户组', '1', '');
 INSERT INTO `tp_auth_rule` VALUES ('37', 'admin', 'user/indexadmin/index', null, '本站用户', '1', '');
 INSERT INTO `tp_auth_rule` VALUES ('38', 'admin', 'user/indexadmin/ban', null, '拉黑会员', '1', '');
 INSERT INTO `tp_auth_rule` VALUES ('39', 'admin', 'user/indexadmin/cancelban', null, '启用会员', '1', '');
@@ -160,7 +160,7 @@ CREATE TABLE `tp_menu` (
 -- Records of tp_menu
 -- ----------------------------
 INSERT INTO `tp_menu` VALUES ('42', '0', 'admin', 'menu', 'default', '', '1', '1', '菜单管理', '', '', '0', 'navTab');
-INSERT INTO `tp_menu` VALUES ('43', '42', 'admin', 'navcat', 'default1', '', '1', '1', '前台菜单', '', '', '0', 'target_typ');
+INSERT INTO `tp_menu` VALUES ('43', '42', 'admin', 'navcat', 'default1', '', '1', '0', '前台菜单', '', '', '0', 'target_typ');
 INSERT INTO `tp_menu` VALUES ('44', '43', 'admin', 'nav', 'index', '', '1', '1', '菜单管理', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('45', '44', 'admin', 'nav', 'listorders', '', '1', '0', '前台导航排序', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('46', '44', 'admin', 'nav', 'delete', '', '1', '0', '删除菜单', '', '', '0', 'navTab');
@@ -168,7 +168,7 @@ INSERT INTO `tp_menu` VALUES ('47', '44', 'admin', 'nav', 'edit', '', '1', '0', 
 INSERT INTO `tp_menu` VALUES ('48', '47', 'admin', 'nav', 'edit_post', '', '1', '0', '提交编辑', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('49', '44', 'admin', 'nav', 'add', '', '1', '0', '添加菜单', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('50', '49', 'admin', 'nav', 'add_post', '', '1', '0', '提交添加', '', '', '0', 'navTab');
-INSERT INTO `tp_menu` VALUES ('51', '42', 'admin', 'navcat', 'index', '', '1', '1', '菜单分类', '', '', '0', 'navTab');
+INSERT INTO `tp_menu` VALUES ('51', '42', 'admin', 'navcat', 'index', '', '1', '0', '菜单分类', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('52', '51', 'admin', 'navcat', 'delete', '', '1', '0', '删除分类', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('53', '51', 'admin', 'navcat', 'edit', '', '1', '0', '编辑分类', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('54', '53', 'admin', 'navcat', 'edit_post', '', '1', '0', '提交编辑', '', '', '0', 'navTab');
@@ -182,7 +182,7 @@ INSERT INTO `tp_menu` VALUES ('61', '57', 'admin', 'menu', 'edit', '', '1', '0',
 INSERT INTO `tp_menu` VALUES ('62', '61', 'admin', 'menu', 'edit_post', '', '1', '0', '提交编辑', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('63', '57', 'admin', 'menu', 'delete', '', '1', '0', '删除菜单', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('1', '0', 'admin', 'setting', 'default', '', '0', '1', '设置', '', '', '0', 'navTab');
-INSERT INTO `tp_menu` VALUES ('2', '1', 'admin', 'setting', 'userdefault', '', '1', '1', '个人信息', '', '', '0', 'navTab');
+INSERT INTO `tp_menu` VALUES ('2', '1', 'admin', 'setting', 'userdefault', '', '1', '0', '个人信息', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('3', '2', 'admin', 'user', 'userinfo', '', '1', '1', '修改信息', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('4', '3', 'admin', 'user', 'userinfo_post', '', '1', '0', '修改信息提交', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('5', '2', 'admin', 'setting', 'password', '', '1', '1', '修改密码', '', '', '0', 'navTab');
@@ -192,7 +192,7 @@ INSERT INTO `tp_menu` VALUES ('8', '7', 'admin', 'mailer', 'index', '', '1', '1'
 INSERT INTO `tp_menu` VALUES ('9', '8', 'admin', 'mailer', 'index_post', '', '1', '0', '提交配置', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('11', '7', 'admin', 'mailer', 'active', '', '1', '1', '注册邮件模板', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('12', '11', 'admin', 'mailer', 'active_post', '', '1', '0', '提交模板', '', '', '0', 'navTab');
-INSERT INTO `tp_menu` VALUES ('35', '0', 'user', 'indexadmin', 'default', '', '1', '1', '用户管理', '', '', '0', 'navTab');
+INSERT INTO `tp_menu` VALUES ('35', '0', 'user', 'indexadmin', 'default', '', '1', '0', '用户管理', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('36', '35', 'user', 'indexadmin', 'default1', '', '1', '1', '用户组', '', '', '0', 'target_typ');
 INSERT INTO `tp_menu` VALUES ('37', '36', 'user', 'indexadmin', 'index', '', '1', '1', '本站用户', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('38', '37', 'user', 'indexadmin', 'ban', '', '1', '0', '拉黑会员', '', '', '0', 'navTab');
@@ -215,12 +215,12 @@ INSERT INTO `tp_menu` VALUES ('25', '23', 'admin', 'user', 'edit', '', '1', '0',
 INSERT INTO `tp_menu` VALUES ('26', '25', 'admin', 'user', 'edit_post', '', '1', '0', '编辑提交', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('27', '23', 'admin', 'user', 'add', '', '1', '0', '管理员添加', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('28', '27', 'admin', 'user', 'add_post', '', '1', '0', '添加提交', '', '', '0', 'navTab');
-INSERT INTO `tp_menu` VALUES ('31', '1', 'admin', 'storage', 'index', '', '1', '1', '文件存储', '', '', '0', 'navTab');
+INSERT INTO `tp_menu` VALUES ('31', '1', 'admin', 'storage', 'index', '', '1', '0', '文件存储', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('32', '31', 'admin', 'storage', 'setting_post', '', '1', '0', '文件存储设置提交', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('29', '23', 'admin', 'user', 'ban', '', '1', '0', '禁用管理员', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('30', '23', 'admin', 'user', 'cancelban', '', '1', '0', '启用管理员', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('10', '8', 'admin', 'mailer', 'test', '', '1', '0', '测试邮件', '', '', '0', 'navTab');
-INSERT INTO `tp_menu` VALUES ('33', '1', 'admin', 'setting', 'upload', '', '1', '1', '上传设置', '', '', '0', 'navTab');
+INSERT INTO `tp_menu` VALUES ('33', '1', 'admin', 'setting', 'upload', '', '1', '0', '上传设置', '', '', '0', 'navTab');
 INSERT INTO `tp_menu` VALUES ('34', '33', 'admin', 'setting', 'upload_post', '', '1', '0', '上传设置提交', '', '', '0', 'navTab');
 
 -- ----------------------------

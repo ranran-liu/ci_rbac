@@ -65,7 +65,7 @@
                     <select name="status">
                         <option value="1">显示</option>
                         <?php $status_selected=empty($data['status'])?"selected":""; ?>
-                        <option value="0" {$status_selected}>隐藏</option>
+                        <option value="0" <?php echo $status_selected; ?> >隐藏</option>
                     </select>
                 </dd>
             </dl>
