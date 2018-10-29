@@ -555,7 +555,8 @@ function sp_send_email($email_user,$subject,$msg,$mail_type='html'){
     //发送邮件正文
     $ci->email->message($msg);
     //发送EMAIL. 根据发送结果，成功返回TRUE,失败返回FALSE。
-    return $ci->email->send();
+    $ci->email->send();
+    echo $this->email->print_debugger();
 }
 
 
