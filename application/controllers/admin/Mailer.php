@@ -56,41 +56,43 @@ class Mailer extends AdminBaseController{
             $posts = array_map('trim', $this->input->post(NULL,TRUE));
             $config = array(
                 array(
-                    'field' => 'username',
-                    'label' => 'Username',
-                    'rules' => 'required'
-                ),
-                array(
-                    'field' => 'password',
-                    'label' => 'Password',
-                    'rules' => 'required'
-                ),
-                array(
-                    'field' => 'passconf',
-                    'label' => 'Password Confirmation',
-                    'rules' => 'required'
-                ),
-                array(
                     'field' => 'email',
-                    'label' => 'Email',
-                    'rules' => 'required'
+                    'label' => 'email',
+                    'rules' => 'trim|required|valid_email',
+                    'errors'=>array(
+                        'required'=>'收件箱不能为空！',
+                        'valid_email'=>'收件箱格式不正确！'
+                    )
+                ),
+                array(
+                    'field' => 'subject',
+                    'label' => 'subject',
+                    'rules' => 'trim|required',
+                    'errors'=>array(
+                        'required'=>'标题不能为空！',
+                    )
+                ),
+                array(
+                    'field' => 'content',
+                    'label' => 'content',
+                    'rules' => 'trim|required',
+                    'errors'=>array(
+                        'required'=>'内容不能为空！',
+                    )
                 )
             );
-            $rules = array(
-                array('to','require','收件箱不能为空！',1,'regex',3),
-                array('to','email','收件箱格式不正确！',1,'regex',3),
-                array('subject','require','标题不能为空！',1,'regex',3),
-                array('content','require','内容不能为空！',1,'regex',3),
-            );
-            $this->load->library('sendemail');
-            $email_user = '984653414@qq.com';
-            $subject = '激活账号';
-            $msg = '测试调试用';
-            $res = $this->sendemail->sendMsg($email_user,$subject,$msg);
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules($config);
+            if ($this->form_validation->run() == FALSE)
+            {
+                $this->error(validation_one_errors());
+            }
+
+            $res = sp_send_email($posts['email'],$posts['subject'],$posts['content']);
             if($res){
-                $this->success();
+                $this->success("mailer_index","closeCurrent","/admin/mailer/index");
             }else{
-                $this->error();
+                $this->error('发送失败');
             }
         }else{
             $this->load->view('admin/mailer/test');

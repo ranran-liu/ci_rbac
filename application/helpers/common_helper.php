@@ -505,6 +505,57 @@ function sp_set_config($config,$file){
    
     return $result;
 }
+/**
+ * @param $email_user 收件人邮箱地址
+ * @param $msg 发送邮件的正文内容
+ * @return TRUE:成功  FALSE:失败
+ * */
+function sp_send_email($email_user,$subject,$msg,$mail_type='html'){
+    $ci = & get_instance();
+    $ci->load->library("email");
+    if(!$ci->email){
+        $ci->load->library("email");
+    }
+    $config = array();
+    //邮件发送协议
+    $config['protocol'] = 'smtp';
 
+    $config['smtp_crypto'] = $ci->config->item('mailer')['mail_secure']; //SMTP 加密连接方式
+
+    $config['smtp_host'] = $ci->config->item('mailer')['mail_smtp_server'];
+    //发件人邮箱地址
+    $config['smtp_user'] = $ci->config->item('mailer')['mail_user'];
+    //腾讯QQ邮箱开启POP3/SMTP服务或者IMAP/SMTP服务时的授权码
+    $config['smtp_pass'] = $ci->config->item('mailer')['mail_password'];
+    //发件人名称
+    $config['smtp_name'] = $ci->config->item('mailer')['mail_sender'];
+
+    //SMTP 端口
+    $config['smtp_port'] = $ci->config->item('mailer')['mail_smtp_port'];
+    //邮件类型。html网页或者text纯文本
+    $config['mailtype'] = (empty($mail_type)) ? "html" : $mail_type;
+    //字符集
+    $config['charset'] = 'utf-8';
+    //是否验证邮件地址
+    $config['validate'] = true;
+    //Email 优先级. 1 = 最高. 5 = 最低. 3 = 正常
+    $config['priority'] = 3;
+    //换行符. (使用 "\r\n" to 以遵守RFC 822).
+    $config['crlf'] = "\r\n";
+    //换行符. (使用 "\r\n" to 以遵守RFC 822).
+    $config['newline'] = "\r\n";
+    //初始化参数
+    $ci->email->initialize($config);
+    //设置：发件人邮箱地址、发件人名称
+    $ci->email->from($config['smtp_user'], $config['smtp_name']);
+    //设置：收件人邮箱地址
+    $ci->email->to($email_user);
+    //设置：邮件主题
+    $ci->email->subject($subject);
+    //发送邮件正文
+    $ci->email->message($msg);
+    //发送EMAIL. 根据发送结果，成功返回TRUE,失败返回FALSE。
+    return $ci->email->send();
+}
 
 
