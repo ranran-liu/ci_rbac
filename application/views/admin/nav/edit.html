@@ -1,0 +1,96 @@
+<div class="pageContent">
+	
+	<form method="post" action="{:U('nav/edit_post')}" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+		<div class="pageFormContent nowrap" layoutH="55">
+			<input type="hidden" name="id" value="{$id}">			
+			<dl>
+				<dt>{:L('NAVIGATION_CATEGORY')}:</dt>
+				<dd>				
+					<select name="cid" id="navcid_select">
+								<foreach name="navcats" item="vo">
+								<php>$navcid_selected=$navcid==$vo['navcid']?"selected":"";</php>
+								<option value="{$vo.navcid}" {$navcid_selected}>{$vo.name}</option>
+								</foreach>
+					</select>
+				</dd>
+			</dl>
+			<dl>
+				<dt>{:L('PARENT')}:</dt>
+				<dd>				
+					<select name="parentid">
+								<option value="0">/</option>
+								{$nav_trees}
+							</select>
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt>{:L('LABEL')}:</dt>
+				<dd>				
+					<input type="text" name="label" value="{$label}" class="required">
+				</dd>
+			</dl>
+			<dl>
+				<dt>{:L('HREF')}:</dt>
+				<dd>	
+							
+							<input type="text" name="href" id="outlink_input" value="{$href}">
+							
+				</dd>
+			</dl>
+			<!-- 
+			<dl>
+				<dt></dt>
+				<dd>
+						<input type="radio" name="nav" id="selecturl_radio">
+							<select name="href" id="selecthref">
+								<option value="{:base64_encode('home')}">{:L('HOME')}</option>
+								<foreach name="navs" item="vo">
+									<optgroup label="{$vo.name}">
+									{$vo.html}
+									</optgroup>
+								</foreach>
+							</select>
+				</dd>
+			
+			</dl>
+			 -->
+			<dl>
+				<dt>{:L('TARGET')}:</dt>
+				<dd>				
+					<select name="target">
+								<option value="">{:L('TARGET_DEFAULT')}</option>
+								<option value="_blank">{:L('TARGET_BLANK')}</option>
+							</select>
+				</dd>
+			</dl>
+			<dl>
+				<dt>{:L('ICON')}:</dt>
+				<dd>				
+					<input type="text" name="icon" value="{$icon}">
+				</dd>
+			</dl>
+			<dl>
+				<dt>{:L('STATUS')}:</dt>
+				<dd>				
+					<select name="status">
+								<option value="1">{:L('DISPLAY')}</option>
+								<php>$status_selected=empty($status)?"selected":"";</php>
+								<option value="0" {$status_selected}>{:L('HIDDEN')}</option>
+							</select>
+					
+				</dd>
+			</dl>
+			
+			
+			
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">{:L('SAVE')}</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">{:L('CLOSE')}</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+	
+</div>
