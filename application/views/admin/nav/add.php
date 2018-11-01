@@ -9,7 +9,7 @@
 					<select name="cid" id="navcid_select">
                         <?php foreach($navcats as $vo){ ?>
                             <?php $navcid_selected=$navcid==$vo['navcid']?"selected":""; ?>
-                            <option value="<?php $vo['navcid']; ?>" <?php echo $navcid_selected;?> ><?php echo $vo['name']; ?></option>
+                            <option value="<?php echo $vo['navcid']; ?>" <?php echo $navcid_selected;?> ><?php echo $vo['name']; ?></option>
                         <?php } ?>
 					</select>
 				</dd>
@@ -77,6 +77,7 @@
 <script>
 		$(function() {
 			$("#navcid_select").change(function() {
+			    console.log(location.search)
 				if(location.search.indexOf("?")>=0){
 					location.href = location.href + "&cid=" + $(this).val();
 				}else{

@@ -106,7 +106,7 @@ class Nav extends AdminBaseController
 //
 //        $data['navs'] = $navs;
 
-        $data["avcid"] = $cid;
+        $data["navcid"] = $cid;
         $this->load->view('admin/nav/add',$data);
     }
 
