@@ -257,7 +257,7 @@ class Nav extends AdminBaseController
         $this->db->update(self::NAVCAT_TABLE,array('listorder'=>$listorder),array('id'=>$id));
         if($this->db->affected_rows()!==false){
             //$this->jsonencode('OK',1,'排序成功');
-            $this->success('nav_index','forward',"/admin/nav/index");
+            $this->success("success");
         }else{
             $this->jsonencode('Err',-2,'排序失败');
         }

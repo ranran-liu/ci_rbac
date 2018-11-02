@@ -69,7 +69,10 @@
         var id = $(this).attr('data-id')
         var value = $(this).val();
         console.log(123)
+
         $("#pageForm").attr('action','/admin/nav/listorder?id='+id+'&listorder='+value).submit();
+
+
 //        $.ajax({
 //            url:'/admin/nav/listorder',
 //            type:'post',
