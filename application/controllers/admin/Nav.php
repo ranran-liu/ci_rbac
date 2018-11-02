@@ -35,12 +35,13 @@ class Nav extends AdminBaseController
         $this->load->library('tree');
         $this->tree->icon = array('&nbsp;&nbsp;&nbsp;│ ', '&nbsp;&nbsp;&nbsp;├─ ', '&nbsp;&nbsp;&nbsp;└─ ');
         $this->tree->nbsp = '&nbsp;&nbsp;&nbsp;';
+        $array = [];
         foreach ($result as $r) {
             $id  = $r['id'];
-            $cid = $r['cid'];
+            $_cid = $r['cid'];
             $parentid = $r['parentid'];
-            $r['str_manage'] = "<a href='/admin/nav/add?parentid=$id&cid=$cid' target='dialog' height='350' width='766'>".'添加子菜单'."</a> |
-					<a href='/admin/nav/edit?id=$id&parentid=$parentid&cid=$cid' target='dialog' height='350' width='766'>".'编辑'."</a> |
+            $r['str_manage'] = "<a href='/admin/nav/add?parentid=$id&cid=$_cid' target='dialog' height='350' width='766'>".'添加子菜单'."</a> |
+					<a href='/admin/nav/edit?id=$id&parentid=$parentid&cid=$_cid' target='dialog' height='350' width='766'>".'编辑'."</a> |
 				    <a href='/admin/nav/delete?id=$id' target='ajaxTodo' title='确定要删除吗？'>".'删除'."</a>";
 
             $r['status'] = $r['status'] ? '显示' : '隐藏';
@@ -79,6 +80,7 @@ class Nav extends AdminBaseController
         $this->tree->icon = array('&nbsp;│ ', '&nbsp;├─ ', '&nbsp;└─ ');
         $this->tree->nbsp = '&nbsp;';
         $parentid=$this->input->get('parentid')?$this->input->get('parentid'):0;
+        $array = [];
         foreach ($result as $r) {
             //$r['str_manage'] = '<a href="' . U("Menu/add", array("parentid" => $r['id'], "menuid" => $this->input->get("menuid"))) . '">添加子菜单</a> | <a href="' . U("Menu/edit", array("id" => $r['id'], "menuid" => I("get.menuid"))) . '">修改</a> | <a class="js-ajax-delete" href="' . U("Menu/delete", array("id" => $r['id'], "menuid" => I("get.menuid"))) . '">删除</a> ';
             $r['status'] = $r['status'] ? "显示" : "隐藏";

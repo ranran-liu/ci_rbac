@@ -5,7 +5,7 @@
 			<tr>
 				<td>
 					分类：
-					<select name="cid" style="width: 120px;">
+					<select name="cid" style="width: 120px;" id="select_cid">
 						<option value='0'>全部</option>
 						<?php foreach($navcats as $vo){ ?>
 							<option value='<?php echo $vo['navcid']; ?>' >├─ <?php echo $vo['name']; ?></option>
@@ -36,7 +36,7 @@
 		</ul>
 	</div>
 	<form method="post" id="pageForm" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
-	<table class="table" width="100%" layoutH="127">
+	<table class="table" width="100%" layoutH="110">
 		<thead>
 			<tr>
 				<th width="50" onclick="javascript:do_submit('/admin/nav/listorders');">排序</th>
@@ -62,7 +62,10 @@
 	</div>
 </div>
 <script>
-function do_submit(action_url){
-$("#pageForm").attr('action',action_url).submit();
-}
+
+    $('#select_cid').val("<?php echo $navcid; ?>")
+
+    function do_submit(action_url){
+        $("#pageForm").attr('action',action_url).submit();
+    }
 </script>
