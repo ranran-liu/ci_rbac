@@ -17,7 +17,7 @@
 			<dl>
 				<dt>父级:</dt>
 				<dd>				
-					<select name="parentid">
+					<select name="parentid" id="nav_tree">
                         <option value="0">/</option>
                         <?php echo $nav_trees;?>
                     </select>
@@ -33,7 +33,7 @@
 			<dl>
 				<dt>链接:</dt>
 				<dd>
-                    <input type="text" name="href" id="outlink_input" value="http://">
+                    <input type="text" name="href"  value="">
 				</dd>
 			</dl>
 			<dl>
@@ -58,10 +58,14 @@
                         <option value="1">显示</option>
                         <option value="0">隐藏</option>
                     </select>
-					
 				</dd>
 			</dl>
-			
+            <dl>
+                <dt>排序:</dt>
+                <dd>
+                    <input type="text" name="listorder" value="0">
+                </dd>
+            </dl>
 			
 			
 		</div>
@@ -76,28 +80,27 @@
 </div>
 <script>
 		$(function() {
-			$("#navcid_select").change(function() {
-			    console.log(location.search)
-				if(location.search.indexOf("?")>=0){
-					location.href = location.href + "&cid=" + $(this).val();
-				}else{
-					location.href = location.href + "?cid=" + $(this).val();
-				}
-			});
 
-			$("#selecthref,#selecturl_radio").click(function() {
-				$('#outlink_input').removeAttr('name');
-				$(this).attr('name','href');
-				$('#selecturl_radio').attr({
-					'checked' : 'checked'
-				});
-			});
-			$("#outlink_input,#outlink_radio").click(function() {
-				$('#selecthref').removeAttr('name');
-				$('#outlink_input').attr('name','external_href');
-				$('#outlink_radio').attr({
-					'checked' : 'checked'
-				});
+			$("#navcid_select").change(function() {
+                var value = $(this).val()
+                $.ajax({
+                    url:'/admin/nav/get_nav_list',
+                    type:'post',
+                    data:{
+                        cid:value
+                    },
+                    dataType:'json',
+                    success:function (data) {
+                        //console.log(data)
+                        if(data.status==1){
+                            var option = "<option value='0'>/</option>"+data.data;
+                            $('#nav_tree').html(option)
+                        }else{
+                            console.log(data.msg)
+                        }
+                    }
+                })
+                //console.log(value)
 			});
 		});
 	</script>

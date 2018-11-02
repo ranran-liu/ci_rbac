@@ -9,7 +9,7 @@ class Index extends HomeBaseController {
     }
 
     public function index(){
-        echo '前端页面';
+        $this->load->view('home/index.html');
     }
     public function test(){
         echo $_SERVER['REQUEST_TIME'].'<br>';

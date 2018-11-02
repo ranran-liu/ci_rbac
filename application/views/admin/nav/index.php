@@ -39,7 +39,7 @@
 	<table class="table" width="100%" layoutH="110">
 		<thead>
 			<tr>
-				<th width="50" onclick="javascript:do_submit('/admin/nav/listorders');">排序</th>
+				<th width="50">排序</th>
 				<th width="50">ID</th>
 				<th width="150">分类</th>
 				<th>菜单名称</th>
@@ -65,7 +65,26 @@
 
     $('#select_cid').val("<?php echo $navcid; ?>")
 
-    function do_submit(action_url){
-        $("#pageForm").attr('action',action_url).submit();
-    }
+    $(document).on('blur','.nav_order',function () {
+        var id = $(this).attr('data-id')
+        var value = $(this).val();
+        console.log(123)
+        $("#pageForm").attr('action','/admin/nav/listorder?id='+id+'&listorder='+value).submit();
+//        $.ajax({
+//            url:'/admin/nav/listorder',
+//            type:'post',
+//            data:{
+//                id:id,
+//                listorder:value
+//            },
+//            dataType:'json',
+//            success:function(data){
+//                console.log(data)
+//                if(data.status==1){
+//
+//                }
+//            }
+//        })
+        //console.log(value)
+    })
 </script>

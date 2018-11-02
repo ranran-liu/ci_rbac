@@ -20,4 +20,8 @@ class Navcat_model extends MY_Model
     public function select(){
         return $this->db->select("*")->from(self::NAV_TABLE)->get()->result_array();
     }
+
+    public function find(){
+        return $this->db->select("*")->from(self::NAV_TABLE)->get()->row_array();
+    }
 }
