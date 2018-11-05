@@ -5,7 +5,7 @@
 <title>
 	后台管理
 </title>
-
+<link rel="ICON" href="/logo.png">
 <link href="/assets/dwz/themes/default/style.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="/assets/dwz/themes/css/core.css" rel="stylesheet" type="text/css" media="screen"/>
 <link href="/assets/dwz/themes/css/print.css" rel="stylesheet" type="text/css" media="print"/>

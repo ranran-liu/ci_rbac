@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit">
     <title><?php echo $title;?></title>
+    <link rel="ICON" href="/logo.png">
     <link rel="stylesheet" href="/assets/home/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/home/layui/css/layui.css" />
     <link rel="stylesheet" href="/assets/home/css/master.css" />

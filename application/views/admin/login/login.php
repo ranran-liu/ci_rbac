@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>管理平台</title>
+<link rel="ICON" href="/logo.png">
 <link href="<?php echo site_url('assets/dwz/themes/css/login.css'); ?>" rel="stylesheet" type="text/css" />
 
 </head>

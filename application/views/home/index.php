@@ -6,6 +6,7 @@
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width" />
     <title><?php echo $title;?></title>
+    <link rel="ICON" href="/logo.png">
     <link href="/assets/home/layui/css/layui.css" rel="stylesheet" type="text/css">
     <link href="/assets/home/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="/assets/home/css/index_style.css" rel="stylesheet" type="text/css">
