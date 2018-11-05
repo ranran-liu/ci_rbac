@@ -154,7 +154,7 @@
                         <div class="inner">
                             <h1 class="wow fadeInLeft">次元使者</h1>
                             <p class="wow fadeInRight">
-                                爱好LOL游戏。闲来无事喜欢在一些不健康的场所虚度光阴，撸起代码就会废寝忘食。
+                                爱好英雄联盟，听音乐。闲来无事喜欢在一些不健康的场所虚度光阴，撸起代码就会废寝忘食。
                             </p>
                         </div>
                     </div>
@@ -206,7 +206,7 @@
             <div class="container">
                 <div class="layui-row">
                     <div class="layui-col-xs12 layui-col-sm12 layui-col-md12 text-center">
-                        <p>Copyright &copy; 2018-2018 逍遥 All Rights Reserved V.3.1.3 京ICP备18008600号</p>
+                        <p>Copyright &copy; 2018-2018 李逍遥 All Rights Reserved V.1.0.1 京ICP备10000000号</p>
                     </div>
                 </div>
             </div>
