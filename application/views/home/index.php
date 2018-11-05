@@ -19,11 +19,11 @@
     </div>
     <div id="navgation" class="navgation navgation_close">
         <ul class="point">
-            <li><a href="#">首页</a></li>
-            <li><a href="#">博客</a></li>
-            <li><a href="#">留言</a></li>
+            <li><a href="/index.html">首页</a></li>
+            <li><a href="/blog.html">博客</a></li>
+            <li><a href="/message.html">留言</a></li>
         </ul>
-        <div class="logo"><a>Mr.Yss</a></div>
+        <div class="logo"><a>Mr.Lxy</a></div>
     </div>
     <div class="section" id="section1">
         <div class="fp-tablecell">
@@ -31,7 +31,7 @@
                 <div class="nav wow zoomIn" data-wow-duration="2s">
                     <h1>李逍遥</h1>
                     <p>逍逍自在,敢将功名尽弃;遥遥等待,只叹芳心难求</p>
-                    <a class="layui-btn layui-btn-normal" style="margin-top: 20px" href="#">Enter Blog</a>
+                    <a class="layui-btn layui-btn-normal" style="margin-top: 20px" href="/blog.html">Enter Blog</a>
                 </div>
                 <a class="next wow fadeInUp" data-wow-duration="2s" id="next"></a>
             </div>
@@ -136,8 +136,8 @@
                         <div class="inner">
                             <div class="links">
                                 <ul>
-                                    <li class="wow fadeInLeft"><a href="#">关于</a></li>
-                                    <li class="wow fadeInRight"><a href="#">+友情链接</a></li>
+                                    <li class="wow fadeInLeft"><a href="/about.html">关于</a></li>
+                                    <li class="wow fadeInRight"><a href="/link.html">+友情链接</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -173,7 +173,7 @@
                             </div>
                             <p>逍逍自在,敢将功名尽弃;遥遥等待,只叹芳心难求</p>
                             <div class="button">
-                                <a href="#" class="btn layui-btn layui-btn-normal">About Me</a>
+                                <a href="/about.html" class="btn layui-btn layui-btn-normal">About Me</a>
                             </div>
                         </div>
                     </div>

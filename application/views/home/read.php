@@ -1,45 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="renderer" content="webkit">
-    <title>文章阅读</title>
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="layui/css/layui.css" />
-    <link rel="stylesheet" href="css/master.css" />
-    <link rel="stylesheet" href="css/gloable.css" />
-    <link rel="stylesheet" href="css/nprogress.css" />
-     <link rel="stylesheet" href="css/blog.css" />
-</head>
-<body>
-    <div class="header">
-    </div>
-    <header class="gird-header">
-        <div class="header-fixed">
-            <div class="header-inner">
-                <a href="javascript:void(0)" class="header-logo" id="logo">Mr.Yss</a>
-                <nav class="nav" id="nav">
-                    <ul>
-                        <li><a href="#">首页</a></li>
-                        <li><a href="#">博客</a></li>
-                        <li><a href="#">留言</a></li>
-                        <li><a href="#">友链</a></li>
-                        <li><a href="#">关于</a></li>
-                    </ul>
-                </nav>
-                <a href="#" class="blog-user">
-                    <i class="fa fa-qq"></i>
-                </a>
-                <a class="phone-menu">
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                </a>
-            </div>
-        </div>
-    </header>
-    <div class="doc-container" id="doc-container">
+ <div class="doc-container" id="doc-container">
         <div class="container-fixed">
             <div class="col-content" style="width:100%">
                 <div class="inner">
@@ -115,23 +74,6 @@
             </div>
         </div>
     </div>
-    <footer class="grid-footer">
-        <div class="footer-fixed">
-            <div class="copyright">
-                <div class="info">
-                    <div class="contact">
-                        <a href="javascript:void(0)" class="github" target="_blank"><i class="fa fa-github"></i></a>
-                        <a href="#" class="qq" target="_blank" ><i class="fa fa-qq"></i></a>
-                        <a href="#" class="email" target="_blank" ><i class="fa fa-envelope"></i></a>
-                        <a href="javascript:void(0)" class="weixin"><i class="fa fa-weixin"></i></a>
-                    </div>
-                    <p class="mt05">
-                        Copyright &copy; 2018-2018 燕十三 All Rights Reserved V.3.1.3 蜀ICP备18008600号
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
     <script src="layui/layui.js"></script>
     <script src="js/yss/gloable.js"></script>
     <script src="js/plugins/nprogress.js"></script>
@@ -142,5 +84,4 @@
             NProgress.done();
         };
     </script>
-</body>
-</html>
+

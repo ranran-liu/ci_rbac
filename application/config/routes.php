@@ -54,3 +54,10 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['admin']='admin/login/login';
+
+$route['index.html']='home/index/index';
+$route['blog.html']='home/blog/index';
+$route['message.html']='home/message/index';
+$route['diary.html']='home/diary/index';
+$route['link.html']='home/link/index';
+$route['about.html']='home/about/index';
