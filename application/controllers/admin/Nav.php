@@ -56,7 +56,7 @@ class Nav extends AdminBaseController
         }
         $this->tree->init($array);
         $str = "<tr>
-				<td><input name='listorders[\$id]' type='text' size='3' value='\$listorder' class='input input-order nav_order' data-id='\$id'></td>
+				<td><input  type='text' size='3' value='\$listorder' class='input input-order nav_order' data-id='\$id' onblur='navorder(this)'></td>
 				<td>\$id</td>
 				<td>\$navname</td>
 				<td class='div_lift'>\$spacer\$label</td>
@@ -251,15 +251,15 @@ class Nav extends AdminBaseController
     public function listorder() {
         $id=$this->input->post_get('id');
         if(!$id){
-            $this->jsonencode('Err',-1,'缺少参数');
+            $this->error('缺少参数');
         }
         $listorder = $this->input->post_get('listorder')?$this->input->post_get('listorder'):0;
         $this->db->update(self::NAVCAT_TABLE,array('listorder'=>$listorder),array('id'=>$id));
         if($this->db->affected_rows()!==false){
             //$this->jsonencode('OK',1,'排序成功');
-            $this->success("success");
+            $this->success("nav_index");
         }else{
-            $this->jsonencode('Err',-2,'排序失败');
+            $this->error('排序失败');
         }
     }
 

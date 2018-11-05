@@ -65,14 +65,41 @@
 
     $('#select_cid').val("<?php echo $navcid; ?>")
 
-    $(document).on('blur','.nav_order',function () {
-        var id = $(this).attr('data-id')
-        var value = $(this).val();
-        console.log(123)
+    //排序
+    function navorder(th){
 
-        $("#pageForm").attr('action','/admin/nav/listorder?id='+id+'&listorder='+value).submit();
+        var id = th.getAttribute('data-id')
+        var listorder = th.value;
+        $("#pageForm").attr('action','/admin/nav/listorder?id='+id+'&listorder='+listorder).submit();
+//        alert(id,listorder)
+//        return
+//        $.ajax({
+//            url:'/admin/nav/listorder',
+//            type:'post',
+//            data:{
+//                id:id,
+//                listorder:listorder
+//            },
+//            dataType:'json',
+//            success:function(data){
+//                console.log(data)
+//                if(data.status==1){
+//
+//                }
+//            }
+//        })
+        //console.log(value)
+    }
+    $('.nav_order').blur(function () {
 
-
+        alert(21334)
+//        var id = $(this).attr('data-id')
+//        var value = $(this).val();
+//        console.log(123)
+//
+//        //$("#pageForm").attr('action','/admin/nav/listorder?id='+id+'&listorder='+value).submit();
+//
+//
 //        $.ajax({
 //            url:'/admin/nav/listorder',
 //            type:'post',
