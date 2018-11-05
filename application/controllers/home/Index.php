@@ -9,7 +9,7 @@ class Index extends HomeBaseController {
     }
 
     public function index(){
-        $data['title'] = '逍遥-首页';
+        $data['title'] = '李逍遥-首页';
         $this->load->view('home/index',$data);
     }
     public function test(){

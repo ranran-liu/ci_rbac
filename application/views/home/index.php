@@ -29,8 +29,8 @@
         <div class="fp-tablecell">
             <div class="page1">
                 <div class="nav wow zoomIn" data-wow-duration="2s">
-                    <h1>逍遥</h1>
-                    <p>剑气纵横三万里,一剑光寒十九洲</p>
+                    <h1>李逍遥</h1>
+                    <p>逍逍自在,敢将功名尽弃;遥遥等待,只叹芳心难求</p>
                     <a class="layui-btn layui-btn-normal" style="margin-top: 20px" href="#">Enter Blog</a>
                 </div>
                 <a class="next wow fadeInUp" data-wow-duration="2s" id="next"></a>
@@ -154,7 +154,7 @@
                         <div class="inner">
                             <h1 class="wow fadeInLeft">次元使者</h1>
                             <p class="wow fadeInRight">
-                                爱好游戏，动漫。闲来无事喜欢在一些不健康的场所虚度光阴，撸起代码就会废寝忘食。
+                                爱好LOL游戏。闲来无事喜欢在一些不健康的场所虚度光阴，撸起代码就会废寝忘食。
                             </p>
                         </div>
                     </div>
@@ -169,9 +169,9 @@
                     <div class="layui-col-xs12 layui-col-sm6 layui-col-md4">
                         <div class="single-widget about">
                             <div class="footer-logo">
-                                <h2>燕十三</h2>
+                                <h2>李逍遥</h2>
                             </div>
-                            <p>剑气纵横三万里，一剑光寒十九洲。</p>
+                            <p>逍逍自在,敢将功名尽弃;遥遥等待,只叹芳心难求</p>
                             <div class="button">
                                 <a href="#" class="btn layui-btn layui-btn-normal">About Me</a>
                             </div>
@@ -193,9 +193,9 @@
                         <div class="single-widget contact">
                             <h2>联系我</h2>
                             <ul class="list">
-                                <li><i class="fa fa-map"></i>地址: 四川成都金牛区金科北路39号</li>
-                                <li><i class="fa fa-qq"></i>QQ: 930054439 </li>
-                                <li><i class="fa fa-envelope"></i>邮箱: 930054439@qq.com</li>
+                                <li><i class="fa fa-map"></i>地址: 北京市昌平区</li>
+                                <li><i class="fa fa-qq"></i>QQ: 984653414 </li>
+                                <li><i class="fa fa-envelope"></i>邮箱: 984653414@qq.com</li>
                             </ul>
                         </div>
                     </div>
@@ -206,7 +206,7 @@
             <div class="container">
                 <div class="layui-row">
                     <div class="layui-col-xs12 layui-col-sm12 layui-col-md12 text-center">
-                        <p>Copyright &copy; 2018-2018 燕十三 All Rights Reserved V.3.1.3 蜀ICP备18008600号</p>
+                        <p>Copyright &copy; 2018-2018 逍遥 All Rights Reserved V.3.1.3 京ICP备18008600号</p>
                     </div>
                 </div>
             </div>
