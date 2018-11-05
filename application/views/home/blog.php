@@ -1,4 +1,3 @@
-<?php //$this->load->view('templates/home/header');?>
 <div class="doc-container" id="doc-container">
     <div class="container-fixed">
         <div class="col-content">
@@ -234,8 +233,6 @@
     </div>
 
 </div>
-
-<?php //$this->load->view('templates/home/footer');?>
 
 <script src="/assets/home/layui/layui.js"></script>
 <script src="/assets/home/js/yss/gloable.js"></script>
