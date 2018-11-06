@@ -11,6 +11,16 @@
     <link href="/assets/home/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="/assets/home/css/index_style.css" rel="stylesheet" type="text/css">
     <link href="/assets/home/css/animate.min.css" rel="stylesheet" type="text/css">
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e9fd913d83d3862358a40224f02542a8";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
 </head>
 <body>
     <div id="menu" class="hover_animation menu_open" data-mark="false">

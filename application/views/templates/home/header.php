@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/assets/home/css/gloable.css" />
     <link rel="stylesheet" href="/assets/home/css/nprogress.css" />
     <link rel="stylesheet" href="/assets/home/css/blog.css" />
+    <link rel="stylesheet" href="/assets/home/css/about.css" />
 </head>
 <body>
 <div class="header">
