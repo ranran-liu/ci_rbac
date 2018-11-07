@@ -13,211 +13,69 @@
                     <path fill="#fff" d="M58.9103319,3.8342148 C63.9275825,-1.29368407 72.0647057,-1.29107495 77.1639611,3.92063726 C82.2279116,9.09626594 82.198021,17.5181678 77.2485188,22.5768242 L31.318494,69.5197703 L77.2485188,116.462716 C82.2657693,121.590615 82.2632165,129.907191 77.1639611,135.118903 C72.1000106,140.294532 63.8598341,140.263982 58.9103319,135.205326 L3.8112137,78.891075 C-1.25273677,73.7154463 -1.2880417,65.3601778 3.8112137,60.1484655 L58.9103319,3.8342148 Z"></path>
                     <desc>Created with Snap</desc><defs></defs></svg>
             </a><!--/arrow-->
-            <canvas class=" sketch" height="754" width="1078"></canvas></header>
+            <canvas class=" sketch" height="754" width="1006"></canvas></header>
         <div class="about-title">
-            <h1>友情链接</h1>
-            <p>剑气纵横三万里,一剑光寒十九洲.</p>
+            <h1>关于</h1>
+            <p>逍逍自在,敢将功名尽弃;遥遥等待,只叹芳心难求.</p>
         </div>
     </div>
     <div class="container-fixed">
         <div class="container-inner">
             <article>
                 <section>
-                    <h1>链接申请说明</h1>
+                    <h1>关于我</h1>
                     <p>
-                        <i class="fa fa-close"></i>经常宕机&nbsp;
-                        <i class="fa fa-close"></i>不合法规&nbsp;
-                        <i class="fa fa-close"></i>插边球站&nbsp;
-                        <i class="fa fa-close"></i>红标报毒&nbsp;
-                        <i class="fa fa-check"></i>原创优先&nbsp;
-                        <i class="fa fa-check"></i>技术优先
+                        喜欢玩英雄联盟游戏，听音乐
                     </p>
+                    <span>
+                    可以通过以下方式联系到我：
+                </span>
+                    <ul>
+                        <li>企 鹅 ：<a href="https://wpa.qq.com/msgrd?v=3&amp;uin=984653414&amp;site=qq&amp;menu=yes" target="_blank">984653414</a></li>
+                        <li>邮 箱 ：<a href="mailto:930054439@qq.com">984653414@qq.com</a></li>
+                        <li>码 云 ：<a href="https://gitee.com/liuranran/events" target="_blank">https://gitee.com/liuranran/events</a></li>
+                        <li>微 信 ：</li>
+                    </ul>
+                    <figure>
+                        <img src="/assets/home/image/page/lixiaoyao.jpg" style="width:230px;height:230px;">
+                    </figure>
+                </section>
+                <section>
+                    <h1>关于本站</h1>
                     <p>
-                        交换友链可在留言板留言.本站信息如下<br>
-                        名称：燕十三<br>
-                        网址：https://www.yanshisan.cn<br>
-                        图标：https://www.yanshisan.cn/logo.png<br>
-                        描述：燕十三·一个人的江湖
+                        本站建于2018年4月，主要用于记录学习笔记，技术分享、交流。
                     </p>
+                    <span>
+                    本站结构：
+                </span>
+                    <ul>
+                        <li>前 端 ：<code>Layui</code></li>
+                        <li>后 端 ：<code>MVC5 + MYSQL</code></li>
+                    </ul>
                     <p>
-                        申请提交后若无其它原因将在24小时内审核,如超过时间还未通过,请私信我.(各种额外因素)
+                        本站采用阿里云提供的服务器ESC和存储对象OSS。
                     </p>
-
+                </section>
+                <section>
+                    <h1>关于版权</h1>
+                    <p>
+                        本站采用「 <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh" target="_blank">署名-非商业性使用 4.0 国际 (CC BY-NC 4.0)</a>」创作共享协议。
+                        只要在使用时注明出处，那么您可以可以对本站所有原创内容进行转载、节选、二次创作，但是您不得对其用于商业目的。
+                    </p>
+                </section>
+                <section>
+                    <h1>特别说明</h1>
+                    <ul>
+                        <li>本站文章仅代表个人观点，和任何组织或个人无关。</li>
+                        <li>本站前端开发代码没有考虑对IE浏览器的兼容。</li>
+                        <li>用户邮箱仅作回复消息用，不对外使用，请放心。</li>
+                    </ul>
+                    <br><br>
+                    <div>
+                        <img src="https://yssimage.oss-cn-hangzhou.aliyuncs.com/bg9.jpg" style="width:100%;height:320px;">
+                    </div>
                 </section>
             </article>
-            <ul class="link-list">
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="https://www.jiangfei.net" target="_blank">
-                            <img src="https://img.jiangfei.net/2017/1016/20171016051831927.png">
-                            <h3>疆飞</h3>
-                            <p>永远年轻，永远热泪盈眶...</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="http://www.52xingchen.cn" target="_blank">
-                            <img src="http://www.52xingchen.cn/favico.ico">
-                            <h3>星尘阁</h3>
-                            <p>Java技术交流，原创博客</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="http://www.birongsen.com" target="_blank">
-                            <img src="http://www.birongsen.com/blog/Public/home/images/logo.png">
-                            <h3>小木鱼博客</h3>
-                            <p>分享前端、JavaScript、ThinkPHP和web的各个细节上的点点滴滴，愿与你共同分享，一起进步！</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="https://www.baiwuya.cn" target="_blank">
-                            <img src="https://cdn1.baiwuya.cn/blog/assets/logo.png">
-                            <h3>白乌鸦</h3>
-                            <p>白乌鸦</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="https://yangsihan.com" target="_blank">
-                            <img src="https://yangsihan.com/static/css/logo.jpg">
-                            <h3>Daniel的小站</h3>
-                            <p>Python技术交流</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="http://masuit.com" target="_blank">
-                            <img src="http://masuit.com/assets/images/logo.png">
-                            <h3>懒得勤快</h3>
-                            <p>全栈开发者，互联网分享精神</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="http://www.yangqq.com/" target="_blank">
-                            <img src="http://www.yangqq.com/favicon.ico">
-                            <h3>杨青个人博客</h3>
-                            <p>杨青个人博客</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="https://www.lkxin.cn" target="_blank">
-                            <img src="https://www.lkxin.cn/tx.jpg">
-                            <h3>清酒踏月</h3>
-                            <p>清酒博客，分享快乐。</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="https://www.zzwazj.online" target="_blank">
-                            <img src="https://wx3.sinaimg.cn/small/007aGNoFly1fvysv6bn70g305k05k3yy.gif">
-                            <h3>AZJ</h3>
-                            <p>AZJ @ 二人世界</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="https://www.welphen.com" target="_blank">
-                            <img src="https://www.welphen.com/resources/images/Logo_40.png">
-                            <h3>WELPHEN</h3>
-                            <p>一个JAVA程序猿的个人博客！</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="http://daohang.lusongsong.com/" target="_blank">
-                            <img src="http://daohang.lusongsong.com/favicon.ico">
-                            <h3>卢松松的博客</h3>
-                            <p>卢松松的博客</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="http://l2h.site" target="_blank">
-                            <img src="http://l2h.site/favicon.ico">
-                            <h3>L&amp;H Site</h3>
-                            <p>L&amp;H's Site</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="http://www.lxl8800.cn" target="_blank">
-                            <img src="http://www.lxl8800.cn/Content/images/logo.png">
-                            <h3>神秘代码</h3>
-                            <p>一枚90后程序员，.NET工程师</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="https://moshanghua.net" target="_blank">
-                            <img src="https://xmimg.moshanghua.net/mo.png">
-                            <h3>筱陌之家</h3>
-                            <p>陌上花的小窝！前端博客，个人前端笔记与案例展示、学习经验交流！这里有我的故事，欢迎你来倾听~陌上花开，可缓缓归矣！</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="https://www.ad-s.cn/" target="_blank">
-                            <img src="https://tp.corli.cn/data/f_37774230.jpg">
-                            <h3>冰封博客</h3>
-                            <p>一位孤独的旅人</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="http://www.sunq.xyz" target="_blank">
-                            <img src="http://www.sunq.xyz/favicon.ico">
-                            <h3>孙权的博客</h3>
-                            <p>孙权的个人技术博客，欢迎光临呦</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="http://www.layui.com" target="_blank">
-                            <img src="https://www.yanshisan.cn/image/logo/favicon.ico">
-                            <h3>Layui</h3>
-                            <p>经典模块化前端框架</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="http://www.supert.net.cn" target="_blank">
-                            <img src="https://www.yanshisan.cn/image/logo/user.jpg">
-                            <h3>七年。</h3>
-                            <p>七年。个人博客</p>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="pd-lr-10">
-                        <a href="http://www.leo96.com" target="_blank">
-                            <img src="https://www.yanshisan.cn/image/logo/Leo.jpg">
-                            <h3>不落阁</h3>
-                            <p>不落阁 - 一个.NET程序员的个人博客</p>
-                        </a>
-                    </div>
-                </li>
-            </ul>
         </div>
     </div>
 
