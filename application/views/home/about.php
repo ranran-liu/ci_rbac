@@ -50,7 +50,7 @@
                 </span>
                     <ul>
                         <li>前 端 ：<code>Layui</code></li>
-                        <li>后 端 ：<code>MVC5 + MYSQL</code></li>
+                        <li>后 端 ：<code>CI + MYSQL</code></li>
                     </ul>
                     <p>
                         本站采用阿里云提供的服务器ESC和存储对象OSS。
