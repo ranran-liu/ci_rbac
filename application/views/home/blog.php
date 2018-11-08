@@ -234,14 +234,14 @@
 
 </div>
 
-<script src="/assets/home/layui/layui.js"></script>
-<script src="/assets/home/js/yss/gloable.js"></script>
-<script src="/assets/home/js/plugins/nprogress.js"></script>
-<script src="/assets/home/js/yss/article.js"></script>
-<script>NProgress.start();</script>
-<script>
-    window.onload = function () {
-        NProgress.done();
-    };
-</script>
+<!--<script src="/assets/home/layui/layui.js"></script>-->
+<!--<script src="/assets/home/js/yss/gloable.js"></script>-->
+<!--<script src="/assets/home/js/plugins/nprogress.js"></script>-->
+<!--<script src="/assets/home/js/yss/article.js"></script>-->
+<!--<script>NProgress.start();</script>-->
+<!--<script>-->
+<!--    window.onload = function () {-->
+<!--        NProgress.done();-->
+<!--    };-->
+<!--</script>-->
 

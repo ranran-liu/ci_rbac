@@ -15,5 +15,19 @@
         </div>
     </div>
 </footer>
+<script src="/assets/home/layui/layui.js"></script>
+<script src="/assets/home/js/yss/gloable.js"></script>
+<script src="/assets/home/js/jquery.min.js"></script>
+<script src="/assets/home/js/yss/swim.js"></script>
+<script src="/assets/home/js/yss/link.js"></script>
+<script src="/assets/home/js/push.js"></script>
+<script src="/assets/home/js/plugins/nprogress.js"></script>
+<script src="/assets/home/js/yss/article.js"></script>
+<script>NProgress.start();</script>
+<script>
+    window.onload = function () {
+        NProgress.done();
+    };
+</script>
 </body>
 </html>

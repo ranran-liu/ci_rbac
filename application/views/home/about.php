@@ -43,7 +43,7 @@
                 <section>
                     <h1>关于本站</h1>
                     <p>
-                        本站建于2018年4月，主要用于记录学习笔记，技术分享、交流。
+                        本站建于2018年11月，主要用于记录学习笔记，技术分享、交流。
                     </p>
                     <span>
                     本站结构：
@@ -80,3 +80,16 @@
     </div>
 
 </div>
+<!--<script src="/assets/home/layui/layui.js"></script>-->
+<!--<script src="/assets/home/js/yss/gloable.js"></script>-->
+<!--<script src="/assets/home/js/jquery.min.js"></script>-->
+<!--<script src="/assets/home/js/yss/link.js"></script>-->
+<!--<script src="/assets/home/js/push.js"></script>-->
+<!--<script src="/assets/home/js/plugins/nprogress.js"></script>-->
+<!--<script src="/assets/home/js/yss/article.js"></script>-->
+<!--<script>NProgress.start();</script>-->
+<!--<script>-->
+<!--    window.onload = function () {-->
+<!--        NProgress.done();-->
+<!--    };-->
+<!--</script>-->
