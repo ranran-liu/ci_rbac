@@ -34,10 +34,10 @@
                     </p>
                     <p>
                         交换友链可在留言板留言.本站信息如下<br>
-                        名称：燕十三<br>
-                        网址：https://www.yanshisan.cn<br>
-                        图标：https://www.yanshisan.cn/logo.png<br>
-                        描述：燕十三·一个人的江湖
+                        名称：李逍遥<br>
+                        网址：http://www.ranranliu.cn<br>
+                        图标：http://www.ranranliu.cn/logo.png<br>
+                        描述：李逍遥·御剑江湖
                     </p>
                     <p>
                         申请提交后若无其它原因将在24小时内审核,如超过时间还未通过,请私信我.(各种额外因素)
