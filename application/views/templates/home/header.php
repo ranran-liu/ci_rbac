@@ -29,7 +29,7 @@
 <header class="gird-header">
     <div class="header-fixed">
         <div class="header-inner">
-            <a href="javascript:void(0)" class="header-logo" id="logo">Mr.Lxy</a>
+            <a href="/index.html" class="header-logo" id="logo">Mr.Lxy</a>
             <nav class="nav" id="nav">
                 <ul>
                     <li><a href="/index.html">首页</a></li>
