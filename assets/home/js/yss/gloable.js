@@ -37,7 +37,7 @@ master.start = function ($) {
     console.log(" 一个人究竟多堕落");
     console.log(" 才会把大好青春荒废在博客上");
     console.log("\n\n");
-    console.log("follow me  %chttps://www.yanshisan.cn/", "color:#6bc30d");
+    console.log("follow me  %chttps://www.ranranliu.cn/", "color:#6bc30d");
 
     $(".blog-user img").hover(function () {
         var tips = layer.tips('点击退出', '.blog-user', {

@@ -13,15 +13,15 @@
     <link rel="stylesheet" href="/assets/home/css/nprogress.css" />
     <link rel="stylesheet" href="/assets/home/css/blog.css" />
     <link rel="stylesheet" href="/assets/home/css/about.css" />
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?a25ea62ea970ca9a32a7063d6c2de4c7";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
+<!--    <script>-->
+<!--        var _hmt = _hmt || [];-->
+<!--        (function() {-->
+<!--            var hm = document.createElement("script");-->
+<!--            hm.src = "https://hm.baidu.com/hm.js?a25ea62ea970ca9a32a7063d6c2de4c7";-->
+<!--            var s = document.getElementsByTagName("script")[0];-->
+<!--            s.parentNode.insertBefore(hm, s);-->
+<!--        })();-->
+<!--    </script>-->
 </head>
 <body>
 <div class="header">
