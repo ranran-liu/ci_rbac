@@ -560,4 +560,9 @@ function sp_send_email($email_user,$subject,$msg,$mail_type='html'){
     return $res;
 }
 
+//
+function sp_get_menu_index($id="main") {
+
+}
+
 
