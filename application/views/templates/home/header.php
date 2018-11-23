@@ -31,13 +31,11 @@
         <div class="header-inner">
             <a href="/index.html" class="header-logo" id="logo">Mr.Lxy</a>
             <nav class="nav" id="nav">
+                <?php $navs = sp_get_menu_index();?>
                 <ul>
-                    <li><a href="/index.html">首页</a></li>
-                    <li><a href="/blog.html">博客</a></li>
-                    <li><a href="/message.html">留言</a></li>
-                    <li><a href="/diary.html">日记</a></li>
-                    <li><a href="/link.html">友链</a></li>
-                    <li><a href="/about.html">关于</a></li>
+                    <?php foreach($navs as $k=>$v) { ?>
+                        <li><a href="<?php echo $v['href'];?>"><?php echo $v['label']?></a></li>
+                    <?php } ?>
                 </ul>
             </nav>
             <a href="#" class="blog-user">

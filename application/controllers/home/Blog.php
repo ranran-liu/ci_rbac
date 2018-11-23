@@ -20,6 +20,7 @@ class Blog extends HomeBaseController
     }
 
     public function read(){
+
         $id = $this->input->post_get('id');
 
         $this->render('home/read','home');

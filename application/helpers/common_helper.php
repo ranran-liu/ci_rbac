@@ -562,6 +562,30 @@ function sp_send_email($email_user,$subject,$msg,$mail_type='html'){
 
 //
 function sp_get_menu_index($id="main") {
+    $ci = & get_instance();
+    $db = $ci->load->database('myproject',true);
+    if($id=="main"){
+        $main=$db->where("active=1")->from("tp_nav_cat")->get()->row_array();
+        //echo $db->last_query();
+        $id = $main['navcid'];
+    }
+    if(empty($id)){
+        return array();
+    }
+    $navs= $db->where(array('cid'=>$id,'status'=>1))->order_by("listorder ASC")->get("tp_nav")->result_array();
+
+    foreach ($navs as $k=>$nav){
+        $href=htmlspecialchars_decode($nav['href']);
+        $hrefold=$href;
+        if($hrefold=="home"){
+            $href=site_url();
+        }else{
+            $href=$hrefold;
+        }
+        $nav['href']=$href;
+        $navs[$k]=$nav;
+    }
+    return $navs;
 
 }
 
