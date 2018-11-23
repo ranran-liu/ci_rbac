@@ -32,7 +32,7 @@
         <ul class="point">
             <li><a href="/index.html">首页</a></li>
             <li><a href="/blog.html">博客</a></li>
-            <li><a href="/message.html">留言</a></li>
+<!--            <li><a href="/message.html">留言</a></li>-->
         </ul>
         <div class="logo"><a>Mr.Lxy</a></div>
     </div>
