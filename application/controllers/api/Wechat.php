@@ -6,7 +6,7 @@ class Wechat extends MY_Controller{
     function __construct()
     {
         parent::__construct();
-        //$this->load->config('wxpay_config');
+        $this->load->config('wechat');
         $this->load->library('redisservice');
         $this->redis = $this->redisservice->connects();
         if(!$this->redis)
