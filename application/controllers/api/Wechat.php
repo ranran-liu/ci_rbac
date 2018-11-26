@@ -56,10 +56,11 @@ class Wechat extends MY_Controller{
 
         //1.获取到微信推送过来post数据（xml格式）
         $postArr = $GLOBALS['HTTP_RAW_POST_DATA'];
-        log_message('debug', "验证信息---".$postArr."-----".__CLASS__.__METHOD__."-----LINE--".__LINE__."===time:".date("Y-m-d H:i:s",time()));
+        log_message('debug', "验证信息1---".$GLOBALS."-----");
+        log_message('debug', "验证信息2---".$postArr."-----".__CLASS__.__METHOD__."-----LINE--".__LINE__."===time:".date("Y-m-d H:i:s",time()));
         //2.处理消息类型，并设置回复类型和内容
         $postObj = simplexml_load_string( $postArr );
-        log_message('debug', "验证信息---".$postObj."-----".__CLASS__.__METHOD__."-----LINE--".__LINE__."===time:".date("Y-m-d H:i:s",time()));
+        log_message('debug', "验证信息3---".$postObj."-----".__CLASS__.__METHOD__."-----LINE--".__LINE__."===time:".date("Y-m-d H:i:s",time()));
         //判断该数据包是否是订阅的事件推送
         if( strtolower( $postObj->MsgType) == 'event'){
             //如果是关注 subscribe 事件
