@@ -7,12 +7,12 @@ class Wechat extends MY_Controller{
     {
         parent::__construct();
         $this->load->config('wechat');
-        $this->load->library('redisservice');
-        $this->redis = $this->redisservice->connects();
-        if(!$this->redis)
-        {
-            exit('REDIS FAIL CONNECT');
-        }
+//        $this->load->library('redisservice');
+//        $this->redis = $this->redisservice->connects();
+//        if(!$this->redis)
+//        {
+//            exit('REDIS FAIL CONNECT');
+//        }
     }
     //微信服务接入时，服务器需授权验证
     public function valid()
