@@ -52,7 +52,7 @@ class Wechat extends MY_Controller{
         }
     }
 
-    private function responseMsg(){
+    public function responseMsg(){
 
         //1.获取到微信推送过来post数据（xml格式）
         $postArr = $GLOBALS['HTTP_RAW_POST_DATA'];
