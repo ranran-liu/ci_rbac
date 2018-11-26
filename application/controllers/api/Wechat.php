@@ -24,6 +24,7 @@ class Wechat extends MY_Controller{
         //valid signature , option
         if($this->checkSignature($signature,$timestamp,$nonce) && $echoStr){
             //第一次介入微信API接口
+            log_message('debug', "验证信息---".$echoStr."-----".__CLASS__.__METHOD__."-----LINE--".__LINE__."===time:".date("Y-m-d H:i:s",time()));
             echo $echoStr;exit;
         }else{
             $this->responseMsg();
@@ -57,6 +58,7 @@ class Wechat extends MY_Controller{
         $postArr = $GLOBALS['HTTP_RAW_POST_DATA'];
         //2.处理消息类型，并设置回复类型和内容
         $postObj = simplexml_load_string( $postArr );
+        log_message('debug', "验证信息---".$postObj."-----".__CLASS__.__METHOD__."-----LINE--".__LINE__."===time:".date("Y-m-d H:i:s",time()));
         //判断该数据包是否是订阅的事件推送
         if( strtolower( $postObj->MsgType) == 'event'){
             //如果是关注 subscribe 事件
